@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Curious Oxfordshire Map</title>
 
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
+
   <!-- Leaflet CSS from CDN — no install needed -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
@@ -15,12 +20,15 @@
   <!-- ── Sidebar ─────────────────────────────────────────── -->
   <aside id="sidebar">
 
-    <h1>🗺 Curious<br>Oxfordshire</h1>
+    <h1>Curious Oxfordshire</h1>
     <p class="subtitle">Unusual, interesting & slightly magical places around Buckland and beyond.</p>
 
     <!-- Search -->
     <div id="search-wrap">
-      <input id="search-input" type="text" placeholder="🔍  Search places…" autocomplete="off" />
+      <span id="search-icon" aria-hidden="true">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </span>
+      <input id="search-input" type="text" placeholder="Search places…" autocomplete="off" />
       <button id="search-clear" title="Clear search" aria-label="Clear search">✕</button>
     </div>
 

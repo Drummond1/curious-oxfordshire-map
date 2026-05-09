@@ -9,45 +9,43 @@ const MAP_ZOOM   = 11;
 
 const map = L.map('map').setView(MAP_CENTRE, MAP_ZOOM);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  maxZoom: 19
+L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+  attribution: '© <a href="https://stadiamaps.com/">Stadia Maps</a> © <a href="https://openmaptiles.org/">OpenMapTiles</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  maxZoom: 20
 }).addTo(map);
 
 
 // -- Custom marker icon --------------------------------------
 
+const CATEGORY_COLOURS = {
+  'strange-or-historic': '#a05030',
+  'nature':              '#4a7c59',
+  'rainy-day':           '#4a70a0',
+  'events':              '#8b5ea6',
+  'hidden-places':       '#c07030',
+  'food-or-treats':      '#c05060',
+  'adventures':          '#2a7a6a',
+  'default':             '#7a6050'
+};
+
 function makeIcon(category, isFamilyFriendly) {
-  const colours = {
-    'strange-or-historic': '#a05030',
-    'nature':              '#5a8a3a',
-    'rainy-day':           '#4a70a0',
-    'events':              '#9a6ab0',
-    'hidden-places':       '#c07030',
-    'food-or-treats':      '#c05060',
-    'adventures':          '#2a7a6a',
-    'default':             '#7a6050'
-  };
-  const colour = colours[category] || colours['default'];
-  const familyBadge = isFamilyFriendly
-    ? `<div style="position:absolute;top:-7px;right:-7px;font-size:9px;line-height:1;">👨‍👩‍👧</div>`
-    : '';
+  const colour = CATEGORY_COLOURS[category] || CATEGORY_COLOURS['default'];
+
+  // Family-friendly: white solid centre + coloured outer ring via box-shadow
+  const innerStyle = isFamilyFriendly
+    ? `background:#fff; border:2px solid ${colour}; box-shadow: 0 0 0 3px ${colour}, 0 2px 6px rgba(0,0,0,0.28);`
+    : `background:${colour}; border:2px solid rgba(255,255,255,0.9); box-shadow: 0 2px 6px rgba(0,0,0,0.3);`;
 
   return L.divIcon({
     className: '',
-    html: `<div style="position:relative;width:14px;height:14px;">
-      <div style="
-        width:14px;height:14px;
-        background:${colour};
-        border:2.5px solid #fff;
-        border-radius:50%;
-        box-shadow:0 1px 4px rgba(0,0,0,0.3);
-      "></div>
-      ${familyBadge}
-    </div>`,
-    iconSize: [22, 22],
-    iconAnchor: [7, 7],
-    popupAnchor: [0, -12]
+    html: `<div style="
+      width:18px; height:18px;
+      border-radius:50%;
+      ${innerStyle}
+    "></div>`,
+    iconSize: [18, 18],
+    iconAnchor: [9, 9],
+    popupAnchor: [0, -14]
   });
 }
 
@@ -83,16 +81,18 @@ function buildPopup(place) {
 
   const isAdventure = place.category === 'adventures';
 
+  const catColour = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
+
   const photoHtml = place.photo
     ? `<img src="${place.photo}" alt="${place.name}" class="popup-photo" onerror="this.style.display='none'">`
     : '';
 
   return `
+    ${photoHtml}
     <div class="popup-content${isAdventure ? ' popup-adventure' : ''}">
-      ${photoHtml}
       ${isAdventure ? '<div class="popup-adventure-badge">✦ Day Adventure</div>' : ''}
       <h3>${place.name}</h3>
-      <div class="popup-type">${place.type}</div>
+      <div class="popup-type" style="background:${catColour}18; color:${catColour};">${place.type}</div>
       ${dateLine}
       ${familyLine}
       <div class="popup-description">${place.description}</div>
@@ -133,7 +133,7 @@ places.forEach(place => {
     icon: makeIcon(place.category, place.familyFriendly)
   }).addTo(map);
 
-  marker.bindPopup(buildPopup(place), { maxWidth: 320 });
+  marker.bindPopup(buildPopup(place), { maxWidth: 340 });
   marker.placeData = place;
   markerById[place.id] = marker;
 });
@@ -149,6 +149,7 @@ function buildListItem(place) {
   li.className = 'place-item';
   li.dataset.id = place.id;
 
+  const colour = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
   const weatherEmoji = place.weather === 'indoor' ? '🏠' : '🌿';
   const dateStr = place.date ? ` · ${formatDate(place.date)}` : '';
   const familyBadge = place.familyFriendly
@@ -158,14 +159,24 @@ function buildListItem(place) {
     ? `<span class="list-adventure-badge">✦</span>`
     : '';
 
+  const thumbHtml = place.photo
+    ? `<div class="place-thumb-wrap">
+         <img class="place-thumb" src="${place.photo}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+       </div>`
+    : '';
+
+  const tagPills = (place.tags || []).filter(t => t !== 'adventures').slice(0, 3)
+    .map(t => `<span class="place-tag">${tagLabel(t)}</span>`)
+    .join('');
+
   li.innerHTML = `
-    <div class="place-name">${adventureBadge}${place.name} ${familyBadge}</div>
-    <div class="place-meta">${weatherEmoji} ${place.type}${dateStr}</div>
-    <div>
-      ${(place.tags || []).filter(t => t !== 'adventures').slice(0, 3).map(t =>
-        `<span class="place-tag">${tagLabel(t)}</span>`
-      ).join('')}
+    <div class="place-stripe" style="background:${colour};"></div>
+    <div class="place-body">
+      <div class="place-name">${adventureBadge}${place.name} ${familyBadge}</div>
+      <div class="place-meta">${weatherEmoji} ${place.type}${dateStr}</div>
+      <div class="place-tags-row">${tagPills}</div>
     </div>
+    ${thumbHtml}
   `;
 
   li.addEventListener('click', () => {
