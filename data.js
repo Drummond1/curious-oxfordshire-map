@@ -1572,6 +1572,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["food-or-treats", "strange-or-historic", "nature"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/The_Rose_Revived_pub%2C_from_the_bridge%2C_Newbridge_-_geograph.org.uk_-_6092163.jpg/500px-The_Rose_Revived_pub%2C_from_the_bridge%2C_Newbridge_-_geograph.org.uk_-_6092163.jpg",
   },
 
   {
@@ -1590,6 +1591,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["food-or-treats", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Faringdon_-_The_Bell_-_geograph.org.uk_-_7577539.jpg/500px-Faringdon_-_The_Bell_-_geograph.org.uk_-_7577539.jpg",
   },
 
   {
@@ -1608,6 +1610,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["food-or-treats", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/The_Trout_Inn%2C_Wolvercote%2C_Oxfordshire_07.jpg/500px-The_Trout_Inn%2C_Wolvercote%2C_Oxfordshire_07.jpg",
   },
 
   {
@@ -1626,6 +1629,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["food-or-treats", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/The_Plough_Inn%2C_Finstock_-_geograph.org.uk_-_1982530.jpg/500px-The_Plough_Inn%2C_Finstock_-_geograph.org.uk_-_1982530.jpg",
   },
 
   {
@@ -1644,6 +1648,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["food-or-treats", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Cassington_village_-_geograph.org.uk_-_7887276.jpg/500px-Cassington_village_-_geograph.org.uk_-_7887276.jpg",
   },
 
   {
@@ -1662,6 +1667,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["food-or-treats", "nature", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Waterperry_House_and_lawn_Waterperry_Gardens_Oxfordshire_England_02.jpg/500px-Waterperry_House_and_lawn_Waterperry_Gardens_Oxfordshire_England_02.jpg",
   },
 
   {
@@ -1680,6 +1686,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["food-or-treats", "strange-or-historic", "nature"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/The_White_Horse%2C_Woolstone_-_geograph.org.uk_-_1370761.jpg/500px-The_White_Horse%2C_Woolstone_-_geograph.org.uk_-_1370761.jpg",
   },
 
   // ── Wave 4: Rivers, literary, geology, wildlife, Cold War ────
@@ -1700,6 +1707,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Inglesham%2C_Wiltshire%2C_UK._St_John_the_Baptist_church.jpg/500px-Inglesham%2C_Wiltshire%2C_UK._St_John_the_Baptist_church.jpg",
   },
 
   {
@@ -1718,6 +1726,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Swinford_Toll_Bridge_-_geograph.org.uk_-_5392095.jpg/500px-Swinford_Toll_Bridge_-_geograph.org.uk_-_5392095.jpg",
   },
 
   {
@@ -1736,6 +1745,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places", "nature"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Buscot_Manor_seen_from_the_River_Thames_-_geograph.org.uk_-_3628204.jpg/500px-Buscot_Manor_seen_from_the_River_Thames_-_geograph.org.uk_-_3628204.jpg",
   },
 
   {
@@ -1754,6 +1764,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Old_Father_Thames%2C_St_John%27s_Lock%2C_Lechlade%2C_Cotswolds.JPG/500px-Old_Father_Thames%2C_St_John%27s_Lock%2C_Lechlade%2C_Cotswolds.JPG",
   },
 
   {
@@ -1772,6 +1783,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Southern_portal%2C_Sapperton_canal_tunnel_%28uncropped%29.jpg/500px-Southern_portal%2C_Sapperton_canal_tunnel_%28uncropped%29.jpg",
   },
 
   {
@@ -1790,6 +1802,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "nature"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Source_of_the_River_Thames_and_start_of_the_Thames_Path%2C_Thames_Head_-_August_2023_-_01.jpg/500px-Source_of_the_River_Thames_and_start_of_the_Thames_Path%2C_Thames_Head_-_August_2023_-_01.jpg",
   },
 
   {
@@ -1808,6 +1821,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Letcombe_Bassett_-_geograph.org.uk_-_4603006.jpg/500px-Letcombe_Bassett_-_geograph.org.uk_-_4603006.jpg",
   },
 
   {
@@ -1826,6 +1840,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/The_Garden_Court_Buscot_Park.jpg/500px-The_Garden_Court_Buscot_Park.jpg",
   },
 
   {
@@ -1844,6 +1859,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Uffington_White_Horse%2C_Oxfordshire_-_geograph.org.uk_-_5095831.jpg/500px-Uffington_White_Horse%2C_Oxfordshire_-_geograph.org.uk_-_5095831.jpg",
   },
 
   {
@@ -1880,6 +1896,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/View_of_Stonesfield%2C_Oxfordshire_from_a_drone_over_Greenfield_Crescent.jpg/500px-View_of_Stonesfield%2C_Oxfordshire_from_a_drone_over_Greenfield_Crescent.jpg",
   },
 
   {
@@ -1916,6 +1933,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["strange-or-historic", "hidden-places", "rainy-day"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Hardened_Aircraft_Shelter.jpg/500px-Hardened_Aircraft_Shelter.jpg",
   },
 
   {
@@ -1934,6 +1952,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/RAF_Broadwell_WW2_control_tower_-_geograph.org.uk_-_6148005.jpg/500px-RAF_Broadwell_WW2_control_tower_-_geograph.org.uk_-_6148005.jpg",
   },
 
   {
@@ -1952,6 +1971,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "nature"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Buscot_Manor_seen_from_the_River_Thames_-_geograph.org.uk_-_3628204.jpg/500px-Buscot_Manor_seen_from_the_River_Thames_-_geograph.org.uk_-_3628204.jpg",
   },
 
   {
@@ -1970,6 +1990,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Chimney_Meadows.jpg/500px-Chimney_Meadows.jpg",
   },
 
   {
@@ -1988,6 +2009,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Snake%27s_head_fritillary%2C_North_Meadow_National_Nature_Reserve%2C_Cricklade_-_geograph.org.uk_-_3960443.jpg/500px-Snake%27s_head_fritillary%2C_North_Meadow_National_Nature_Reserve%2C_Cricklade_-_geograph.org.uk_-_3960443.jpg",
   },
 
   {
@@ -2006,6 +2028,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["events", "nature", "free-or-cheap", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ducklington_village.jpg/500px-Ducklington_village.jpg",
   },
 
   {
@@ -2024,6 +2047,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Charlton-on-Otmoor_StMary_south.jpg/500px-Charlton-on-Otmoor_StMary_south.jpg",
   },
 
   {
@@ -2042,6 +2066,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Purple_emperor_%28Apatura_iris%29_male_underside.jpg/500px-Purple_emperor_%28Apatura_iris%29_male_underside.jpg",
   },
 
   // ── Wave 5: Folklore, ghosts, dark history ──────────────────
@@ -2080,6 +2105,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg/500px-Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg",
   },
 
   {
@@ -2098,6 +2124,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Farmland%2C_Hinton_Waldrist_-_geograph.org.uk_-_2816367.jpg/500px-Farmland%2C_Hinton_Waldrist_-_geograph.org.uk_-_2816367.jpg",
   },
 
   {
@@ -2116,6 +2143,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Bampton_High_Street_-_geograph.org.uk_-_6859692.jpg/500px-Bampton_High_Street_-_geograph.org.uk_-_6859692.jpg",
   },
 
   {
@@ -2134,6 +2162,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/The_Devil%27s_Quoits_henge_monument%2C_Stanton_Harcourt_-_geograph.org.uk_-_4785926.jpg/500px-The_Devil%27s_Quoits_henge_monument%2C_Stanton_Harcourt_-_geograph.org.uk_-_4785926.jpg",
   },
 
   {
@@ -2152,6 +2181,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Church_of_St_Mary%2C_Longworth_-_geograph.org.uk_-_6099186.jpg/500px-Church_of_St_Mary%2C_Longworth_-_geograph.org.uk_-_6099186.jpg",
   },
 
   {
@@ -2170,6 +2200,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "nature"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Village_green%2C_Childrey%2C_Oxfordshire_-_geograph.org.uk_-_4520658.jpg/500px-Village_green%2C_Childrey%2C_Oxfordshire_-_geograph.org.uk_-_4520658.jpg",
   },
 
   {
@@ -2188,6 +2219,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "nature", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Chimney_Meadows.jpg/500px-Chimney_Meadows.jpg",
   },
 
   // ── Day Adventures: curated activity ideas ──────────────────
@@ -2210,6 +2242,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "nature", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Blowing_Stone_2.JPG/500px-Blowing_Stone_2.JPG",
   },
 
   {
@@ -2228,6 +2261,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Bridge_across_the_River_Thames_at_Radcot_-_geograph.org.uk_-_5124517.jpg/500px-Bridge_across_the_River_Thames_at_Radcot_-_geograph.org.uk_-_5124517.jpg",
   },
 
   {
@@ -2246,6 +2280,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "nature", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/The_Ridgeway_looking_west_from_Blowingstone_Hill%2C_Kingston_Lisle_-_geograph.org.uk_-_666964.jpg/500px-The_Ridgeway_looking_west_from_Blowingstone_Hill%2C_Kingston_Lisle_-_geograph.org.uk_-_666964.jpg",
   },
 
   {
@@ -2264,6 +2299,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["nature", "food-or-treats", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Buscot_Weir_Pool_-_geograph.org.uk_-_3053582.jpg/500px-Buscot_Weir_Pool_-_geograph.org.uk_-_3053582.jpg",
   },
 
   {
@@ -2282,6 +2318,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Market_place%2C_Faringdon.JPG/500px-Market_place%2C_Faringdon.JPG",
   },
 
   {
@@ -2300,6 +2337,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["strange-or-historic", "nature", "food-or-treats", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Kelmscott_Manor%2C_summer_home_of_William_Morris_-_geograph.org.uk_-_5794732.jpg/500px-Kelmscott_Manor%2C_summer_home_of_William_Morris_-_geograph.org.uk_-_5794732.jpg",
   },
 
   {
@@ -2318,6 +2356,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Cottage%2C_Coleshill_Estate_-_geograph.org.uk_-_3060933.jpg/500px-Cottage%2C_Coleshill_Estate_-_geograph.org.uk_-_3060933.jpg",
   },
 
   {
@@ -2336,6 +2375,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Charlton-on-Otmoor_StMary_south.jpg/500px-Charlton-on-Otmoor_StMary_south.jpg",
   },
 
   {
@@ -2354,6 +2394,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "events", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Snake%27s_head_fritillary%2C_North_Meadow_National_Nature_Reserve%2C_Cricklade_-_geograph.org.uk_-_3960443.jpg/500px-Snake%27s_head_fritillary%2C_North_Meadow_National_Nature_Reserve%2C_Cricklade_-_geograph.org.uk_-_3960443.jpg",
   },
 
   {
@@ -2372,6 +2413,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["food-or-treats", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Market_place%2C_Faringdon.JPG/500px-Market_place%2C_Faringdon.JPG",
   },
 
   {
@@ -2390,6 +2432,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/The_Ridgeway_looking_west_from_Blowingstone_Hill%2C_Kingston_Lisle_-_geograph.org.uk_-_666964.jpg/500px-The_Ridgeway_looking_west_from_Blowingstone_Hill%2C_Kingston_Lisle_-_geograph.org.uk_-_666964.jpg",
   },
 
   {
@@ -2408,6 +2451,7 @@ const places = [
     date: "2026-06-27",
     verified: false,
     tags: ["events", "food-or-treats", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/West_side_of_Charlbury_-_geograph.org.uk_-_1706587.jpg/500px-West_side_of_Charlbury_-_geograph.org.uk_-_1706587.jpg",
   },
 
   // ── WAVE 7: 100 Adventures within 10 miles of Buckland ──────────────────
@@ -2431,6 +2475,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Bridge_across_the_River_Thames_at_Radcot_-_geograph.org.uk_-_5124517.jpg/500px-Bridge_across_the_River_Thames_at_Radcot_-_geograph.org.uk_-_5124517.jpg",
   },
 
   {
@@ -2450,6 +2495,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["events", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mosaic_of_Morris_Dancers_etc%2C_Market_Square%2C_Bampton%2C_Oxon_-_geograph.org.uk_-_7966459.jpg/500px-Mosaic_of_Morris_Dancers_etc%2C_Market_Square%2C_Bampton%2C_Oxon_-_geograph.org.uk_-_7966459.jpg",
   },
 
   {
@@ -2469,6 +2515,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["events", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Town_Hall%2C_Market_Square%2C_Bampton%2C_Oxon_%28geograph_6380222%29.jpg/500px-Town_Hall%2C_Market_Square%2C_Bampton%2C_Oxon_%28geograph_6380222%29.jpg",
   },
 
   {
@@ -2488,6 +2535,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg/500px-Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg",
   },
 
   {
@@ -2507,6 +2555,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Bampton_High_Street_-_geograph.org.uk_-_6859692.jpg/500px-Bampton_High_Street_-_geograph.org.uk_-_6859692.jpg",
   },
 
   {
@@ -2526,6 +2575,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Tadpole_Bridge%2C_River_Thames_-_geograph.org.uk_-_576483.jpg/500px-Tadpole_Bridge%2C_River_Thames_-_geograph.org.uk_-_576483.jpg",
   },
 
   {
@@ -2545,6 +2595,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Shifford_Lock%2C_River_Thames_-_geograph.org.uk_-_572249.jpg/500px-Shifford_Lock%2C_River_Thames_-_geograph.org.uk_-_572249.jpg",
   },
 
   {
@@ -2564,6 +2615,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/High_Street%2C_Longworth_-_geograph.org.uk_-_5451020.jpg/500px-High_Street%2C_Longworth_-_geograph.org.uk_-_5451020.jpg",
   },
 
   {
@@ -2583,6 +2635,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Village_Cross%2C_Charney_Bassett_-_geograph.org.uk_-_7024593.jpg/500px-Village_Cross%2C_Charney_Bassett_-_geograph.org.uk_-_7024593.jpg",
   },
 
   {
@@ -2602,6 +2655,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/St_Michaels_Eaton_Hastings_Geograph-3077234-by-Bill-Nicholls.jpg/500px-St_Michaels_Eaton_Hastings_Geograph-3077234-by-Bill-Nicholls.jpg",
   },
 
   {
@@ -2621,6 +2675,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Buscot_Weir_Pool_-_geograph.org.uk_-_3053582.jpg/500px-Buscot_Weir_Pool_-_geograph.org.uk_-_3053582.jpg",
   },
 
   {
@@ -2640,6 +2695,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["hidden-places", "nature", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Duxford_Ford_on_the_River_Thames_%28geograph_2586119%29.jpg/500px-Duxford_Ford_on_the_River_Thames_%28geograph_2586119%29.jpg",
   },
 
   {
@@ -2659,6 +2715,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BlackBourton_StMary_Adoration.jpg/500px-BlackBourton_StMary_Adoration.jpg",
   },
 
   {
@@ -2678,6 +2735,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Great_Coxwell_Tithe_Barn%2C_Oxfordshire_%28geograph_1934677%29.jpg/500px-Great_Coxwell_Tithe_Barn%2C_Oxfordshire_%28geograph_1934677%29.jpg",
   },
 
   {
@@ -2697,6 +2755,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Church_of_St_Mary%2C_Buckland%2C_Oxfordshire_-_geograph.org.uk_-_4514677.jpg/500px-Church_of_St_Mary%2C_Buckland%2C_Oxfordshire_-_geograph.org.uk_-_4514677.jpg",
   },
 
   {
@@ -2716,6 +2775,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Bampton_High_Street_-_geograph.org.uk_-_6859692.jpg/500px-Bampton_High_Street_-_geograph.org.uk_-_6859692.jpg",
   },
 
   {
@@ -2735,6 +2795,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Cottage%2C_Coleshill_Estate_-_geograph.org.uk_-_3060933.jpg/500px-Cottage%2C_Coleshill_Estate_-_geograph.org.uk_-_3060933.jpg",
   },
 
   {
@@ -2754,6 +2815,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Chimney_Meadows.jpg/500px-Chimney_Meadows.jpg",
   },
 
   {
@@ -2773,6 +2835,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Medieval_kitchen%2C_Pope%27s_Tower_and_St._Michael%27s_Church_from_Steady%27s_Lane_-_geograph.org.uk_-_4787161.jpg/500px-Medieval_kitchen%2C_Pope%27s_Tower_and_St._Michael%27s_Church_from_Steady%27s_Lane_-_geograph.org.uk_-_4787161.jpg",
   },
 
   {
@@ -2792,6 +2855,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Manor_Farm%2C_Hinton_Waldrist_-_geograph.org.uk_-_91579.jpg/500px-Manor_Farm%2C_Hinton_Waldrist_-_geograph.org.uk_-_91579.jpg",
   },
 
   {
@@ -2811,6 +2875,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Village_houses%2C_Stanford_in_the_Vale%2C_Oxfordshire_-_geograph.org.uk_-_4509718.jpg/500px-Village_houses%2C_Stanford_in_the_Vale%2C_Oxfordshire_-_geograph.org.uk_-_4509718.jpg",
   },
 
   {
@@ -2830,6 +2895,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Kelmscott_Manor%2C_summer_home_of_William_Morris_-_geograph.org.uk_-_5794732.jpg/500px-Kelmscott_Manor%2C_summer_home_of_William_Morris_-_geograph.org.uk_-_5794732.jpg",
   },
 
   {
@@ -2849,6 +2915,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Market_Square%2C_Witney_-_geograph.org.uk_-_871345.jpg/500px-Market_Square%2C_Witney_-_geograph.org.uk_-_871345.jpg",
   },
 
   {
@@ -2868,6 +2935,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["food-or-treats", "strange-or-historic", "nature", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Newbridge%2C_Oxfordshire.jpg/500px-Newbridge%2C_Oxfordshire.jpg",
   },
 
   {
@@ -2887,6 +2955,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "food-or-treats"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Dovecote_at_Cogges_Manor_Farm%2C_Cogges%2C_Witney%2C_Oxon_-_geograph.org.uk_-_4820964.jpg/500px-Dovecote_at_Cogges_Manor_Farm%2C_Cogges%2C_Witney%2C_Oxon_-_geograph.org.uk_-_4820964.jpg",
   },
 
   {
@@ -2906,6 +2975,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Rushey_Lock_River_Thames1.jpg/500px-Rushey_Lock_River_Thames1.jpg",
   },
 
   {
@@ -2925,6 +2995,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pusey_House_Chapel_-_Rood_-_geograph.org.uk_-_2181809.jpg/500px-Pusey_House_Chapel_-_Rood_-_geograph.org.uk_-_2181809.jpg",
   },
 
   {
@@ -2944,6 +3015,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Kingston_Bagpuize_House_%281%29_-_geograph.org.uk_-_4337088.jpg/500px-Kingston_Bagpuize_House_%281%29_-_geograph.org.uk_-_4337088.jpg",
   },
 
   {
@@ -2963,6 +3035,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Grafton_Lock%2C_River_Thames_-_geograph.org.uk_-_576731.jpg/500px-Grafton_Lock%2C_River_Thames_-_geograph.org.uk_-_576731.jpg",
   },
 
   {
@@ -2982,6 +3055,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/River_Ock_at_Charney.JPG/500px-River_Ock_at_Charney.JPG",
   },
 
   {
@@ -3001,6 +3075,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Church_of_St_Faith%2C_Shellingford%2C_Oxfordshire_-_geograph.org.uk_-_4520755.jpg/500px-Church_of_St_Faith%2C_Shellingford%2C_Oxfordshire_-_geograph.org.uk_-_4520755.jpg",
   },
 
   {
@@ -3020,6 +3095,7 @@ const places = [
     verified: false,
     familyFriendly: false,
     tags: ["strange-or-historic", "events", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg/500px-Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg",
   },
 
   {
@@ -3039,6 +3115,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["food-or-treats", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Bampton_High_Street_-_geograph.org.uk_-_6859692.jpg/500px-Bampton_High_Street_-_geograph.org.uk_-_6859692.jpg",
   },
 
   {
@@ -3058,6 +3135,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Cottage%2C_Coleshill_Estate_-_geograph.org.uk_-_3060933.jpg/500px-Cottage%2C_Coleshill_Estate_-_geograph.org.uk_-_3060933.jpg",
   },
 
   {
@@ -3077,6 +3155,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Village_street%2C_Alvescot_-_geograph.org.uk_-_6572784.jpg/500px-Village_street%2C_Alvescot_-_geograph.org.uk_-_6572784.jpg",
   },
 
   {
@@ -5035,6 +5114,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/The_Thames_Path_by_Marsh_Meadow_-_geograph.org.uk_-_6759886.jpg/500px-The_Thames_Path_by_Marsh_Meadow_-_geograph.org.uk_-_6759886.jpg",
   },
 
   {
@@ -5114,6 +5194,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Ancient_hedgerow_beside_the_byway_-_geograph.org.uk_-_6105904.jpg/500px-Ancient_hedgerow_beside_the_byway_-_geograph.org.uk_-_6105904.jpg",
   },
 
   {
@@ -5492,6 +5573,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Farm_track%2C_Lockinge_-_geograph.org.uk_-_703210.jpg/500px-Farm_track%2C_Lockinge_-_geograph.org.uk_-_703210.jpg",
   },
 
   {
@@ -5531,6 +5613,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["food-or-treats", "nature", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Cottage%2C_Coleshill_Estate_-_geograph.org.uk_-_3060933.jpg/500px-Cottage%2C_Coleshill_Estate_-_geograph.org.uk_-_3060933.jpg",
   },
 
   {
@@ -5570,6 +5653,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Log_piles%2C_Buckland_Warren_-_geograph.org.uk_-_6532548.jpg/500px-Log_piles%2C_Buckland_Warren_-_geograph.org.uk_-_6532548.jpg",
   },
 
   {
@@ -5829,6 +5913,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "strange-or-historic", "adventures", "hidden-places", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Ancient_hedgerow_beside_the_byway_-_geograph.org.uk_-_6105904.jpg/500px-Ancient_hedgerow_beside_the_byway_-_geograph.org.uk_-_6105904.jpg",
   },
 
   {
@@ -5848,6 +5933,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg/500px-Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg",
   },
 
   {
@@ -5867,6 +5953,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Town_Hall%2C_Market_Square%2C_Bampton%2C_Oxon_%28geograph_6380222%29.jpg/500px-Town_Hall%2C_Market_Square%2C_Bampton%2C_Oxon_%28geograph_6380222%29.jpg",
   },
 
   {
@@ -6266,6 +6353,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["hidden-places", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Harrowdown_Hill_-_geograph.org.uk_-_386123.jpg/500px-Harrowdown_Hill_-_geograph.org.uk_-_386123.jpg",
   },
 
   {
