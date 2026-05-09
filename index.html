@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curious Oxfordshire Map</title>
+
+  <!-- Leaflet CSS from CDN — no install needed -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside id="sidebar">
+
+    <h1>🗺 Curious<br>Oxfordshire</h1>
+    <p class="subtitle">Unusual, interesting & slightly magical places around Buckland and beyond.</p>
+
+    <!-- Search -->
+    <div id="search-wrap">
+      <input id="search-input" type="text" placeholder="🔍  Search places…" autocomplete="off" />
+      <button id="search-clear" title="Clear search" aria-label="Clear search">✕</button>
+    </div>
+
+    <!-- Filter buttons -->
+    <div id="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn filter-btn-adventure" data-filter="adventures">✦ Day Adventures</button>
+      <button class="filter-btn filter-btn-family" data-filter="family-friendly">👨‍👩‍👧 Family Friendly</button>
+      <button class="filter-btn" data-filter="hidden-places">Hidden Places</button>
+      <button class="filter-btn" data-filter="events">Events</button>
+      <button class="filter-btn" data-filter="nature">Nature</button>
+      <button class="filter-btn" data-filter="rainy-day">Rainy Day</button>
+      <button class="filter-btn" data-filter="food-or-treats">Food or Treats</button>
+      <button class="filter-btn" data-filter="strange-or-historic">Strange or Historic</button>
+      <button class="filter-btn" data-filter="free-or-cheap">Free or Cheap</button>
+    </div>
+
+    <!-- Random adventure button -->
+    <button id="random-btn">🎲 Random Adventure</button>
+
+    <!-- Place list — clicking zooms to marker -->
+    <div id="place-count"></div>
+    <ul id="place-list"></ul>
+
+    <div class="sidebar-footer">
+      <span>Sample data — not verified. Check before visiting.</span>
+    </div>
+
+  </aside>
+
+  <!-- ── Map ────────────────────────────────────────────── -->
+  <div id="map"></div>
+
+  <!-- Leaflet JS from CDN -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Our data and app logic -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="voice.js"></script>
+
+</body>
+</html>
