@@ -240,8 +240,8 @@ const places = [
     id: 13,
     name: "Wychwood Forest Folk Weekend",
     category: "events",
-    lat: 51.851,
-    lng: -1.513,
+    lat: 51.8879,
+    lng: -1.4344,
     type: "Event",
     description: "A sample folk festival event in the Wychwood area of Oxfordshire — music, storytelling, fire, local food and forest walks. Sample date only.",
     whyCurious: "Wychwood is one of England's ancient forests. A folk festival in it feels like it belongs there. Events like this do happen nearby — this is a placeholder to show how event entries work.",
@@ -442,6 +442,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "hidden-places", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Uffington_White_Horse_-_The_Manger.jpg/500px-Uffington_White_Horse_-_The_Manger.jpg",
   },
 
   {
@@ -460,6 +461,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "strange-or-historic", "rainy-day"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/St_Swithun%2C_Compton_Beauchamp_-_geograph.org.uk_-_1541181.jpg/500px-St_Swithun%2C_Compton_Beauchamp_-_geograph.org.uk_-_1541181.jpg",
   },
 
   {
@@ -478,6 +480,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "rainy-day", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/St_James_the_Great%2C_South_Leigh%2C_Oxon_-_Wall_painting_-_geograph.org.uk_-_1623930.jpg/500px-St_James_the_Great%2C_South_Leigh%2C_Oxon_-_Wall_painting_-_geograph.org.uk_-_1623930.jpg",
   },
 
   {
@@ -496,6 +499,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "rainy-day", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BlackBourton_StMary_Adoration.jpg/500px-BlackBourton_StMary_Adoration.jpg",
   },
 
   {
@@ -514,14 +518,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/All_Saints_Church_Faringdon_-_geograph.org.uk_-_16694.jpg/500px-All_Saints_Church_Faringdon_-_geograph.org.uk_-_16694.jpg",
   },
 
   {
     id: 28,
     name: "Ashdown Park Sarsen Field",
     category: "nature",
-    lat: 51.537,
-    lng: -1.578,
+    lat: 51.5362,
+    lng: -1.5963,
     type: "Geological SSSI",
     description: "A field of wild sarsen boulders — the same type of stone used at Stonehenge and Avebury — lying in natural drift formation alongside the B4000 near Ashdown House. A Site of Special Scientific Interest, protected for the rare lichens on the stones.",
     whyCurious: "You can stop the car and walk among a genuine prehistoric sarsen drift — the raw material of Stonehenge — lying exactly as glacial processes left it, in an open field, with zero interpretation and almost zero visitors. Wayland's Smithy and the Blowing Stone were almost certainly sourced from this same drift.",
@@ -551,6 +556,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/St_Mary_Childrey_Geograph-2570712-by-Brian-Robert-Marshall.jpg/500px-St_Mary_Childrey_Geograph-2570712-by-Brian-Robert-Marshall.jpg",
   },
 
   {
@@ -613,8 +619,8 @@ const places = [
     id: 33,
     name: "Foxholes Nature Reserve",
     category: "nature",
-    lat: 51.8533,
-    lng: -1.496,
+    lat: 51.8769,
+    lng: -1.6266,
     type: "Ancient Woodland",
     description: "A 66-hectare remnant of the ancient Forest of Wychwood — one of the best bluebell woods in Oxfordshire, with over 200 species of fungi, white admiral butterflies, and seven bat species including the rare Bechstein's bat.",
     whyCurious: "The Bechstein's bat is one of England's rarest mammals, almost entirely restricted to ancient woodland. 200+ fungi species emerge in autumn. Three tiny parking spaces off a road verge mean almost nobody goes. The fungi alone in October are extraordinary.",
@@ -625,6 +631,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Foxholes_Nature_Reserve_-_May_2012_-_panoramio.jpg/500px-Foxholes_Nature_Reserve_-_May_2012_-_panoramio.jpg",
   },
 
   {
@@ -738,6 +745,7 @@ const places = [
     date: "2026-05-01",
     verified: false,
     tags: ["events", "free-or-cheap", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Magdalen-may-morning-2007-panorama.jpg/500px-Magdalen-may-morning-2007-panorama.jpg",
   },
 
   {
@@ -800,8 +808,8 @@ const places = [
     id: 43,
     name: "Troy Maze, Somerton",
     category: "strange-or-historic",
-    lat: 51.887,
-    lng: -1.258,
+    lat: 51.9472,
+    lng: -1.2466,
     type: "Medieval Turf Maze",
     description: "One of only eight original post-medieval turf mazes surviving in England — 50ft x 60ft, 15 winding concentric loops totalling a quarter mile of path, cut into the ground of a working farm.",
     whyCurious: "Most English turf mazes were destroyed in the Puritan era when such 'amusements' were banned. This one survived. 'Troy Town' is the traditional English name for this type of maze — scholars still argue about why. The maze sits on private farmland (now a B&B) so you need to book a stay to walk it, which makes it feel genuinely like a discovery.",
@@ -830,14 +838,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/c/c0/Orchid%2C_Hartslock_-_geograph.org.uk_-_441699.jpg",
   },
 
   {
     id: 45,
     name: "Watlington White Mark",
     category: "strange-or-historic",
-    lat: 51.638,
-    lng: -1.006,
+    lat: 51.639,
+    lng: -0.9897,
     type: "Chalk Figure",
     description: "An 82-metre elongated chalk triangle cut into Watlington Hill in 1764 by a local squire who was annoyed that St Leonard's Church lacked a steeple. Positioned so that from a precise point on the Oxford road, it appears to be the church's missing spire.",
     whyCurious: "There is no Bronze Age mysticism here — just one irritated man's eccentric grievance. The optical illusion no longer works perfectly because trees have grown up around the church, but the chalk figure is visible for miles and almost nobody knows what it is or why it exists. National Trust chalk grassland SSSI.",
@@ -848,14 +857,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Approaching_the_white_mark_on_Watlington_Hill_-_geograph.org.uk_-_3301102.jpg/500px-Approaching_the_white_mark_on_Watlington_Hill_-_geograph.org.uk_-_3301102.jpg",
   },
 
   {
     id: 46,
     name: "Blewburton Hill — Ten Ritual Horse Burials",
     category: "strange-or-historic",
-    lat: 51.564,
-    lng: -1.243,
+    lat: 51.5716,
+    lng: -1.2125,
     type: "Iron Age Hillfort",
     description: "An Iron Age hillfort near Blewbury with a remarkable secret: when it was reoccupied around 100 BC, approximately ten horses were ritually slaughtered and buried at the entrance as a dedicatory offering.",
     whyCurious: "The horse burials at the gate are extraordinary — a deliberate, repeated sacrifice to consecrate the entrance. The site also has a Neolithic phase, an Anglo-Saxon burial ground, and extraordinary views to Wittenham Clumps and the Berkshire Downs. A geocache brings a trickle of visitors but most walkers ignore it entirely.",
@@ -872,8 +882,8 @@ const places = [
     id: 47,
     name: "Scutchamer Knob",
     category: "strange-or-historic",
-    lat: 51.5726,
-    lng: -1.3019,
+    lat: 51.5624,
+    lng: -1.3428,
     type: "Saxon Moot Mound",
     description: "A mutilated Bronze Age barrow on the Ridgeway above East Hendred that became one of the most important open-air meeting places in Wessex — a shire moot (open-air parliament and court) — and the site of a remarkable Viking prophecy gone catastrophically wrong.",
     whyCurious: "In 1006, a Danish army marched to this mound believing a prophecy that if they reached it they would never have to return to the sea — meaning they would conquer England. They were then slaughtered. The 1842 treasure-seekers who excavated it left it shaped like a croissant. The only find: a large wooden stake wrapped in willow twigs. The name is rude enough that locals still snigger.",
@@ -884,6 +894,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/The_Ridgeway_approaching_Cuckhamsley_Hill_in_Oxfordshire_from_the_east.jpg/500px-The_Ridgeway_approaching_Cuckhamsley_Hill_in_Oxfordshire_from_the_east.jpg",
   },
 
   {
@@ -902,14 +913,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Fen%2C_Dry_Sandford_Pit_Nature_Reserve_-_geograph.org.uk_-_6233086.jpg/500px-Fen%2C_Dry_Sandford_Pit_Nature_Reserve_-_geograph.org.uk_-_6233086.jpg",
   },
 
   {
     id: 49,
     name: "Minster Lovell Hall — The Skeleton in the Sealed Room",
     category: "strange-or-historic",
-    lat: 51.7862,
-    lng: -1.5914,
+    lat: 51.7997,
+    lng: -1.5309,
     type: "Medieval Ruin",
     description: "Free ruined medieval manor on the River Windrush, open 24 hours, with one of the most extraordinary documented stories in English history: a sealed vault opened in 1718 containing an intact skeleton at a desk, pen in hand, a dog at its feet — which crumbled to dust when touched.",
     whyCurious: "The skeleton is believed to be Francis Lovell, 1st Viscount Lovell, who fled here after the Battle of Stoke Field (1487). The 1718 account is documented in a letter. The story became entangled with the unrelated 'Mistletoe Bough' legend of a bride who suffocated in a chest. The ruins in a riverside meadow setting are among the most atmospherically beautiful in England — free and open day and night.",
@@ -920,6 +932,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Minster_Lovell_Hall%2C_south-east_tower_-_2016.jpg/500px-Minster_Lovell_Hall%2C_south-east_tower_-_2016.jpg",
   },
 
   {
@@ -945,7 +958,7 @@ const places = [
     name: "Shifford — Alfred's Forgotten Parliament",
     category: "strange-or-historic",
     lat: 51.7168,
-    lng: -1.5442,
+    lng: -1.459,
     type: "Historic Site",
     description: "A tiny hamlet reached by farm track that 17th-century tradition claimed as the site of Alfred the Great's first witan (proto-parliament), held around 890 AD. A piece of ground near the medieval chapel is still called 'Court Close'.",
     whyCurious: "Scholars now doubt the parliamentary claim, but the result is a village that should be famous and is instead completely empty. The deflation between the legend and the reality — a quiet field, a tiny chapel, a farm track — is extraordinary in itself. No sign, no marker, no visitors.",
@@ -956,6 +969,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Shifford_Church_from_the_Thames_Path_-_geograph.org.uk_-_706281.jpg/500px-Shifford_Church_from_the_Thames_Path_-_geograph.org.uk_-_706281.jpg",
   },
 
   {
@@ -963,7 +977,7 @@ const places = [
     name: "Letcombe Regis — Maori Chief's Grave",
     category: "strange-or-historic",
     lat: 51.5764,
-    lng: -1.4166,
+    lng: -1.4527,
     type: "Churchyard",
     description: "In the churchyard of St Andrew's, Letcombe Regis, stands a 7-foot obelisk to George King Hipango — a young Maori chief from Wanganui, New Zealand, who died of tuberculosis aged 19 in 1871 while training as a missionary.",
     whyCurious: "Completely unexpected in a chalk-downland churchyard. Hipango had come to England to train as a missionary and was staying at the vicarage when he died. No tourist literature mentions the grave. No sign inside the village. The contrast between the plain Berkshire Downs landscape and the Pacific Islander obelisk is genuinely startling.",
@@ -974,14 +988,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/St_Andrew%27s_Church%2C_Letcombe_Regis_-_geograph.org.uk_-_1111952.jpg/500px-St_Andrew%27s_Church%2C_Letcombe_Regis_-_geograph.org.uk_-_1111952.jpg",
   },
 
   {
     id: 53,
     name: "Radcot Bridge — Oldest Bridge on the Thames",
     category: "strange-or-historic",
-    lat: 51.6813,
-    lng: -1.5724,
+    lat: 51.6931,
+    lng: -1.5886,
     type: "Historic Bridge",
     description: "Built around 1200 using Taynton stone, this is the oldest surviving bridge on the Thames. On 19 December 1387, the Battle of Radcot Bridge was fought here between Richard II's forces and Henry Bolingbroke (future Henry IV) — the bridge was partially demolished in the fighting.",
     whyCurious: "Most visitors to the Upper Thames don't know this is the oldest bridge on the river, or that a decisive battle of the Wars of the Roses fought here. It now crosses only about a third of the river's flow after a canal cut was made in 1787. No visitor centre — just the ancient bridge, the water, and the Swan Inn on the river island.",
@@ -992,14 +1007,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Radcot_Navigation_Bridge%2C_River_Thames_-_geograph.org.uk_-_576726.jpg/500px-Radcot_Navigation_Bridge%2C_River_Thames_-_geograph.org.uk_-_576726.jpg",
   },
 
   {
     id: 54,
     name: "Cornwell Village",
     category: "hidden-places",
-    lat: 51.9340,
-    lng: -1.5940,
+    lat: 51.9409,
+    lng: -1.6086,
     type: "Village",
     description: "An entire Cotswold hamlet remodelled in 1938–39 by Clough Williams-Ellis — architect of Portmeirion — who installed running water and electricity while converting every cottage into a neo-Georgian fantasy. The village looks simultaneously ancient and subtly wrong.",
     whyCurious: "The same architect who built Portmeirion in Wales came here and redesigned an entire village. The result blends Cotswold limestone vernacular with Art Deco and Rococo detailing. Eleven listed structures. No shop, no pub, no car park — just a public lane through it and a Norman church occasionally open. Appears in no guidebook in any detail.",
@@ -1010,6 +1026,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Cornwell_village_-_geograph.org.uk_-_1713615.jpg/500px-Cornwell_village_-_geograph.org.uk_-_1713615.jpg",
   },
 
   {
@@ -1028,6 +1045,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["strange-or-historic", "food-or-treats"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Hook_norton_brewery_1.jpg/500px-Hook_norton_brewery_1.jpg",
   },
 
   {
@@ -1035,7 +1053,7 @@ const places = [
     name: "Aston Tirrold — Where Traffic Invented Country Rock",
     category: "hidden-places",
     lat: 51.5539,
-    lng: -1.2335,
+    lng: -1.1996,
     type: "Historic Farm",
     description: "In spring 1967, psychedelic folk-rock group Traffic (Steve Winwood, Jim Capaldi, Chris Wood, Dave Mason) retreated to Sheepcote Farm in this quiet chalk valley to write and record. The result was Mr Fantasy, their debut album. They invented the phrase 'getting it together in the country' here.",
     whyCurious: "No plaque. No sign. It's still a farm. But this is where a significant moment in British rock music happened — musicians retreating to a rural cottage to write together, which became a whole cultural movement. The village looks exactly as it did. The A-road past it is completely unmarked.",
@@ -1064,14 +1082,15 @@ const places = [
     date: "2026-07-11",
     verified: false,
     tags: ["events", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Keepers_Cottage%2C_Wytham_Woods_-_geograph.org.uk_-_307425.jpg/500px-Keepers_Cottage%2C_Wytham_Woods_-_geograph.org.uk_-_307425.jpg",
   },
 
   {
     id: 58,
     name: "Ashdown House — Shrine to a Queen Who Never Came",
     category: "strange-or-historic",
-    lat: 51.5500,
-    lng: -1.5350,
+    lat: 51.5362,
+    lng: -1.5963,
     type: "Historic House",
     description: "A striking Dutch-influenced 17th-century hunting lodge built by Lord Craven for Elizabeth Stuart, the exiled Winter Queen of Bohemia — but she died before it was finished. Craven built and furnished it anyway, filling the staircase with her portraits as a permanent shrine.",
     whyCurious: "Elizabeth Stuart never visited Ashdown House. The relationship between Craven and the exiled queen — who lived in his London house for years with no official explanation — was the most significant devotion of his life. Ghost reports include Lord Craven pacing the grounds in patched finery and a candlelit female figure at windows. The house is among England's finest 17th-century buildings and most people drive past it.",
@@ -1082,14 +1101,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Ashdown_House_Geograph-1875004-by-Brian-Robert-Marshall.jpg/500px-Ashdown_House_Geograph-1875004-by-Brian-Robert-Marshall.jpg",
   },
 
   {
     id: 59,
     name: "Burford Church — Leveller Graffiti, 1649",
     category: "strange-or-historic",
-    lat: 51.8070,
-    lng: -1.6310,
+    lat: 51.8096,
+    lng: -1.6342,
     type: "Church",
     description: "In May 1649, Cromwell imprisoned 340 mutinous Leveller soldiers inside this church for three days. While captive they left carvings that survive: 'Anthony Sedley 1649 Prisner' on the lead font, and a nine men's morris board scratched into a tomb slab. Bullet holes from the executions remain in the churchyard wall.",
     whyCurious: "The misspelling of 'prisoner' has been left unaltered for 375 years. Three men — Thompson, Perkins and Church — were shot against the wall on 17 May 1649. The Levellers were arguing for democracy and religious freedom two centuries before it existed. The church now holds an annual Levellers' Day commemoration, which is itself a genuinely unusual event.",
@@ -1100,14 +1120,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "rainy-day"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Interior_of_Burford_Parish_Church_-_geograph.org.uk_-_300752.jpg/500px-Interior_of_Burford_Parish_Church_-_geograph.org.uk_-_300752.jpg",
   },
 
   {
     id: 60,
     name: "Wittenham Clumps — Money Pit & the Poem Tree",
     category: "strange-or-historic",
-    lat: 51.6094,
-    lng: -1.1806,
+    lat: 51.6278,
+    lng: -1.1787,
     type: "Hillfort & Woodland",
     description: "Two linked hills above the Thames with a massive Iron Age fort, a hollow called the Money Pit (said to hide a chest guarded by a raven that screams 'he is not yet born!' at anyone who digs), and a commemorative stone where a farmer spent two weeks in 1844 carving a poem into a beech tree from memory.",
     whyCurious: "The Iron Age votive pit here contained cattle skulls alongside raven, fish, pig, horse, deer, weasel and sheep bones — a deliberate offering. The Money Pit raven legend and the Poem Tree farmer (Joseph Tubb, 1844) are both well-documented but barely mentioned at the site. The original Poem Tree fell in 2012; a stone now carries the text.",
@@ -1118,14 +1139,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Wittenham_Clumps_including_Sinodun_Hill_Camp.jpg/500px-Wittenham_Clumps_including_Sinodun_Hill_Camp.jpg",
   },
 
   {
     id: 61,
     name: "Lowbury Hill — Roman Temple & the Forgotten Burial",
     category: "hidden-places",
-    lat: 51.5365,
-    lng: -1.2063,
+    lat: 51.5366,
+    lng: -1.2228,
     type: "Romano-Celtic Temple",
     description: "A hilltop enclosure on the Ridgeway above Aston Tirrold, used as a Romano-Celtic temple from the 2nd to early 5th century AD. The square earthwork is still visible. Access via the Ridgeway footpath — no signs, no facilities.",
     whyCurious: "An Anglo-Saxon warrior burial was discovered on the hill — and then, buried in the demolished temple wall, a completely forgotten female burial from c.550–650 CE. Her bones are currently in a storage facility in Standlake. This woman's existence is known only to specialists and has received virtually no scholarly or public attention. The contrast between the warrior's treatment and hers is its own story.",
@@ -1136,6 +1158,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Roman_temple_site%2C_Lowbury_Hill%2C_Oxfordshire_05.jpg/500px-Roman_temple_site%2C_Lowbury_Hill%2C_Oxfordshire_05.jpg",
   },
 
   // ── Wave 3: Events, places and pubs ─────────────────────────
@@ -1144,8 +1167,8 @@ const places = [
     id: 62,
     name: "Cornbury Park Palm Sunday Walk — Spanish Liquor Day",
     category: "events",
-    lat: 51.8780,
-    lng: -1.5610,
+    lat: 51.864,
+    lng: -1.4946,
     type: "Ancient Well Custom",
     description: "On Palm Sunday, Cornbury Park estate (near Charlbury) opens its locked gates to admit only the residents of three specific villages — Charlbury, Leafield and Finstock — to walk to two ancient healing springs inside Wychwood Forest. Historically, walkers carried bottles with liquorice, sugar and peppermint, filled them from the spring, and made 'Spanish Liquor' believed to cure all ailments.",
     whyCurious: "The estate is completely closed to the public all year — except this one day. One of England's rarest surviving well customs, almost entirely unknown outside the three villages involved. The water-drinking is nearly extinct but the walk continues. Lord Rotherwick grants access only on Palm Sunday.",
@@ -1156,14 +1179,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "events", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Reservoir_in_Cornbury_Park_-_geograph.org.uk_-_31713.jpg/500px-Reservoir_in_Cornbury_Park_-_geograph.org.uk_-_31713.jpg",
   },
 
   {
     id: 63,
     name: "Bampton Whitsun: Shirt Race & May Garlands",
     category: "events",
-    lat: 51.7210,
-    lng: -1.5410,
+    lat: 51.725,
+    lng: -1.5448,
     type: "Annual Festival",
     description: "Bampton's Whitsun weekend (Fri–Mon) hides two traditions almost nobody talks about. The Shirt Race on Saturday evening pits teams in elaborately themed contraptions — prams, shopping trolleys, improvised vehicles — racing through the village stopping at every pub, started for the 1953 Coronation. On Monday morning, children make traditional double-willow-hoop May Garlands decorated with wild flowers, crowned with a posy and a doll on a pole, judged in the Market Square.",
     whyCurious: "The Morris dancing gets all the attention, but the Shirt Race and May Garlands are the hidden soul of Bampton Whitsun. The garland tradition is one of only a tiny number still surviving in England. Nobody publicises them.",
@@ -1174,14 +1198,15 @@ const places = [
     date: "2026-05-23",
     verified: false,
     tags: ["free-or-cheap", "events", "hidden-places", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/The_Morris_Clown_in_Bampton_-_geograph.org.uk_-_2401600.jpg/500px-The_Morris_Clown_in_Bampton_-_geograph.org.uk_-_2401600.jpg",
   },
 
   {
     id: 64,
     name: "North Leigh Roman Villa — Mosaic Open Days",
     category: "strange-or-historic",
-    lat: 51.8260,
-    lng: -1.3980,
+    lat: 51.8364,
+    lng: -1.4248,
     type: "Romano-British Villa",
     description: "An enormous 4th-century AD Romano-British villa with one of the finest surviving mosaic floors in England. The mosaic (c.AD 340, saltire motif) is kept under protective sheeting all year and is only accessible on specific open weekends when trained English Heritage volunteers lift the covers. The rest of the site is a self-guided ruin — the mosaic opens a locked outbuilding.",
     whyCurious: "On six open weekends per year, experts lift the covers off a 1,700-year-old mosaic floor and explain the archaeology. Free. Completely missed by most visitors to the Cotswolds. Open weekends run May–September.",
@@ -1192,6 +1217,7 @@ const places = [
     date: "2026-05-30",
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/North_Leigh_Roman_Villa_Mosaic_detail.jpg/500px-North_Leigh_Roman_Villa_Mosaic_detail.jpg",
   },
 
   {
@@ -1210,14 +1236,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "events", "hidden-places", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Charney_Manor_-_geograph.org.uk_-_6237849.jpg/500px-Charney_Manor_-_geograph.org.uk_-_6237849.jpg",
   },
 
   {
     id: 66,
     name: "World Aunt Sally Championship, Charlbury Beer Festival",
     category: "events",
-    lat: 51.8720,
-    lng: -1.4910,
+    lat: 51.8738,
+    lng: -1.4867,
     type: "Annual Championship",
     description: "Charlbury Beer Festival hosts the World Aunt Sally Open Singles Championship. Aunt Sally is a traditional Oxfordshire throwing game in which players hurl sticks at a wooden skittle (the 'doll') on a metal spike — played almost exclusively in Oxfordshire. The World Open attracted 91 competitors in 2025, including players from Germany. The festival also serves 60 real ales.",
     whyCurious: "The World Championship of the most Oxfordshire-specific sport you've never heard of, held as a sideshow at a small community beer festival. Aunt Sally exists almost nowhere else in England. Watching someone win the World Championship in something most English people have never seen is extraordinary.",
@@ -1228,14 +1255,15 @@ const places = [
     date: "2026-06-27",
     verified: false,
     tags: ["events", "strange-or-historic", "food-or-treats"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Aunt_Sally_1911_WGC.jpg",
   },
 
   {
     id: 67,
     name: "Charlbury Riverside Festival",
     category: "events",
-    lat: 51.8720,
-    lng: -1.4910,
+    lat: 51.8738,
+    lng: -1.4867,
     type: "Annual Festival",
     description: "Oxfordshire's largest free music festival, held on a watermeadow 'island' formed by the River Evenlode in Charlbury. Multiple stages, entirely free entry, run by over 100 volunteers. The site is accessed across the river — the island aspect is genuine. Grown from a small village event into the region's biggest free outdoor festival.",
     whyCurious: "Completely free, entirely volunteer-run, on an actual river island. Not in any national festival guide. Charlbury has a population of about 3,000 — and it runs a festival bigger than most market towns manage.",
@@ -1252,8 +1280,8 @@ const places = [
     id: 68,
     name: "White Horse Folk Festival, Grove",
     category: "events",
-    lat: 51.6010,
-    lng: -1.4280,
+    lat: 51.6095,
+    lng: -1.4219,
     type: "Annual Festival",
     description: "A participatory 3-day folk festival in Grove near Wantage, with emphasis on joining in rather than watching. Singarounds, music sessions, workshops, a Saturday ceilidh, guest concerts, storytelling, and Icknield Way Morris Men dancing. Camping at Grove Rugby Club.",
     whyCurious: "There is no barrier between performer and audience — the whole point is to join in. Very local; Icknield Way Morris treat it as their home event. Almost invisible outside the folk music world. A genuine community festival that started small and stayed honest.",
@@ -1270,8 +1298,8 @@ const places = [
     id: 69,
     name: "Pendon Museum of the Vale",
     category: "rainy-day",
-    lat: 51.6470,
-    lng: -1.1960,
+    lat: 51.6377,
+    lng: -1.2182,
     type: "Museum",
     description: "An extraordinary miniature museum in Long Wittenham showing the Vale of White Horse as it looked in the 1930s — in astonishing, decades-in-the-making scale model detail. Individual craftspeople have spent careers building single thatched cottages, haystacks, and hedgerows. The Madder Valley Railway, a 1930s model railway of great historical significance, runs on specified days.",
     whyCurious: "The models are genuine works of art. Some buildings in the scale model still stand a mile away in the real Vale of White Horse — you can visit the model and then drive to the actual building. Almost nobody outside Oxfordshire knows it exists. Unlike any other museum in England.",
@@ -1282,6 +1310,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["rainy-day", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pendon_Model_Railway_Museum_in_Long_Wittenham_-_geograph.org.uk_-_1299963.jpg/500px-Pendon_Model_Railway_Museum_in_Long_Wittenham_-_geograph.org.uk_-_1299963.jpg",
   },
 
   {
@@ -1306,8 +1335,8 @@ const places = [
     id: 71,
     name: "Levellers Day, Burford",
     category: "events",
-    lat: 51.8110,
-    lng: -1.7990,
+    lat: 51.8096,
+    lng: -1.6342,
     type: "Annual Commemoration",
     description: "An annual commemoration of three soldiers shot by Oliver Cromwell in Burford churchyard on 17 May 1649. The Levellers were proto-democrats demanding civil rights, religious tolerance and manhood suffrage — shot for mutiny when Cromwell crushed their movement. The day includes singing in the churchyard, laying of posies on the soldiers' graves, a march, a walking history tour, debates with MPs and academic talks.",
     whyCurious: "Run by trade unions and radical historians, not a heritage body — deliberately political and living. Folk-rock band Stocious perform, historians speak, MPs debate. You would never find this unless you already knew about it. Not in any mainstream tourist guide. Free entry.",
@@ -1318,14 +1347,15 @@ const places = [
     date: "2026-05-09",
     verified: false,
     tags: ["free-or-cheap", "events", "strange-or-historic"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Interior_of_Burford_Parish_Church_-_geograph.org.uk_-_300752.jpg/500px-Interior_of_Burford_Parish_Church_-_geograph.org.uk_-_300752.jpg",
   },
 
   {
     id: 72,
     name: "Waterperry Opera Festival",
     category: "events",
-    lat: 51.7540,
-    lng: -1.1480,
+    lat: 51.7526,
+    lng: -1.0888,
     type: "Annual Festival",
     description: "Professional opera staged outdoors in Waterperry Gardens — a walled 8th-century estate with a Saxon church. In 2026: Puccini's La Bohème and Donizetti's Elixir of Love sung in English against the garden. Hidden extra: a site-specific performance inspired by Hildegard von Bingen performed inside the ancient church. Free 'Come and Sing' workshops let amateurs sing alongside the professional cast.",
     whyCurious: "A serious professional opera festival in Oxfordshire farmland, with a Hildegard von Bingen piece inside an 8th-century church and free sessions where you can sing alongside the actual principal cast. The 'Come and Sing' workshops (free, 3:30pm on three dates) are genuinely extraordinary access.",
@@ -1336,6 +1366,7 @@ const places = [
     date: "2026-08-08",
     verified: false,
     tags: ["events", "strange-or-historic", "nature"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Waterperry_House_and_lawn_Waterperry_Gardens_Oxfordshire_England_02.jpg/500px-Waterperry_House_and_lawn_Waterperry_Gardens_Oxfordshire_England_02.jpg",
   },
 
   {
@@ -1372,14 +1403,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sparsholt_HolyCross_TombSouth.jpg/500px-Sparsholt_HolyCross_TombSouth.jpg",
   },
 
   {
     id: 75,
     name: "Tilgarsley — Black Death Ghost Village",
     category: "hidden-places",
-    lat: 51.7890,
-    lng: -1.3820,
+    lat: 51.7928,
+    lng: -1.402,
     type: "Deserted Medieval Village",
     description: "Tilgarsley in 1279 paid more in taxes than the nearby town of Eynsham. By 1350 the entire population had died of plague. A 1359 document explicitly states the village was 'abandoned in 1350 because all the inhabitants had died.' Hollow ways and earthwork remains survive in fields northwest of Eynsham. One of the most directly documented Black Death village abandonments in England.",
     whyCurious: "A whole village that simply stopped existing because everyone died. The paperwork survives. The earthworks survive. The name survives in field names. But the village is invisible to anyone who doesn't know where to look. Find it via Eynsham Archive or a local archaeology society.",
@@ -1396,8 +1428,8 @@ const places = [
     id: 76,
     name: "The Throckmorton Coat Wager, Buckland House",
     category: "strange-or-historic",
-    lat: 51.6780,
-    lng: -1.5020,
+    lat: 51.6816,
+    lng: -1.5089,
     type: "Historic Wager Site",
     description: "On 25 June 1811, Sir John Throckmorton of Buckland House wagered 1,000 guineas that a coat could be made from wool still on a sheep's back at sunrise, and worn to dinner at sunset the same day. Two Southdown sheep were shorn at 5am; cloth was woven by 4pm; tailors completed the coat by 6:20pm. Throckmorton wore it to dinner. The coat survives at Coughton Court, Warwickshire.",
     whyCurious: "A 1,000-guinea bet. At your doorstep. The coat — arguably the most productively manufactured garment in English history — still exists. The lord of the manor of Buckland placed this wager, making it hyperlocally yours. Nothing marks the spot.",
@@ -1408,6 +1440,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Buckland_House_Geograph-3416941-by-Stephen-Richards.jpg/500px-Buckland_House_Geograph-3416941-by-Stephen-Richards.jpg",
   },
 
   {
@@ -1444,6 +1477,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Church_of_St_Denys%2C_Stanford_in_the_Vale%2C_Oxfordshire_-_geograph.org.uk_-_4517761.jpg/500px-Church_of_St_Denys%2C_Stanford_in_the_Vale%2C_Oxfordshire_-_geograph.org.uk_-_4517761.jpg",
   },
 
   {
@@ -1462,6 +1496,7 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Charney_Manor_-_geograph.org.uk_-_6237849.jpg/500px-Charney_Manor_-_geograph.org.uk_-_6237849.jpg",
   },
 
   {
@@ -1480,14 +1515,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "hidden-places", "nature"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/St_Michael%27s_church%2C_Cumnor_-_geograph.org.uk_-_4384230.jpg/500px-St_Michael%27s_church%2C_Cumnor_-_geograph.org.uk_-_4384230.jpg",
   },
 
   {
     id: 81,
     name: "Lambourn Seven Barrows — Actually 30+",
     category: "strange-or-historic",
-    lat: 51.5280,
-    lng: -1.5100,
+    lat: 51.5439,
+    lng: -1.5271,
     type: "Bronze Age Cemetery",
     description: "Named 'Seven Barrows' but containing more than 30 Bronze Age burial mounds — a sizeable prehistoric cemetery. Also includes a Neolithic chambered long barrow (c.4000 BCE), 220 feet long, not discovered until 1935 because one end was ploughed up and a cart-track ran across the other. One barrow alone yielded the bones of over 100 people who died c.2200 BCE. Now a nature reserve with public access.",
     whyCurious: "It's called Seven Barrows. It has at least 30. Nobody has ever bothered to recount them officially. The long barrow was missed entirely because Victorian farmers drove a cart track across it. A rare paired-barrow-in-a-single-ring feature is here too. Free, open, and massively under-visited.",
@@ -1498,14 +1534,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["free-or-cheap", "strange-or-historic", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Seven_Barrows_-_geograph.org.uk_-_2206338.jpg/500px-Seven_Barrows_-_geograph.org.uk_-_2206338.jpg",
   },
 
   {
     id: 82,
     name: "The Trout at Tadpole Bridge, Buckland Marsh",
     category: "food-or-treats",
-    lat: 51.7150,
-    lng: -1.5290,
+    lat: 51.7016,
+    lng: -1.5167,
     type: "Riverside Pub",
     description: "A 17th-century free house sitting on the Thames at a single-arch stone bridge (1784), about 3 miles from Buckland. The pub's best historical detail: a sign above the door once read 'The Trout, kept by A Herring.' The wide garden runs to the water's edge with moorings — many customers still arrive by punt or cruiser. Six rooms available.",
     whyCurious: "The nearest unusual pub to Buckland, and one of the finest Thames-side pubs anywhere. The herring-keepeth-the-trout sign is the best accidental joke in Oxfordshire pub history. Arrive by the Thames Path; eat in the garden watching the river go past; consider what a herring has to do with a trout.",
@@ -1516,14 +1553,15 @@ const places = [
     date: null,
     verified: false,
     tags: ["food-or-treats", "nature", "hidden-places"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/The_Trout_at_Tadpole_Bridge_-_geograph.org.uk_-_2400180.jpg/500px-The_Trout_at_Tadpole_Bridge_-_geograph.org.uk_-_2400180.jpg",
   },
 
   {
     id: 83,
     name: "The Rose Revived at Newbridge",
     category: "food-or-treats",
-    lat: 51.7370,
-    lng: -1.4410,
+    lat: 51.7061,
+    lng: -1.417,
     type: "Riverside Pub",
     description: "A 16th-century stone pub on the north bank of the Thames at Newbridge — one of only two surviving medieval bridges on the river (13th century, Taynton stone, built by Cistercian monks on orders of King John). The bridge was the site of the 1644 Battle of Newbridge. A young Raymond Blanc began his British cooking career here in the 1970s and married the owner's daughter.",
     whyCurious: "Raymond Blanc's first kitchen was here. The bridge beside it was built by the same monks who built Oxford's colleges from the same stone. The Maybush Inn sits on the opposite bank — you can drink at both ends of one of England's oldest bridges. The name 'Rose Revived' may come from dropping a white rose in a wine glass at this spot.",
@@ -1558,8 +1596,8 @@ const places = [
     id: 85,
     name: "The Trout Inn, Wolvercote — Fair Rosamund's Ghost",
     category: "food-or-treats",
-    lat: 51.7860,
-    lng: -1.2980,
+    lat: 51.7747,
+    lng: -1.293,
     type: "Riverside Pub",
     description: "A Grade II listed 17th-century building on the site of a guest house for Godstow Nunnery. Fair Rosamund Clifford, mistress of Henry II, retired to the nunnery c.1175 and died there. Her ghost is said to haunt the inn — visible only above the knee (the floor has been raised since medieval times). C.S. Lewis and the Inklings drank here regularly. Lewis Carroll rowed Alice Liddell past here on the trip that sparked Alice in Wonderland.",
     whyCurious: "The ghost is only visible from the knees up because the floor level has risen since the 12th century — an unusually specific piece of haunting logic. Also: the Inklings drank here, Lewis Carroll invented Alice here, Inspector Morse filmed here. Tolkien's grave is a 10-minute walk away. Peacocks on the terrace.",
@@ -1595,7 +1633,7 @@ const places = [
     name: "Worton Kitchen Garden, Cassington",
     category: "food-or-treats",
     lat: 51.8090,
-    lng: -1.3550,
+    lng: -1.3278,
     type: "Organic Farm Cafe",
     description: "A working organic kitchen garden hidden behind Worton Rectory, northwest of Oxford. A wood-fired bakery produces naturally leavened sourdough daily from 100% organic flour. The seasonal restaurant menu uses ingredients grown metres from the kitchen. The farm uses no-dig organic methods, rewilding and hedgerow-building. Also hosts outdoor concerts, talks and theatre.",
     whyCurious: "The kind of farm that the organic movement always dreamed of and rarely manages — genuinely hidden behind a rectory, genuinely self-sufficient in bread, genuinely beautiful. You can buy bread from a wood-fired oven in a walled kitchen garden while watching people harvest what you're about to eat.",
@@ -1613,7 +1651,7 @@ const places = [
     name: "Waterperry Gardens",
     category: "food-or-treats",
     lat: 51.7580,
-    lng: -1.1480,
+    lng: -1.0889,
     type: "Walled Garden & Tea Room",
     description: "Eight acres of ornamental walled gardens with a Saxon church (13th-century original stained glass intact) and a Museum of Rural Life in an 18th-century granary. From 1932 to 1971, Beatrix Havergal ran one of Britain's only horticultural schools exclusively for women here. Now owned by the School of Philosophy and Economic Science. The tea shop serves pastries and afternoon tea.",
     whyCurious: "For 40 years, this was where women in Britain learned horticulture professionally — at a time when almost all formal training excluded them. The Saxon church has original medieval stained glass that most churches would give anything to own. The rural museum has 70 different brass beer barrel bushes. And the gardens are beautiful.",
@@ -1630,8 +1668,8 @@ const places = [
     id: 89,
     name: "White Horse Inn, Woolstone — Tom Brown's Local",
     category: "food-or-treats",
-    lat: 51.5910,
-    lng: -1.5400,
+    lat: 51.5883,
+    lng: -1.5776,
     type: "Historic Inn",
     description: "An Elizabethan pub (~500 years old) in the village directly beneath the Uffington White Horse hill figure. Thomas Hughes, author of Tom Brown's Schooldays (1857), grew up in Uffington and is said to have written parts of the novel here. His other book, The Scouring of the White Horse (1859), describes the ancient tradition of cleaning the chalk figure above the pub's garden.",
     whyCurious: "The pub where parts of Tom Brown's Schooldays may have been written, beneath the hill it describes. The scouring of the White Horse (periodic chalk cleaning to keep the figure visible) is one of the oldest community traditions in England — and the account of it written in this pub is the main historical source. Walk up from the beer garden to the Horse after lunch.",
@@ -1651,7 +1689,7 @@ const places = [
     name: "St John the Baptist Church, Inglesham — Seven Layers of Paint",
     category: "hidden-places",
     lat: 51.6890,
-    lng: -1.7000,
+    lng: -1.7044,
     type: "Medieval Church",
     description: "A tiny 13th-century church (with Saxon origins) saved from Victorian 'restoration' by William Morris personally, who oversaw its conservation in 1888–89. The result: one of the most genuinely unaltered medieval interiors in England. The walls contain up to seven layers of paint spanning six centuries — 13th-century masonry patterns, a 14th-century Doom painting, 15th-century angels, and 17th-century texts all overlaid. No electricity, no running water.",
     whyCurious: "Morris specifically intervened to stop the kind of destructive Victorian 'improvement' he'd witnessed elsewhere. What you see is exactly what a medieval parishioner would have seen — including a rare Saxon stone carving of the Madonna and Child. Box pews, original flagstones. Open daily. Almost nobody goes.",
@@ -1668,8 +1706,8 @@ const places = [
     id: 91,
     name: "Swinford Toll Bridge — 5p per Car, Tax-Free by Act of Parliament",
     category: "strange-or-historic",
-    lat: 51.7750,
-    lng: -1.3600,
+    lat: 51.7744,
+    lng: -1.3593,
     type: "Historic Toll Bridge",
     description: "One of only two remaining private toll bridges on the Thames, built 1766–69 under its own Act of Parliament. Cars pay 5p. Pedestrians pay nothing. What makes it genuinely peculiar: by an ancient arrangement reportedly granted by George III, the owner pays no income tax on toll revenue exceeding maintenance costs. The bridge sold at auction in 2009 for £1.08 million, the tax exemption transferring with it. No competing bridge may be built within three miles by law.",
     whyCurious: "You can cross a bridge on the Thames for 5p, the toll going to an owner who pays no tax on it by order of a Georgian king. This arrangement was written into law in 1769 and remains completely legal today. Single-file traffic creates a social contract between strangers.",
@@ -1704,8 +1742,8 @@ const places = [
     id: 93,
     name: "Father Thames at St John's Lock, Lechlade",
     category: "hidden-places",
-    lat: 51.6900,
-    lng: -1.6800,
+    lat: 51.6897,
+    lng: -1.6799,
     type: "Sculpture",
     description: "Outside the lock-keeper's cottage at the furthest upstream pound lock on the entire Thames stands 'Old Father Thames' — a reclining bearded stone figure carved from Portland stone by Italian sculptor Raffaelle Monti. Originally commissioned in 1854 for Crystal Palace's 'Rivers and Oceans' series. He survived the great Crystal Palace fire of 1936, was moved to the actual source of the Thames in 1958, then relocated here in 1974 after repeated vandalism at the source.",
     whyCurious: "A Portland stone Italian sculpture originally made for Crystal Palace now reclines in a lock garden on the upper Thames, watching narrowboats go past. He was kicked out of his first home by vandals, and his second home (the actual source of the river) was too remote for anyone to protect him. A quiet lock café is nearby.",
@@ -1741,7 +1779,7 @@ const places = [
     name: "Thames Head — Official Source of the Thames, Usually Dry",
     category: "hidden-places",
     lat: 51.6960,
-    lng: -1.9880,
+    lng: -2.0297,
     type: "Natural Landmark",
     description: "A hollow in a meadow near Kemble in the Cotswolds, marked by an inscribed stone: 'THE CONSERVATORS OF THE RIVER THAMES 1857–1974 THIS STONE WAS PLACED HERE TO MARK THE SOURCE OF THE RIVER THAMES.' In most summers, the hollow is completely bone dry. The Thames effectively begins five miles downstream at Somerford Keynes. There is a competing claim: Seven Springs near Cheltenham, where the River Churn rises year-round — if accepted, the Thames would become the longest river in the UK.",
     whyCurious: "The official source of one of England's most famous rivers is an empty field. The source moves with the groundwater table. In dry years (like 2022), the 'source' has no water at all. And there's a live academic argument that the whole measurement is wrong and the Thames starts somewhere else entirely. Ten minutes' walk from a pub.",
@@ -1776,8 +1814,8 @@ const places = [
     id: 97,
     name: "Buscot Park — Burne-Jones's Sleeping Beauty Room",
     category: "strange-or-historic",
-    lat: 51.6740,
-    lng: -1.6530,
+    lat: 51.6698,
+    lng: -1.6528,
     type: "Historic House (National Trust)",
     description: "Buscot Park's saloon contains The Legend of Briar Rose — four monumental Pre-Raphaelite canvases by Edward Burne-Jones depicting the Sleeping Beauty legend, painted 1884–1890. Burne-Jones personally visited the house and designed an extended frame system with ten additional connecting panels, integrating William Morris's verses directly into the frames. This is a purpose-built room-sized installation, not standalone paintings.",
     whyCurious: "The paintings were taken to Tate Britain for the first time in 2023 — and even then, most people didn't realise the originals were eight miles from Buckland. Burne-Jones's most ambitious work, with Morris's poetry embedded in the architectural frames, in a National Trust house that draws a fraction of Kelmscott's visitors. The house also has an extraordinary parkland and walled garden.",
@@ -1866,8 +1904,8 @@ const places = [
     id: 102,
     name: "Upper Heyford Heritage Centre — Cold War Nuclear Strike Base",
     category: "strange-or-historic",
-    lat: 51.9300,
-    lng: -1.2400,
+    lat: 51.9367,
+    lng: -1.2492,
     type: "Heritage Centre",
     description: "Britain's largest Cold War USAF base, from 1970 home to F-111E Aardvark nuclear strike aircraft in 56 Hardened Aircraft Shelters (now Scheduled Monuments). Aircraft sat nuclear-armed on 'Quick Reaction Alert,' able to launch within minutes. In 1994 it was handed back; now a housing estate called Heyford Park. The Heritage Centre preserves the nuclear bomb store, Battle Command Centre, Hardened Aircraft Shelter 9, Victor Alert HQ and Whiskey 13 watchtower.",
     whyCurious: "You can walk into the nuclear bomb store, the aircraft shelter where nuclear-armed planes waited, and the command centre from which nuclear war would have been coordinated. 4,000 protesters converged here in 1983 and 752 were arrested. Now it's also a housing estate. The juxtaposition is extraordinary.",
@@ -1884,8 +1922,8 @@ const places = [
     id: 103,
     name: "RAF Broadwell — D-Day Control Tower in a Field",
     category: "hidden-places",
-    lat: 51.7600,
-    lng: -1.6000,
+    lat: 51.7544,
+    lng: -1.6369,
     type: "WWII Airfield Remains",
     description: "RAF Broadwell launched paratroopers and glider tows on D-Day, carrying troops to Normandy. The airfield is largely gone — much of the western runway is now a solar farm — but the original wartime control tower stands alone in an open field, one of the most atmospheric WWII remains in Oxfordshire. A public bridleway runs across the site. The tower is visible from the road.",
     whyCurious: "A 1944 control tower in a field, alone, abandoned, with no sign or plaque, surrounded by solar panels and farmland. From here D-Day aircraft departed. It's the kind of thing you drive past without knowing what it is, which is almost the best thing about it.",
@@ -1920,8 +1958,8 @@ const places = [
     id: 105,
     name: "Chimney Meadows — England's Finest Floodplain Meadow",
     category: "nature",
-    lat: 51.7300,
-    lng: -1.5100,
+    lat: 51.6984,
+    lng: -1.4914,
     type: "Nature Reserve",
     description: "BBOWT's largest nature reserve in Oxfordshire: 308 hectares of Thames floodplain, declared a National Nature Reserve. One of England's largest remaining areas of unspoilt neutral grassland, given Coronation Meadow status for wildflower diversity. Curlew, lapwing and snipe breed here — nationally declining waders that are extraordinary to find inland. Water voles active along the Thames. Otters and barn owls present. Spring brings carpets of cowslips.",
     whyCurious: "About 8 miles from Buckland, across the Thames, this is the kind of meadow that has disappeared from 99% of England. In April the cowslips are extraordinary. Curlews breed here — their bubbling call is one of the most evocative sounds in nature and increasingly rare. Three bird hides, two wheelchair-accessible.",
@@ -1956,8 +1994,8 @@ const places = [
     id: 107,
     name: "Ducklington Fritillary Sunday",
     category: "events",
-    lat: 51.7700,
-    lng: -1.5200,
+    lat: 51.7659,
+    lng: -1.4826,
     type: "Annual Event",
     description: "A private meadow in Ducklington village (near Witney) opens to the public for one Sunday only, in late April, when snake's-head fritillaries blanket the field. St Bartholomew's Church hosts the event: Morris dancing, cream teas, plant stall. The field opens at 11:30am. One of the only chances in the region to see a genuinely private fritillary meadow.",
     whyCurious: "One day per year, a gate opens and you walk into a field full of chequered purple flowers that grow almost nowhere else in England. The rest of the year it's closed. The village runs Morris dancing and cream teas around it. You would never know it existed unless someone told you.",
@@ -2084,8 +2122,8 @@ const places = [
     id: 114,
     name: "Devil's Quoits at Stanton Harcourt — Flattened by a WWII Airfield",
     category: "strange-or-historic",
-    lat: 51.7334,
-    lng: -1.4006,
+    lat: 51.7399,
+    lng: -1.4059,
     type: "Neolithic Henge",
     description: "A Neolithic henge (originally 36 stones) with a legend: the Devil played quoits for a man's soul from Wytham Hill and the stones fell here. A WWII airfield levelled most of the monument. Between 2002 and 2008, English Heritage restored the site, re-erecting surviving stones and marking missing ones with modern blocks. The circle now sits between a flooded gravel pit and an active landfill. The village name 'Stanton' (Old English: farmstead by the stones) predates any recorded history of the circle.",
     whyCurious: "A Neolithic monument demolished by a WWII airfield, restored by English Heritage, surrounded by gravel pits and landfill. The legend says the Devil knocked these stones here playing quoits. The village was literally named after them in Old English 1,400 years ago. The surroundings are grimly industrial; the monument is unexpectedly striking.",
@@ -2138,8 +2176,8 @@ const places = [
     id: 117,
     name: "Chimney Meadows — 2,000-Burial Anglo-Saxon Cemetery Below a Nature Reserve",
     category: "hidden-places",
-    lat: 51.7293,
-    lng: -1.5742,
+    lat: 51.6984,
+    lng: -1.4914,
     type: "Archaeological Site / Nature Reserve",
     description: "The hamlet of Chimney (population ~20) has a late Anglo-Saxon cemetery covering 2,400 square metres beneath its fields — an estimated 1,500–2,000 burials, serving a wide surrounding area from mid-10th to mid-11th century. Far too large for the hamlet alone, it was likely a regional burial place for multiple communities associated with Bampton minster. Above ground it is BBOWT's finest nature reserve: curlew breeding, water voles, carpets of cowslips in spring.",
     whyCurious: "You walk across an ancient flower meadow above 2,000 Anglo-Saxon graves. The meadow is extraordinary in its own right — one of England's finest. The archaeology beneath it is known to specialists and almost nobody else. A Neolithic causewayed enclosure is also nearby. The hamlet has 20 people and two millennia of the dead.",
@@ -2304,8 +2342,8 @@ const places = [
     id: 126,
     name: "The Fritillary Meadow Chase: April Window",
     category: "adventures",
-    lat: 51.7700,
-    lng: -1.5200,
+    lat: 51.6984,
+    lng: -1.4914,
     type: "Adventure Idea",
     description: "A two-stop April pilgrimage for the snake's-head fritillary — one of England's rarest wildflowers. First stop: Ducklington Mead near Witney (open one Sunday only, late April — check dates). Second stop: Iffley Meadows, south Oxford (76,000 fritillaries, 2 miles from the city centre, free entry, access on foot). If you time it right you can see both in a day. The window is roughly 10–14 days in mid-April.",
     whyCurious: "England has about 160 chalk streams and very few fritillary meadows. Most are private. Two within an hour of Buckland open in the same two-week window. Ducklington opens one day per year. If you go on the right day in April, you walk into a field carpeted in chequered purple and white flowers. If you miss it, you wait another year.",
@@ -2380,8 +2418,8 @@ const places = [
     id: 130,
     name: "Radcot Bridge: Where a Duke Stripped His Armour and Swam for His Life",
     category: "adventures",
-    lat: 51.6960,
-    lng: -1.5450,
+    lat: 51.6958,
+    lng: -1.5884,
     type: "Adventure Idea",
     description: "Walk to Radcot — England's oldest standing Thames bridge (c.1200, Taynton stone, three pointed arches). The bridge now crosses only a weedy backwater: in 1787 a navigation cut was dug upstream, accidentally stranding the medieval bridge on a dead channel. Stand on it, then read: on the night of 19 December 1387, Robert de Vere, Richard II's favourite, arrived at this bridge to find it partially demolished and Henry Bolingbroke's army on the far bank. His army deserted at the first clash. De Vere stripped his gauntlets, sword and helmet into the water, spurred his horse into the Thames, swam across in the dark and fled to France. He never came back. His abandoned army surrendered immediately. The Swan Inn, just upstream, is one of the most remote riverside pubs in England. Pub lunch + 2-mile Thames Path walk back toward Chimney Meadows makes a good half-day.",
     whyCurious: "The bridge that changed English history is stranded on an accidental backwater because of an 18th-century navigation improvement. The exact spot where a medieval lord stripped his armour and swam for his life is a field gate by a weedy cut that nobody visits. The Swan Inn has been here, more or less, since the same era.",
@@ -2627,8 +2665,8 @@ const places = [
     id: 143,
     name: "Great Coxwell Tithe Barn: The Wind-Powered Grain Sorter William Morris Called a Cathedral",
     category: "adventures",
-    lat: 51.6430,
-    lng: -1.5580,
+    lat: 51.6444,
+    lng: -1.6127,
     type: "Adventure Idea",
     description: "The 13th-century tithe barn at Great Coxwell (NT, free, open dawn–dusk every day) is 152 feet long with a soaring Gothic timber framework inside that does genuinely feel cathedral-like when you enter. Built for the Cistercian monks of Beaulieu Abbey around 1292. William Morris called it 'as noble as a cathedral, yet with no ostentation of the builder's art' and brought guests here repeatedly from Kelmscott. The key architectural detail: east and west doors are precisely aligned so both could be thrown open simultaneously to create a through-draught — a wind-powered grain-sorting system. Grain tossed in the cross-breeze would separate; chaff blew away, grain fell straight. Above the west porch is the granger's chamber where the monk-overseer lived. No ticket desk, no café, no gift shop. Just the stone and the timber, in a quiet field.",
     whyCurious: "One of the most significant medieval buildings in England — free, open every day, and consistently empty. The threshing-floor wind system is a piece of 700-year-old agricultural engineering still visible in the alignment of the doors.",
@@ -2703,8 +2741,8 @@ const places = [
     id: 147,
     name: "Chimney Meadows: Dawn Chorus Walk Among 100 Bird Species",
     category: "adventures",
-    lat: 51.7020,
-    lng: -1.4980,
+    lat: 51.6984,
+    lng: -1.4914,
     type: "Adventure Idea",
     description: "BBOWT's largest Oxfordshire reserve — 300+ hectares of traditional hay meadow and wetland on the Thames floodplain. Arrive at the reserve car park at first light (April–June for maximum bird activity). The meadows have recorded 100 species annually: curlew, snipe, reed bunting, lapwing. In June–July the flowers peak: yellow rattle, common knapweed, oxeye daisy, meadow buttercup, quaking grass, ragged robin, pepper-saxifrage. Take the 6-mile circuit (marked), or the shorter 2.3-mile Duxford loop passing the thatched cottages of Duxford hamlet. In winter: bring wellies (the meadows flood and become an inland sea) and look for all three egret species. Take Tenfoot Bridge for pedestrian access from the Buckland side of the Thames.",
     whyCurious: "The meadow system has 100 bird species annually and a wildflower list that includes species now almost impossible to find in lowland England. The winter flood turns it into something that looks like the Norfolk Broads. It is 1.7 miles from Buckland.",
@@ -2817,8 +2855,8 @@ const places = [
     id: 153,
     name: "Newbridge: Two Medieval Pubs, an Ancient Bridge, and Raymond Blanc's First Job",
     category: "adventures",
-    lat: 51.7260,
-    lng: -1.5400,
+    lat: 51.7061,
+    lng: -1.417,
     type: "Adventure Idea",
     description: "Newbridge (13th century, Taynton stone, one of the two oldest Thames bridges) has a pub on each end — The Rose Revived and The Maybush. The Rose Revived's garden extends onto the meadow beside the bridge; you can eat lunch and watch narrowboats navigate the medieval arches. Look at the bridge from the water side: the medieval cutwater refuges (pointed projections that break the current) are clearly visible, still doing the same job they were built for 800 years ago. Raymond Blanc worked in The Rose Revived early in his career — there is a modest plaque. In winter, the meadows between Newbridge and Shifford flood into a shallow inland sea visible from the bridge. Walk upstream 1.5 miles to Shifford Lock for the complete afternoon.",
     whyCurious: "A medieval bridge with two pubs at its ends, one of which launched a famous chef. The bridge is still load-limited due to its 13th-century construction. The winter floods make the meadow on either side look like a Dutch painting.",
@@ -2893,8 +2931,8 @@ const places = [
     id: 157,
     name: "Kingston Bagpuize House: Cantilevered Staircase + Downton Abbey Location",
     category: "adventures",
-    lat: 51.6760,
-    lng: -1.3910,
+    lat: 51.6783,
+    lng: -1.4119,
     type: "Adventure Idea",
     description: "Kingston Bagpuize House (open on specific days — check kbhevents.uk) is a Carolean house of c.1660 with a cantilevered staircase in Scots pine and oak, supported entirely by the thickness of the walls with no central column. The name goes back to a Norman knight called Ralf de Bachepuis who held the estate under William the Conqueror. The house served as Lord Merton's home in Downton Abbey series 5 and 6, and has also appeared in Bridgerton and the 2020 Emma film. The gardens include a walled garden and woodland. Specific open events for 2026: Snowdrop and Spring Plant Fair (22 February, 11am–2pm) and Rare Plant Fair (24 May, 11am–4pm). Combine with Appleton church (half mile) for the finest Norman doorway in Oxfordshire — chevron moulding, a tree-of-life tympanum, original 12th-century ironwork on the door.",
     whyCurious: "The staircase is an architectural feat that stops engineers mid-sentence. The building is privately lived in, and between filming Downton and Bridgerton the family apparently just lives there.",
@@ -3058,6 +3096,7 @@ const places = [
     verified: false,
     familyFriendly: false,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Chimney_Meadows.jpg/500px-Chimney_Meadows.jpg",
   },
 
   {
@@ -3077,14 +3116,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["rainy-day", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oxford_-_Pitt_Rivers_Museum_-_0269.jpg/500px-Oxford_-_Pitt_Rivers_Museum_-_0269.jpg",
   },
 
   {
     id: 167,
     name: "Inglesham Round House + Church: A Canal Cottage Built to Collect Rain, a Church Saved by Morris",
     category: "adventures",
-    lat: 51.6940,
-    lng: -1.6880,
+    lat: 51.6663,
+    lng: -1.7045,
     type: "Adventure Idea",
     description: "At the junction of the Thames and the disused Thames-Severn Canal at Inglesham stands the Inglesham Round House — a canal lengthsman's cottage built c.1790–91 with a conical roof specifically designed to collect rainwater into an underground storage tank. The circular plan: 'The devil has nowhere to hide in a round house.' A short walk upstream is St John the Baptist, Inglesham — a Saxon foundation rescued from Victorian restoration by William Morris (he helped found the Society for the Protection of Ancient Buildings partly in response to this church). Inside: original wooden pews, Jacobean pulpit, faded wall frescoes, barely changed since the 17th century. Almost always open. Inglesham is 9 miles from Buckland but makes a natural pairing with the Kelmscott–Lechlade Thames walk.",
     whyCurious: "A building whose roof was designed to collect rainwater via an anti-superstition architectural theory. A church so perfectly preserved because Morris specifically stopped the Victorians from 'improving' it.",
@@ -3096,6 +3136,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Inglesham_Round_House_-_geograph.org.uk_-_3260.jpg/500px-Inglesham_Round_House_-_geograph.org.uk_-_3260.jpg",
   },
 
   {
@@ -3115,6 +3156,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Charney_Bassett_Manor_House_-_geograph.org.uk_-_1556686.jpg/500px-Charney_Bassett_Manor_House_-_geograph.org.uk_-_1556686.jpg",
   },
 
   {
@@ -3134,14 +3176,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["events", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg/500px-Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg",
   },
 
   {
     id: 170,
     name: "Radcot to Eaton Hastings: Thames + WWII Pillboxes + Deserted Village Church",
     category: "adventures",
-    lat: 51.6960,
-    lng: -1.5450,
+    lat: 51.693,
+    lng: -1.589,
     type: "Adventure Idea",
     description: "A 6-mile linear walk (one car at each end, or return the same way). Start at Radcot Bridge, walk the Thames Path south-west toward Lechlade. Along this stretch: at least 3 surviving WWII pillboxes from 'Stopline Red' — the defensive line built in 1940 to stop a Nazi advance toward the Midlands, positioned along the Thames. They are half-hidden in reedmace and bankside vegetation, worth finding. Continue to Eaton Hastings church (2 miles): the deserted village, the 11th-century church, the Pre-Raphaelite glass by Morris and Burne-Jones. The return stretch follows the south bank toward Buscot Lock for a swim before the drive back.",
     whyCurious: "WWII pillboxes are still in the riverbank vegetation of the Thames. The deserted village beside them is 600 years older. The Pre-Raphaelite glass is 150 years old. All three eras are walkable in a single afternoon.",
@@ -3153,6 +3196,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/St_Michael%2C_Eaton_Hastings_-_geograph.org.uk_-_1543452.jpg/500px-St_Michael%2C_Eaton_Hastings_-_geograph.org.uk_-_1543452.jpg",
   },
 
   {
@@ -3172,6 +3216,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["events", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mosaic_of_Morris_Dancers_etc%2C_Market_Square%2C_Bampton%2C_Oxon_-_geograph.org.uk_-_7966459.jpg/500px-Mosaic_of_Morris_Dancers_etc%2C_Market_Square%2C_Bampton%2C_Oxon_-_geograph.org.uk_-_7966459.jpg",
   },
 
   {
@@ -3191,6 +3236,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Appleton_StLaurence_ENE.jpg/500px-Appleton_StLaurence_ENE.jpg",
   },
 
   {
@@ -3210,6 +3256,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Tadpole_Bridge._River_Thames_Oxfordshire_-_geograph.org.uk_-_13783.jpg/500px-Tadpole_Bridge._River_Thames_Oxfordshire_-_geograph.org.uk_-_13783.jpg",
   },
 
   {
@@ -3229,6 +3276,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Farmoor_Reservoir_%2874984p%29.jpg/500px-Farmoor_Reservoir_%2874984p%29.jpg",
   },
 
   {
@@ -3248,6 +3296,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg/500px-Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg",
   },
 
   {
@@ -3267,6 +3316,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["hidden-places", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Pillboxes_in_Chimney_Meadows_-_geograph.org.uk_-_2427992.jpg/500px-Pillboxes_in_Chimney_Meadows_-_geograph.org.uk_-_2427992.jpg",
   },
 
   {
@@ -3286,14 +3336,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Black_Bourton%2C_St_Mary_the_Virgin_-_geograph.org.uk_-_5476440.jpg/500px-Black_Bourton%2C_St_Mary_the_Virgin_-_geograph.org.uk_-_5476440.jpg",
   },
 
   {
     id: 178,
     name: "Inglesham WWII Pillbox Walk: The Thames Stop Line (NT, Free, 3 Miles)",
     category: "adventures",
-    lat: 51.6780,
-    lng: -1.6170,
+    lat: 51.6663,
+    lng: -1.7045,
     type: "Adventure Idea",
     description: "The National Trust's Buscot pillbox walk follows the Thames from Buscot Lock to Inglesham, identifying and examining the surviving WWII pillboxes built in 1940 as part of 'GHQ Stop Line Red' — the Thames-based defensive line intended to halt a German advance inland. Eleven pillboxes survive between Lechlade and Newbridge; around three are on this 3-mile section. The concrete structures are half-hidden in the bank vegetation, some tilted by winter floods, all facing the direction of expected enemy approach. The walk is NT land, free, from the Buscot car park. Combine with Buscot Weir swimming (summer) and the Inglesham church at the far end (Saxon, rescued by Morris).",
     whyCurious: "These pillboxes were built specifically to be an invasion defence. They were never tested. They are now slowly tilting into the river while the reed bunting nests in the gun slits.",
@@ -3305,6 +3356,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/St_John_the_Baptist%2C_Inglesham_-_geograph.org.uk_-_307511.jpg/500px-St_John_the_Baptist%2C_Inglesham_-_geograph.org.uk_-_307511.jpg",
   },
 
   {
@@ -3324,6 +3376,7 @@ const places = [
     verified: false,
     familyFriendly: false,
     tags: ["nature", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Shifford_Lock%2C_River_Thames_-_geograph.org.uk_-_572249.jpg/500px-Shifford_Lock%2C_River_Thames_-_geograph.org.uk_-_572249.jpg",
   },
 
   // ── 5–10 miles (IDs 180–229) ────────────────────────────────────────────
@@ -3345,6 +3398,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Faringdon_Folly%2C_Faringdon_-_geograph.org.uk_-_3941584.jpg/500px-Faringdon_Folly%2C_Faringdon_-_geograph.org.uk_-_3941584.jpg",
   },
 
   {
@@ -3364,14 +3418,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/All_Saints_Church_Faringdon_-_geograph.org.uk_-_16694.jpg/500px-All_Saints_Church_Faringdon_-_geograph.org.uk_-_16694.jpg",
   },
 
   {
     id: 182,
     name: "Great Coxwell to Little Coxwell: Two Cistercian Buildings, a Sugar-Bag Hat, and a Through-Draught",
     category: "adventures",
-    lat: 51.6430,
-    lng: -1.5580,
+    lat: 51.6444,
+    lng: -1.6127,
     type: "Adventure Idea",
     description: "Visit Great Coxwell Tithe Barn (free, NT, open dawn to dusk) then walk half a mile to Little Coxwell Chapel (St Mary's). Both were built for the Cistercian monks of Beaulieu Abbey — the barn as a grain store (c.1292), the chapel as a church of ease for the monks' estate workers (c.1100s). The chapel retains a Norman doorway, a 13th-century bellcote (a twin bell arch instead of a tower), and a 15th-century Perpendicular window whose stone head-stop at the end of the dripstone is carved wearing what listed-building records describe as a 'sugar-bag hat' — an unusual medieval headgear reference carved 600 years ago, still there. The chapel is generally unlocked. The whole visit (barn + chapel) takes 90 minutes and is entirely free.",
     whyCurious: "A man carving a finial in the 15th century chose to put an unusual hat on his figure. The hat type (sugar-bag, a tall conical style) has been identified and documented. The stone head still wears it.",
@@ -3383,6 +3438,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Great_Coxwell_Tithe_Barn_c.jpg/500px-Great_Coxwell_Tithe_Barn_c.jpg",
   },
 
   {
@@ -3402,6 +3458,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["events", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Faringdon_Folly%2C_Faringdon_-_geograph.org.uk_-_3941584.jpg/500px-Faringdon_Folly%2C_Faringdon_-_geograph.org.uk_-_3941584.jpg",
   },
 
   {
@@ -3421,14 +3478,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/The_Garden_Court_Buscot_Park.jpg/500px-The_Garden_Court_Buscot_Park.jpg",
   },
 
   {
     id: 185,
     name: "Father Thames at Lechlade: The Statue That Nearly Drowned at Crystal Palace",
     category: "adventures",
-    lat: 51.6940,
-    lng: -1.6850,
+    lat: 51.6897,
+    lng: -1.6799,
     type: "Adventure Idea",
     description: "St John's Lock, Lechlade, is the highest navigable lock on the Thames. In the lock garden reclines Father Thames — a Portland stone sculpture by Raffaele Monti (1854), originally commissioned for Crystal Palace's Italian Terrace. After Crystal Palace burned in 1936, the statue was rescued and moved to Thames Head (the official source) in 1958. Vandals attacked it there. In 1974 it was moved to its current position at the lock, where it has remained since, Grade II listed. The figure lies on its side gazing skyward — unexpectedly moving in a purely practical lock setting. Walk from Lechlade town (½ mile) along the Thames Path, pass under Halfpenny Bridge, and reach the lock. The Trout Inn, Lechlade, is nearby for food.",
     whyCurious: "The figure was carved for Crystal Palace, survived its destruction, was moved to the wrong location, was attacked by vandals, and now lies in a lock garden watching boats go through. It has an eventful history for a reclining elderly man.",
@@ -3440,14 +3498,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Old_Father_Thames%2C_St_John%27s_Lock%2C_Lechlade%2C_Cotswolds.JPG/500px-Old_Father_Thames%2C_St_John%27s_Lock%2C_Lechlade%2C_Cotswolds.JPG",
   },
 
   {
     id: 186,
     name: "Lechlade Halfpenny Bridge: The 1839 Pedestrian Revolt Against Toll",
     category: "adventures",
-    lat: 51.6940,
-    lng: -1.6880,
+    lat: 51.6924,
+    lng: -1.6928,
     type: "Adventure Idea",
     description: "Halfpenny Bridge (1792–93, single Cotswold stone arch, Grade II listed) was built for the Lechlade to Swindon Turnpike Trust. The halfpenny toll was charged to pedestrians from the moment it opened. In 1839, residents of Lechlade simply refused to pay any longer — a sustained local revolt that ended pedestrian tolls permanently. Tolls on animals crossing the bridge continued into the 1870s. The toll house still stands at the bridge end, now a small shop, with original toll booth features intact. The church of St Lawrence is directly visible from the bridge. Stand on it: you look straight up to the spire, one of the best views of a Cotswold church from water level in the region. Shelley wrote 'A Summer Evening Churchyard, Lechlade' after walking from this bridge in 1815.",
     whyCurious: "A sustained pedestrian tax revolt in 1839, won. The bridge that caused it is still there. The toll house is now a shop selling toffee. Shelley's walk from here is documented in his notebooks.",
@@ -3459,14 +3518,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Halfpenny_Bridge%2C_Lechlade.jpg/500px-Halfpenny_Bridge%2C_Lechlade.jpg",
   },
 
   {
     id: 187,
     name: "Minster Lovell Hall: The Skeleton at the Table (Always Open, Always Free)",
     category: "adventures",
-    lat: 51.7930,
-    lng: -1.5240,
+    lat: 51.7932,
+    lng: -1.5252,
     type: "Adventure Idea",
     description: "Minster Lovell Hall (English Heritage, free, open year-round, at all hours) is a 15th-century manor house ruin on the River Windrush. In 1487, Francis, Viscount Lovell, backed Lambert Simnel's rebellion against Henry VII. The rebellion failed; Lovell vanished. In 1708 — 221 years later — workmen breaking ground at the manor discovered a sealed underground vault. Inside: a skeleton seated at a table, surrounded by books and papers, with the skeleton of a dog beside it. Whether the skeleton was Lovell, how he had been sealed in, and who knew, remain unresolved. The vault collapsed shortly after discovery. The ruin, riverside, and meadow are open at all hours. Dawn walk or dusk visit is recommended: mist on the Windrush and no other visitors.",
     whyCurious: "A man disappeared in 1487. A sealed room was found in 1708 with a skeleton at a desk. The room then collapsed. No one has ever confirmed whose skeleton it was. The ruin that contains this history is free and open at 6am.",
@@ -3478,14 +3538,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Minster_Lovell_Hall%2C_south-east_tower_-_2016.jpg/500px-Minster_Lovell_Hall%2C_south-east_tower_-_2016.jpg",
   },
 
   {
     id: 188,
     name: "Follow the Windrush: Minster Lovell to Witney (3 Miles, Return by Bus)",
     category: "adventures",
-    lat: 51.7930,
-    lng: -1.5240,
+    lat: 51.7932,
+    lng: -1.5252,
     type: "Adventure Idea",
     description: "Start at Minster Lovell Hall ruins (free, English Heritage). Walk the Windrush downstream 3 miles into Witney — the river flows through the Crawley water-meadows and then into Witney's flood meadow and Cogges Farm area. In summer the Windrush is fast, clear, and cold — paddling at the shallows is good. End at Witney: Cogges Farm Museum (13th-century manor, working Victorian farm) or the Butter Cross in the market square, then bus back toward Bampton road. Or two cars, one at each end. The 5.8-mile walk is one of the best river walks in the Cotswolds and is almost entirely on well-marked path.",
     whyCurious: "The Windrush is one of the clearest and most beautiful Cotswold rivers. Walking it from a 15th-century ruin into a blanket-manufacturing market town is a surprisingly dramatic landscape arc.",
@@ -3497,6 +3558,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Minster_Lovell_Hall%2C_south-east_tower_-_2016.jpg/500px-Minster_Lovell_Hall%2C_south-east_tower_-_2016.jpg",
   },
 
   {
@@ -3516,6 +3578,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/The_village_pond_in_Cumnor_-_geograph.org.uk_-_2693527.jpg/500px-The_village_pond_in_Cumnor_-_geograph.org.uk_-_2693527.jpg",
   },
 
   {
@@ -3535,14 +3598,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/The_village_pond_in_Cumnor_-_geograph.org.uk_-_2693527.jpg/500px-The_village_pond_in_Cumnor_-_geograph.org.uk_-_2693527.jpg",
   },
 
   {
     id: 191,
     name: "Swinbrook: Six Mitford Sisters' Graves, One Churchyard",
     category: "adventures",
-    lat: 51.8010,
-    lng: -1.5880,
+    lat: 51.8072,
+    lng: -1.5954,
     type: "Adventure Idea",
     description: "St Mary's Church, Swinbrook, contains the graves of six of the seven Mitford sisters: Nancy (novelist, The Pursuit of Love), Pamela, Diana (Lady Mosley — buried here after decades in Paris), Unity (shot herself in Munich on the outbreak of WWII; the bullet was never removed from her skull), Jessica (communist memoirist, Hons and Rebels), and Deborah (last Duchess of Devonshire, died 2014). Their brother Tom's memorial is also here (killed in Burma, 1945). The village is 8 miles from Buckland; the Swan Inn is an excellent pub lunch. The adjacent manor house, Asthall Manor (visible from outside), was the family's home from 1919 — the original of 'Alconleigh' in Nancy's novels.",
     whyCurious: "Six siblings in one churchyard: a novelist, a communist spy's sister, a fascist's wife, a Nazi's companion (bullet still in skull), a duchess, and a farmer. Their stories span the entire 20th century from the drawing rooms of Edwardian England to Paris in the 1980s.",
@@ -3554,6 +3618,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Mitford_graves_at_Swinbrook_-_geograph.org.uk_-_346877.jpg/500px-Mitford_graves_at_Swinbrook_-_geograph.org.uk_-_346877.jpg",
   },
 
   {
@@ -3573,6 +3638,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Filkins_village_hall_-_geograph.org.uk_-_1116070.jpg/500px-Filkins_village_hall_-_geograph.org.uk_-_1116070.jpg",
   },
 
   {
@@ -3592,6 +3658,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/River_Thames_viewed_from_the_Swinford_Toll_Bridge_-_geograph.org.uk_-_4535808.jpg/500px-River_Thames_viewed_from_the_Swinford_Toll_Bridge_-_geograph.org.uk_-_4535808.jpg",
   },
 
   {
@@ -3611,14 +3678,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Statue_of_King_Alfred_in_Wantage_Market_Square.jpg",
   },
 
   {
     id: 195,
     name: "Letcombe Bassett: Find Hardy's 'Cresscombe' and the Cottage Where Jude Met Arabella",
     category: "adventures",
-    lat: 51.5560,
-    lng: -1.3840,
+    lat: 51.5632,
+    lng: -1.4691,
     type: "Adventure Idea",
     description: "Thomas Hardy set the opening of Jude the Obscure in this area: Wantage is 'Alfredston,' Letcombe Bassett is 'Cresscombe.' The cottage where Jude's Aunt Drusilla lives — and the scene involving a pig's pizzle thrown at Jude's head — is still standing in the village. The Letcombe Brook is a chalk stream running through the village, its clear water and watercress beds directly matching Hardy's descriptions. Walk from Wantage (3 miles, chalk downland path south) to Letcombe Bassett with the novel as a guide. Return via Letcombe Regis (1 mile east), which has its own Hardy connection. The view from the escarpment above the village matches exactly the landscape Hardy describes Jude seeing.",
     whyCurious: "The specific cottage where a pig's pizzle was thrown in an 1895 novel is still there. Hardy's fictional geography is directly mappable to the real one. The chalk stream he describes has not changed.",
@@ -3630,6 +3698,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Letcombe_Bassett_-_geograph.org.uk_-_4603006.jpg/500px-Letcombe_Bassett_-_geograph.org.uk_-_4603006.jpg",
   },
 
   {
@@ -3649,6 +3718,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["hidden-places", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ascending_Burford_High_Street_-_geograph.org.uk_-_4594943.jpg/500px-Ascending_Burford_High_Street_-_geograph.org.uk_-_4594943.jpg",
   },
 
   {
@@ -3668,6 +3738,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/St_Johns_Burford_Geograph-3658399-by-Dave-Hitchborne.jpg/500px-St_Johns_Burford_Geograph-3658399-by-Dave-Hitchborne.jpg",
   },
 
   {
@@ -3687,6 +3758,7 @@ const places = [
     verified: false,
     familyFriendly: false,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ascending_Burford_High_Street_-_geograph.org.uk_-_4594943.jpg/500px-Ascending_Burford_High_Street_-_geograph.org.uk_-_4594943.jpg",
   },
 
   {
@@ -3706,14 +3778,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/The_Uffington_White_Horse_-_geograph.org.uk_-_1369368.jpg/500px-The_Uffington_White_Horse_-_geograph.org.uk_-_1369368.jpg",
   },
 
   {
     id: 200,
     name: "North Leigh Roman Villa: Stand on a 4th-Century Mosaic Floor (Free, Seasonal)",
     category: "adventures",
-    lat: 51.8340,
-    lng: -1.4230,
+    lat: 51.836,
+    lng: -1.4251,
     type: "Adventure Idea",
     description: "North Leigh Roman Villa (English Heritage, free) is a large courtyard villa from the 2nd–4th century AD, on the bank of the River Evenlode. At its peak it had 19+ mosaic floors, three bath suites, and 11 heated rooms. One mosaic — geometric red and brown patterns from the early 4th century — survives in situ and is the only Roman mosaic in Oxfordshire still at its original location. Volunteers open the protective cover on specific summer days (check English Heritage website — usually Sundays, May–September). The villa's enormous footprint is visible from the approach path across the fields. Walk from Witney (45 minutes, signed footpath) or drive and park in the lane. Combine with the Stonesfield Megalosaurus connection (2.5 miles by footpath).",
     whyCurious: "A Roman mosaic floor that has been in exactly this spot for 1,700 years, in a field in Oxfordshire. It is covered most of the time to protect it. On the days it is uncovered, you can stand above it.",
@@ -3725,6 +3798,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/The_mosaic_at_the_North_Leigh_Roman_Villa_-_geograph.org.uk_-_3628359.jpg/500px-The_mosaic_at_the_North_Leigh_Roman_Villa_-_geograph.org.uk_-_3628359.jpg",
   },
 
   {
@@ -3744,14 +3818,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Abingdon_museum_and_market_square_-_geograph.org.uk_-_58891.jpg/500px-Abingdon_museum_and_market_square_-_geograph.org.uk_-_58891.jpg",
   },
 
   {
     id: 202,
     name: "Scutchamer Knob: The Bronze Age Mound Where English Kings Were Acclaimed",
     category: "adventures",
-    lat: 51.5540,
-    lng: -1.3500,
+    lat: 51.5624,
+    lng: -1.3428,
     type: "Adventure Idea",
     description: "Scutchamer Knob (also Cuckhamsley Hill) is a tree-covered Bronze Age barrow on the Ridgeway above Wantage. In Saxon times it was the meeting place of the Berkshire Hundreds — historians believe English kings were acclaimed here before the Norman Conquest, making it a de facto coronation site for the kingdom. Drive to the Ridgeway car park at East Hendred Down (off the B4494), walk 2 miles east along the Ridgeway. The knob is a large wooded mound beside the path. Return via the same route, or continue to the A34 crossing and come back via Childrey village (chalk stream, 14th-century church, the named Devil's Punchbowl with no attached legend).",
     whyCurious: "English kings were acclaimed on a Bronze Age mound before the conquest that changed England's language. The mound is now a wooded lump on a long-distance footpath. There is an information board.",
@@ -3763,6 +3838,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/The_Ridgeway_approaching_Cuckhamsley_Hill_in_Oxfordshire_from_the_east.jpg/500px-The_Ridgeway_approaching_Cuckhamsley_Hill_in_Oxfordshire_from_the_east.jpg",
   },
 
   {
@@ -3801,6 +3877,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Part_of_the_Coleshill_Estate%2C_Coleshill%2C_Oxfordshire_-_geograph.org.uk_-_536416.jpg/500px-Part_of_the_Coleshill_Estate%2C_Coleshill%2C_Oxfordshire_-_geograph.org.uk_-_536416.jpg",
   },
 
   {
@@ -3820,6 +3897,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Kelmscott_Manor%2C_once_the_home_of_William_Morris-geograph-2140313-by-Stefan-Czapski.jpg/500px-Kelmscott_Manor%2C_once_the_home_of_William_Morris-geograph-2140313-by-Stefan-Czapski.jpg",
   },
 
   {
@@ -3845,8 +3923,8 @@ const places = [
     id: 207,
     name: "The Great Barn Festival: Music and Theatre Inside a 13th-Century Tithe Barn",
     category: "adventures",
-    lat: 51.6430,
-    lng: -1.5580,
+    lat: 51.6444,
+    lng: -1.6127,
     type: "Adventure Idea",
     description: "The Great Barn Festival at Great Coxwell (check greatbarnfestival.com for 2026 dates — typically July or August) brings music, theatre, and art into the 13th-century tithe barn. The setting — 152 feet of medieval stone and Gothic timber carpentry — is extraordinary for live performance. The acoustic properties of the space are unlike any conventional venue. Past festivals have included folk, classical, and world music. Tickets required; check ahead. Combine with a walk on the National Trust estate before the event — the Orange Route (6 miles) takes in Badbury Hill (Iron Age hillfort) and the Coleshill estate.",
     whyCurious: "Live music in a 700-year-old agricultural building whose acoustic was designed by monks for harvest, not concerts. The resonance of the space is specific and cannot be replicated.",
@@ -3858,6 +3936,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["events", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Great_Coxwell_Tithe_Barn_c.jpg/500px-Great_Coxwell_Tithe_Barn_c.jpg",
   },
 
   {
@@ -3877,6 +3956,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Eynsham_church_-_geograph.org.uk_-_4862016.jpg/500px-Eynsham_church_-_geograph.org.uk_-_4862016.jpg",
   },
 
   {
@@ -3896,6 +3976,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Abingdon_Abbey_Gardens_03.jpg/500px-Abingdon_Abbey_Gardens_03.jpg",
   },
 
   {
@@ -3915,6 +3996,7 @@ const places = [
     verified: false,
     familyFriendly: false,
     tags: ["nature", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Statue_of_King_Alfred_in_Wantage_Market_Square.jpg",
   },
 
   {
@@ -3934,6 +4016,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["food-or-treats", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Witney_ButterCross_west.jpg/500px-Witney_ButterCross_west.jpg",
   },
 
   {
@@ -3953,6 +4036,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["events", "nature", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Kingston_Bagpuize_House_%281%29_-_geograph.org.uk_-_4337088.jpg/500px-Kingston_Bagpuize_House_%281%29_-_geograph.org.uk_-_4337088.jpg",
   },
 
   {
@@ -3972,6 +4056,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/BroughtonPoggs_StPeter_SSE.jpg/500px-BroughtonPoggs_StPeter_SSE.jpg",
   },
 
   {
@@ -3997,8 +4082,8 @@ const places = [
     id: 215,
     name: "Minster Lovell Old Swan Inn: 600 Years of Cotswold Hospitality",
     category: "adventures",
-    lat: 51.7930,
-    lng: -1.5240,
+    lat: 51.7932,
+    lng: -1.5252,
     type: "Adventure Idea",
     description: "The Old Swan Inn, Minster Lovell, has been offering hospitality for over 600 years — one of the oldest continuously operating inns in Oxfordshire. It sits 200 metres from the Minster Lovell Hall ruins. The building's exposed stonework, inglenook fireplaces, and low beams are genuinely original, not pastiche. Arrive for lunch, walk the ruins after (10 minutes, free, English Heritage), walk the Windrush meadow (the river is visible from the inn garden), return for afternoon tea. The Windrush here is narrow, clear, and fast — paddling is possible in summer on the shallow banks below the bridge.",
     whyCurious: "An inn that has been an inn for longer than the adjacent manor has been a ruin. The manor fell into disuse after 1487; the inn has been serving food continuously since before that.",
@@ -4010,6 +4095,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["food-or-treats", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/The_Old_Swan_Inn_at_Minster_Lovell_-_geograph.org.uk_-_3001941.jpg/500px-The_Old_Swan_Inn_at_Minster_Lovell_-_geograph.org.uk_-_3001941.jpg",
   },
 
   {
@@ -4029,6 +4115,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Cotswold_Wildlife_Park_%26_Gardens%2C_Burford_%281%29.jpg/500px-Cotswold_Wildlife_Park_%26_Gardens%2C_Burford_%281%29.jpg",
   },
 
   {
@@ -4048,6 +4135,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["rainy-day", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Vale_and_Downland_Museum%2C_Wantage.jpg/500px-Vale_and_Downland_Museum%2C_Wantage.jpg",
   },
 
   {
@@ -4067,6 +4155,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Uffington_Castle_-_geograph.org.uk_-_292746.jpg/500px-Uffington_Castle_-_geograph.org.uk_-_292746.jpg",
   },
 
   {
@@ -4086,6 +4175,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Great_Coxwell_Tithe_Barn_c.jpg/500px-Great_Coxwell_Tithe_Barn_c.jpg",
   },
 
   {
@@ -4105,6 +4195,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "strange-or-historic", "adventures"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/The_Garden_Court_Buscot_Park.jpg/500px-The_Garden_Court_Buscot_Park.jpg",
   },
 
   {
@@ -4124,6 +4215,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "hidden-places", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Solitary_Tree_near_Wytham_Great_Woods_-_geograph.org.uk_-_429221.jpg/500px-Solitary_Tree_near_Wytham_Great_Woods_-_geograph.org.uk_-_429221.jpg",
   },
 
   {
@@ -4143,6 +4235,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Buscot_Lock_and_Weir_cut_-_geograph.org.uk_-_3070982.jpg/500px-Buscot_Lock_and_Weir_cut_-_geograph.org.uk_-_3070982.jpg",
   },
 
   {
@@ -4162,6 +4255,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Witney_ButterCross_west.jpg/500px-Witney_ButterCross_west.jpg",
   },
 
   {
@@ -4181,6 +4275,7 @@ const places = [
     verified: false,
     familyFriendly: false,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/St_Michael_Stanton_Harcourt_Geograph-1841404-by-Roger-Davies.jpg/500px-St_Michael_Stanton_Harcourt_Geograph-1841404-by-Roger-Davies.jpg",
   },
 
   {
@@ -4200,6 +4295,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Abingdon_Abbey_Gardens_03.jpg/500px-Abingdon_Abbey_Gardens_03.jpg",
   },
 
   {
@@ -4219,6 +4315,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["rainy-day", "food-or-treats", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Oxford_-_Covered_Market_-_0133.jpg/500px-Oxford_-_Covered_Market_-_0133.jpg",
   },
 
   {
@@ -4238,6 +4335,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Appleton_StLaurence_ENE.jpg/500px-Appleton_StLaurence_ENE.jpg",
   },
 
   {
@@ -4257,6 +4355,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["strange-or-historic", "nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg/500px-Church_of_St_Mary%2C_Bampton%2C_Oxfordshire_-_geograph.org.uk_-_4532490.jpg",
   },
 
   {
@@ -4276,14 +4375,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["rainy-day", "strange-or-historic", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oxford_-_Pitt_Rivers_Museum_-_0269.jpg/500px-Oxford_-_Pitt_Rivers_Museum_-_0269.jpg",
   },
 
   {
     id: 230,
     name: "Giant Poohsticks Relay at Radcot: Race the Split River",
     category: "adventures",
-    lat: 51.6930,
-    lng: -1.5820,
+    lat: 51.6931,
+    lng: -1.5886,
     type: "Adventure Idea",
     description: "Radcot's medieval bridge divides into two channels — the original 1200 AD arch carries one stream, and the 1787 navigation cut carries the other. Drop sticks simultaneously from each side and predict which channel runs faster. Then sprint to the downstream bank before your stick appears. The twist is that Radcot is on an island between the two bridges, so you can race across the island to catch your stick emerging on the far side. Ye Olde Swan pub is 50 metres away for the post-game debrief.",
     whyCurious: "Radcot hosted the World Poohsticks Championships from 1984 to 2014. This is the oldest bridge on the Thames (circa 1200 AD) and the armies of the future Henry IV fought here in 1387. Your stick passes under the same arch they crossed in armour.",
@@ -4302,8 +4402,8 @@ const places = [
     id: 231,
     name: "Leaf Fleet: Race from Tadpole Bridge to Rushey Lock",
     category: "adventures",
-    lat: 51.7015,
-    lng: -1.5171,
+    lat: 51.6987,
+    lng: -1.5341,
     type: "Adventure Idea",
     description: "At Tadpole Bridge, everyone builds a 'raft' — a flat dock leaf or burdock leaf, weighted with a pebble captain, with a twig mast and a daisy-head sail. Launch them simultaneously from the upstream rail of the bridge. Then walk the Thames Path downstream to Rushey Lock (about 1.5 km, 20 minutes) to see whose leaf raft survived the journey. Award points for distance, speed, and whether the captain is still aboard. The Trout Inn pub is right at the start for drinks after.",
     whyCurious: "The Thames between Tadpole and Rushey is one of the most tranquil stretches on the entire river — 'slipping past miles of understated countryside' as one river guide puts it. Your leaf boats travel the same water that narrowboats have used since the 1790s.",
@@ -4322,8 +4422,8 @@ const places = [
     id: 232,
     name: "The Two-Channel Bet at Radcot: Which Branch is Faster?",
     category: "adventures",
-    lat: 51.6930,
-    lng: -1.5830,
+    lat: 51.6931,
+    lng: -1.5886,
     type: "Adventure Idea",
     description: "At Radcot there are two bridges over two different channels — the ancient medieval arch and the 1787 navigation cut. The two channels carry different volumes of water and run at different speeds. Drop sticks in both channels from the road bridge and time them over a fixed distance. Do it five times and build a tally. Which branch consistently wins? Then investigate why: is the faster channel narrower? Is it deeper? The 8-year-old can time with a phone; the 6-year-old keeps the tally chart.",
     whyCurious: "The navigation cut was built in 1787 to bypass the shoals and mill that choked the medieval channel. For 600 years the old arch was the only way across the Thames here — now it carries less water than its younger neighbour.",
@@ -4342,8 +4442,8 @@ const places = [
     id: 233,
     name: "Fossil Hunt in a 13th-Century Bridge: Newbridge Stone Spotting",
     category: "adventures",
-    lat: 51.7095,
-    lng: -1.4174,
+    lat: 51.706,
+    lng: -1.417,
     type: "Adventure Idea",
     description: "Newbridge (circa 1250 AD, six medieval arches) is built from Taynton Oolitic Limestone — the same stone used in Blenheim Palace and several Oxford colleges. The oolite is fossil-rich: tiny round grains formed from ancient sea creatures are visible in every stone. Challenge each child with a magnifying glass to find: (a) a clearly visible fossil structure in the bridge stone, (b) a lichen patch that looks like a map, (c) a worn groove left by generations of boat ropes, (d) the stone that looks most recently replaced. Photograph each find. The Rose Revived pub garden is downstream on the right bank.",
     whyCurious: "Newbridge is the oldest surviving bridge on the Thames (Radcot's medieval structure is older but partially rebuilt). It has stood here for 750 years. The stone it's built from was quarried 30 miles away and floated down the Windrush — the Windrush joins the Thames just upstream of this bridge.",
@@ -4482,8 +4582,8 @@ const places = [
     id: 240,
     name: "Kingfisher Vigil at the Bend Below Shifford Lock",
     category: "adventures",
-    lat: 51.7150,
-    lng: -1.4520,
+    lat: 51.6987,
+    lng: -1.5341,
     type: "Adventure Idea",
     description: "Arrive at Shifford Lock at 7am or at 6pm in June and sit quietly on the bank at the wooded inside of the bend just downstream of the lock. Keep a tally of how many times a kingfisher passes. Kingfishers are territorial and use this stretch repeatedly — you will often see the same bird 3–5 times in 30 minutes. Children tally with a stick in the mud or marks in a notebook. You'll hear the high-pitched whistle before you see the electric-blue flash. Who spots it first each time?",
     whyCurious: "Kingfishers are year-round residents on this stretch. Their territory runs between fixed perches and nest sites — once you know where they are, they're completely reliable. The shock of seeing one for the first time (genuinely iridescent, moving faster than seems possible) is one of the unmatchable experiences of the English countryside.",
@@ -4502,8 +4602,8 @@ const places = [
     id: 241,
     name: "Banded Demoiselle Spectacular: The Jewel of the Thames",
     category: "adventures",
-    lat: 51.7020,
-    lng: -1.5150,
+    lat: 51.6987,
+    lng: -1.5341,
     type: "Adventure Idea",
     description: "On any warm sunny day in June or July, walk the Thames Path between Tadpole Bridge and Rushey Lock and look for banded demoiselle damselflies. Males are metallic blue with a dark crescent-shaped wing band; females are shiny green. They don't dart like other dragonflies — they flutter like tiny butterflies over the water surface. Challenge: count how many you see per 100 metres of bank. Compare the count in open stretches vs shaded sections. Do they prefer iris beds or open mud? The 6-year-old can photograph them; the 8-year-old can record the habitat.",
     whyCurious: "Banded Demoiselles need slow-flowing rivers with sandy or silty beds. This exact stretch of upper Thames is ideal. They flutter with a slow, deliberate grace that looks entirely wrong for an insect. You will see dozens.",
@@ -4522,8 +4622,8 @@ const places = [
     id: 242,
     name: "Walk Across the Lock Gates at Rushey: The Mechanical Wonder",
     category: "adventures",
-    lat: 51.6985,
-    lng: -1.5337,
+    lat: 51.6911,
+    lng: -1.6086,
     type: "Adventure Idea",
     description: "Rushey Lock is one of very few remaining Thames locks with manually operated beams — a lock-keeper still opens the heavy wooden gates by pushing the balance beams by hand. The Thames Path officially crosses the weir walkway and the lock gates, so you can walk right across the top. Watch a narrowboat work through: the keeper opens the lower paddles first, water rushes in, the boat rises slowly, then the upper gates swing open. The 8-year-old can try to push a balance beam with the keeper's permission. The 2-year-old will want to watch the water for 20 minutes.",
     whyCurious: "Most Thames locks are now electrically operated. Rushey is gloriously old-fashioned. The weir pool below the lock was used as a bathing spot for visiting holiday families from the 1880s — the lock-keeper at the time would rent out a rowing boat. The whole scene is essentially unchanged since 1885.",
@@ -4542,8 +4642,8 @@ const places = [
     id: 243,
     name: "Den Building in the Ancient Heart of Buckland Warren",
     category: "adventures",
-    lat: 51.7000,
-    lng: -1.5240,
+    lat: 51.6616,
+    lng: -1.5099,
     type: "Adventure Idea",
     description: "Buckland Warren is an ancient semi-natural woodland — continuously wooded since at least 1600 AD, bought by the Woodland Trust in early 2025 for restoration. Sections of native oak, hazel and ash provide excellent fallen branches and coppiced material for den building. The conifer sections are being cleared so there is currently masses of suitable deadfall. Access via the public footpath from the Faringdon–Pusey walk route. Build a den big enough for all three children using only fallen material. The rule: nothing living is touched. Frame it as: 'We're building a secret outpost in a forest that existed when King Charles I was alive.'",
     whyCurious: "Ancient woodland is among the most biodiverse habitats in Britain and almost none has been created in the past 400 years. Buckland Warren is the real thing. The Woodland Trust's recent purchase means the oak sections will now be restored — in 20 years it will be even better than it is now.",
@@ -4555,14 +4655,15 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Log_piles%2C_Buckland_Warren_-_geograph.org.uk_-_6532548.jpg/500px-Log_piles%2C_Buckland_Warren_-_geograph.org.uk_-_6532548.jpg",
   },
 
   {
     id: 244,
     name: "Build a Fairy Door at the Base of the Ancient Oak",
     category: "adventures",
-    lat: 51.6990,
-    lng: -1.5230,
+    lat: 51.6616,
+    lng: -1.5099,
     type: "Adventure Idea",
     description: "In Buckland Warren, find an old oak or ash tree with a distinctive hollow at its base or a space between roots. Collect materials from the ground — flat bark pieces, small stones, twigs, dried leaves, moss. Build a miniature door at the tree's base: bark for the door itself, twig door frame, pebble step, moss door mat, a tiny painted stone for a knocker. Leave it for other walkers to find. Some families come back weeks later to check if the 'fairy' has left a response (bring a tiny secret note on your return visit to plant).",
     whyCurious: "Fairy doors have a long tradition in British woodland culture. The specific magic of Buckland Warren is that the oak trees here are old enough to genuinely look inhabited — gnarled, knobbly, with deep bark furrows and dramatic root systems.",
@@ -4574,6 +4675,7 @@ const places = [
     verified: false,
     familyFriendly: true,
     tags: ["nature", "adventures", "free-or-cheap"]
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Log_piles%2C_Buckland_Warren_-_geograph.org.uk_-_6532548.jpg/500px-Log_piles%2C_Buckland_Warren_-_geograph.org.uk_-_6532548.jpg",
   },
 
   {
@@ -4621,7 +4723,7 @@ const places = [
     name: "The Harcourt Monument Trail: Six Centuries of Stone Soldiers",
     category: "adventures",
     lat: 51.7490,
-    lng: -1.4040,
+    lng: -1.4018,
     type: "Adventure Idea",
     description: "St Michael's Church, Stanton Harcourt contains six centuries of Harcourt family tombs — recumbent effigies in armour, stone women in medieval wimples, sleeping stone dogs at knights' feet, coats of arms. Give the children a challenge list: find a knight in armour (stone, full-size), a woman in a wimple, a shield with a quartered coat of arms, a sleeping dog at someone's feet, a child effigy, a skull or memento mori motif. Each find scores a point. The 8-year-old sketches their favourite; the 6-year-old spots the dogs.",
     whyCurious: "The Harcourts were one of the most powerful Norman families in England. Their tombs span from the 14th to the 18th century — lying in a row, they are literally a timeline of English history in stone, changing from full armour to Tudor ruffs to Georgian wigs. The church also contains Pope's Tower, where Alexander Pope translated the Iliad.",
@@ -4740,8 +4842,8 @@ const places = [
     id: 253,
     name: "Bat Detector Walk at Dusk: Tadpole Bridge",
     category: "adventures",
-    lat: 51.7015,
-    lng: -1.5175,
+    lat: 51.6987,
+    lng: -1.5341,
     type: "Adventure Idea",
     description: "30 minutes after sunset on a still evening in May–August, stand on Tadpole Bridge with a bat detector app (Bat Detective, or Echo Meter Touch) set to 45kHz for common pipistrelles. Daubenton's bats hunt low over the water surface just below bridge height — you'll see them flickering back and forth along the river channel within arm's reach. The echolocation clicks are translated by the app into audible clicking sounds. Challenge: count how many individual bat passes you can tally in 10 minutes. The 8-year-old operates the detector; the 6-year-old counts; the 2-year-old points and shouts.",
     whyCurious: "Daubenton's bats are specialist river hunters — they scoop insects off the water surface with their large feet. They fly so low and precisely that their wing tips sometimes touch the water. Watching them work in the last light over the Thames, hearing the clicks translate to sound, is quietly extraordinary.",
@@ -4801,7 +4903,7 @@ const places = [
     name: "Dawn Chorus at Chimney Meadows: The Wetland Soundscape",
     category: "adventures",
     lat: 51.7090,
-    lng: -1.4900,
+    lng: -0.983,
     type: "Adventure Idea",
     description: "Arrive at Chimney Meadows car park at 5am in May. Walk to the bird hides in the dark with a torch. As the sky lightens, the wetland dawn chorus builds: first a Cetti's warbler (an explosive burst of sound from very close that will make the children jump), then reed warblers chattering from the reed beds, sedge warblers improvising, reed buntings, water rails grunting from the rushes. By 5:30am the full chorus is under way. Tell children beforehand: 'A Cetti's warbler sounds like someone popping a paper bag very near your ear.' They won't believe you. Then it happens.",
     whyCurious: "Cetti's warblers have colonised the UK only since the 1970s — they were unknown here before then. They are tiny, secretive, and almost invisible. Their call, though, is one of the loudest sounds per gram of bird in Britain. The shock of a first Cetti's warbler at 5 metres is a formative experience.",
@@ -4820,8 +4922,8 @@ const places = [
     id: 257,
     name: "Willow Weaving Crowns at the Thames Bank",
     category: "adventures",
-    lat: 51.7010,
-    lng: -1.5160,
+    lat: 51.8003,
+    lng: -1.114,
     type: "Adventure Idea",
     description: "The pollarded willows along the Thames bank between Tadpole Bridge and Rushey Lock throw up long, whippy new shoots — perfect for weaving. Cut three or four 1-metre shoots from the ground-level growth (not from the tree itself). Show the children: hold two shoots parallel and start spiralling a third around both, then add more shoots the same way. Tighten as you go. The result is a rough crown or circlet. The 8-year-old can work independently; the 6-year-old needs some help; the 2-year-old holds and bends. Finish the crowns by tying the ends, then wear them for the walk home.",
     whyCurious: "Willow weaving has been practiced for 10,000 years in the British Isles — the earliest trackways across wetland were made from woven willow hurdles. The pollarded willows along this stretch of Thames are a traditional, managed part of the river landscape, specifically coppiced to provide long straight shoots.",
@@ -4840,8 +4942,8 @@ const places = [
     id: 258,
     name: "Mud Kitchen at Rushey Lock: 45 Minutes of Pure Absorption",
     category: "adventures",
-    lat: 51.6985,
-    lng: -1.5340,
+    lat: 51.8003,
+    lng: -1.114,
     type: "Adventure Idea",
     description: "At the calm margins of Rushey Lock weir pool, or any accessible muddy bank along the Thames, set up a mud kitchen: collect river mud, clean pebbles, dock leaves (for plates), grass stems, a flat stone for a surface, a stick each. Build mud pies, decorate with pebbles and petals, arrange dock-leaf plates with grass-stem garnishes. The lock-keeper's garden at Rushey Lock is famously beautiful — the surroundings are calm and the weir pool is sheltered. The 2-year-old can spend 45 minutes in complete absorption. The 6 and 8-year-old compete for most elaborate creation.",
     whyCurious: "The lock-keeper tradition on the Thames goes back to the 18th century. Many lock-keepers cultivated extraordinary gardens on their small islands — a source of competitive pride. The Rushey keeper's cottage garden is one of these. The weir pool has been used for paddling and play since Victorian visitors first 'came for the river.'",
@@ -5079,7 +5181,7 @@ const places = [
     name: "Star ID at Chimney Meadows Car Park: No Telescope Needed",
     category: "adventures",
     lat: 51.7088,
-    lng: -1.4891,
+    lng: -1.572,
     type: "Adventure Idea",
     description: "The Chimney Meadows car park faces west and north with virtually no light pollution in those directions — the flatness of the floodplain means an unobstructed dark horizon. Download a free star map app beforehand (SkyMap, Stellarium). On a clear, moonless night: lie on sleeping bags on the car bonnet or a picnic blanket. Start with the Plough (always visible in the north, the 7 bright stars of Ursa Major). Follow the two end stars to Polaris. Now find Orion in winter, or the Summer Triangle in summer. Give each child a star to find. Take turns pointing and naming. The 8-year-old navigates by Polaris.",
     whyCurious: "West Oxfordshire is confirmed as significantly darker than the area around Faringdon-Wantage due to fewer towns in the western direction. The flat Thames floodplain amplifies this — there are no hills to bounce urban glow. On a good night you can see the Milky Way as a faint band from here.",
@@ -5139,7 +5241,7 @@ const places = [
     name: "Radcot Castle Earthworks: The Norman Fort Nobody Visits",
     category: "adventures",
     lat: 51.6930,
-    lng: -1.5800,
+    lng: -1.558,
     type: "Adventure Idea",
     description: "At Radcot, beside the medieval bridge and the Swan pub, the earthworks of a 12th-century castle survive as low green humps and ditches in a field. It's a scheduled monument. The square bailey, keep foundations, chapel site, and a later Civil War ditch are all still visible as subtle but unmistakable ground shapes. Challenge: using just your eyes (no phone), can the 8-year-old identify the line of the outer ditch? Where was the entrance? Why did the builders choose this exact spot — right by the river crossing? Walk the perimeter, then sketch a rough plan.",
     whyCurious: "Radcot Castle was abandoned so long ago it barely appears in historical records. Its remains are just bumps in a field — but they represent a Norman lord controlling the most important Thames crossing in the region in the 12th century. The castle's ditch was reused as a Civil War defensive work 500 years later.",
@@ -5238,7 +5340,7 @@ const places = [
     name: "Great Coxwell Tithe Barn: William Morris Called It the Greatest Building in England",
     category: "adventures",
     lat: 51.6410,
-    lng: -1.5690,
+    lng: -1.584,
     type: "Adventure Idea",
     description: "The Great Coxwell Barn (National Trust, free, open dawn to dusk every day) is a 13th-century Cistercian tithe barn — 45 metres long, built in 1291 by Beaulieu Abbey. William Morris visited regularly from Kelmscott and called it 'the greatest piece of architecture in England.' Walk inside: the roof is a cathedral of medieval timber, the stone walls 1 metre thick. Challenge: estimate the roof height without a tape measure — how many children stacked up would reach the apex? How many steps to walk the full length? Find the two small windows set high in the gable ends and work out which direction they face.",
     whyCurious: "The barn was built to store the annual tithes (one-tenth of all agricultural produce) owed to Beaulieu Abbey — an act of economic extraction made permanent in stone. It is completely unchanged structurally from 1291. You are standing inside a working agricultural building from the reign of Edward I.",
@@ -5257,8 +5359,8 @@ const places = [
     id: 279,
     name: "Bampton August Bank Holiday: Donkey Races and Ancient Junketing",
     category: "adventures",
-    lat: 51.7180,
-    lng: -1.5370,
+    lat: 51.6921,
+    lng: -1.4379,
     type: "Adventure Idea",
     description: "Every August Bank Holiday Monday, SPAJERS (the Society for the Preservation of Ancient Junketing) holds its annual event at Sandfords Field, Bampton, from 2pm. A genuine old-fashioned village afternoon with: donkey races for children, a bric-a-brac stall, skittles, Aunt Sally (the Oxfordshire pub game of throwing a stick at a wooden doll), crockery smashing, and various eccentric competitions. Entry is typically free or nominal. The 2-year-old watches the donkeys with large eyes. The 8-year-old attempts Aunt Sally. Check the Bampton Parish Council website for the exact date each year.",
     whyCurious: "SPAJERS — a name that perfectly encapsulates Bampton's sense of humour about its own traditions — was founded specifically to preserve the bank holiday fair in an era when such things were disappearing. Aunt Sally is an ancient Oxfordshire field game found almost nowhere else in England: you throw a 'bat' (a short wooden baton) at a white doll on a stick from about 8 metres. It requires skill.",
@@ -5397,7 +5499,7 @@ const places = [
     name: "The Pollinator Photography Challenge at Chimney Meadows",
     category: "adventures",
     lat: 51.7085,
-    lng: -1.4900,
+    lng: -1.572,
     type: "Adventure Idea",
     description: "Each child gets a phone or camera and has 20 minutes to photograph as many different insect species as possible feeding on flowers at Chimney Meadows. Rules: the insect must be clearly on the flower, not just flying past. Bumblebees count as one each if they have different colour bands (white tail = buff-tailed, red tail = red-tailed, yellow stripes = common carder). Use the iNaturalist or Seek app to identify each photo. At the end, compare species counts. Who got the most? Which flower was most visited? The 8-year-old will manage 10+ species; the 6-year-old will get 5; this is fine.",
     whyCurious: "Chimney Meadows supports a disproportionately rich insect fauna because the hay cutting is timed to protect invertebrate lifecycles. Species you might photograph here — marbled white butterfly, brown argus, common blue — are genuinely uncommon in lowland England and completely absent from intensively farmed fields nearby.",
@@ -5812,7 +5914,7 @@ const places = [
     name: "Night Sky from a Flat Field: Meteor Shower Picnic (August Perseids)",
     category: "adventures",
     lat: 51.7090,
-    lng: -1.4910,
+    lng: -1.4018,
     type: "Adventure Idea",
     description: "The Perseid meteor shower peaks annually around 11–13 August. Drive to the Chimney Meadows car park after 10pm on a clear, moonless night. Lay sleeping bags and a picnic blanket flat in the car park or adjacent dry meadow (check conditions). Allow 20 minutes for dark adaptation. Then count meteors: the 8-year-old tracks northeast (the radiant is near Perseus), the 6-year-old tracks northwest. Tally how many you each see in 10 minutes. At the peak you can see 30–50 meteors per hour under dark skies. The 2-year-old will fall asleep before 11pm, which is the correct outcome.",
     whyCurious: "The Perseids have occurred every August for millennia — the Earth passes through the debris trail of Comet Swift-Tuttle at the same orbital point each year. The meadow west of Chimney Meadows faces away from the main light pollution sources (Abingdon to the east, Swindon to the southwest). The flat horizon makes it genuinely dark.",
@@ -6031,8 +6133,8 @@ const places = [
     id: 318,
     name: "Pipistrelle Listening Walk in Buckland Village at Dusk",
     category: "adventures",
-    lat: 51.7140,
-    lng: -1.4760,
+    lat: 51.6911,
+    lng: -1.6086,
     type: "Adventure Idea",
     description: "No need to drive anywhere: start at your own front door at dusk (May–September). Common pipistrelles roost in every old building in Buckland — they emerge 20–30 minutes after sunset and immediately start hunting. Download the free Bat Detective app. Walk the lane from Buckland village church toward the edge of the village, holding the phone screen up. Watch for the small, fast, jinking shapes hunting around the streetlights and hedgerow edges. At each lamppost or old building, pause: the app will register clicks when a bat passes. Who tallies the most bat passes in 10 minutes?",
     whyCurious: "You don't need to go anywhere special to watch bats — they're in the village already. Pipistrelles weigh about 5 grams (the weight of a 20p coin) and eat up to 3,000 midges per night. The colony in the loft or eaves of an old building is one of the most extraordinary things most people never realise is sharing their home.",
@@ -6151,8 +6253,8 @@ const places = [
     id: 324,
     name: "Longworth and Harrowdown Hill: The Hidden Thames Woodland",
     category: "adventures",
-    lat: 51.6880,
-    lng: -1.3800,
+    lat: 51.6921,
+    lng: -1.4379,
     type: "Adventure Idea",
     description: "From Longworth village, take Tuck's Lane downhill past the Blue Boar pub and follow the footpath over Harrowdown Hill — a small wooded hill north of the village close to the Thames, described in walking guides as 'a lonely walk amongst the trees.' The hill's woodland canopy closes overhead, the village disappears, and the Thames is audible at the bottom. This walk barely appears in any guidebook. Combine with the Longworth churchyard (oldest grave hunt, medieval carved heads in the nave) and lunch at the Blue Boar pub.",
     whyCurious: "Harrowdown Hill's name is old — 'harrow' derives from Old English 'hearg' meaning a pagan temple or sacred place, suggesting pre-Christian religious significance. The hill sits at the edge of the Thames floodplain in a position that would have been strategically and spiritually significant in the early medieval period.",
