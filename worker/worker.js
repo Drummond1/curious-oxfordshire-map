@@ -2,14 +2,17 @@
 // Keeps the API key server-side; streams responses back to the browser.
 
 const ANTHROPIC_API  = 'https://api.anthropic.com/v1/messages';
-const ALLOWED_ORIGIN = 'https://secretoxfordshire.com';
+const ALLOWED_ORIGINS = ['https://secretoxfordshire.com', 'https://www.secretoxfordshire.com'];
 const DAILY_LIMIT    = 25;  // max AI messages per visitor per day
 
 export default {
   async fetch(request, env, ctx) {
 
+    const origin = request.headers.get('Origin') || '';
+    const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+
     const corsHeaders = {
-      'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+      'Access-Control-Allow-Origin': allowedOrigin,
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
