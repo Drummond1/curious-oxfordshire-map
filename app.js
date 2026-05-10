@@ -105,8 +105,14 @@ function buildPopup(place) {
       <div class="popup-description">${place.description}</div>
       <div class="popup-curious">✨ Why curious: ${place.whyCurious}</div>
       <div class="popup-grid">
-        <span>💰 Cost</span><strong>${place.cost}</strong>
-        <span>⭐ Best for</span><strong>${place.bestFor}</strong>
+        <div class="popup-grid-cell">
+          <div class="popup-grid-label">💰 Cost</div>
+          <div class="popup-grid-value">${place.cost}</div>
+        </div>
+        <div class="popup-grid-cell">
+          <div class="popup-grid-label">⭐ Best for</div>
+          <div class="popup-grid-value">${place.bestFor}</div>
+        </div>
       </div>
       <div class="popup-tags">
         <span class="popup-tag ${weatherClass}">${weatherLabel}</span>
@@ -142,7 +148,7 @@ places.forEach(place => {
   }).addTo(map);
 
   if (!isMobile()) {
-    marker.bindPopup(buildPopup(place), { maxWidth: 340 });
+    marker.bindPopup(buildPopup(place), { maxWidth: 460, autoPan: true, autoPanPadding: [24, 24] });
   }
 
   marker.on('click', () => {
