@@ -1,0 +1,9 @@
+name            = "secret-oxfordshire-ai"
+main            = "worker.js"
+compatibility_date = "2024-11-01"
+
+# KV namespace for rate limiting — created via: npx wrangler kv namespace create RATE_LIMIT
+# Then paste the returned id below
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id      = "323168ae7e7041d89228431961c99f83"

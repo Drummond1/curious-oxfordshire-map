@@ -1,18 +1,18 @@
 // ============================================================
-// chat.js — AI chatbot for Curious Oxfordshire Map
-// Uses Claude Haiku via Anthropic API (key stored in localStorage)
+// chat.js — AI chatbot for Secret Oxfordshire
+// Calls a Cloudflare Worker proxy — no API key in the browser.
 // ============================================================
 
 (function () {
-  const STORAGE_KEY = 'oxf_api_key';
-  const MODEL       = 'claude-3-5-haiku-20241022';
+  // URL of the deployed Cloudflare Worker (filled in after deployment)
+  const WORKER_URL = 'https://secret-oxfordshire-ai.drummondgilbert.workers.dev';
+  const MODEL      = 'claude-3-5-haiku-20241022';
 
   let chatOpen      = false;
   let messageHistory = [];
 
   // ── DOM refs ──────────────────────────────────────────────
   const panel        = document.getElementById('chat-panel');
-  const setupDiv     = document.getElementById('chat-setup');
   const mainDiv      = document.getElementById('chat-main');
   const messagesEl   = document.getElementById('chat-messages');
   const suggestionsEl = document.getElementById('chat-suggestions');
@@ -21,9 +21,6 @@
   const closeBtn     = document.getElementById('chat-close');
   const sidebarBtn   = document.getElementById('chat-sidebar-btn');
   const fab          = document.getElementById('chat-fab');
-  const apiKeyInput  = document.getElementById('api-key-input');
-  const apiKeySave   = document.getElementById('api-key-save');
-  const keyResetBtn  = document.getElementById('chat-key-reset');
 
   // ── Open / close ──────────────────────────────────────────
   function openChat() {
@@ -31,16 +28,9 @@
     panel.hidden = false;
     requestAnimationFrame(() => panel.classList.add('open'));
     document.body.classList.add('chat-open');
-
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      setupDiv.hidden = false;
-      mainDiv.hidden  = true;
-    } else {
-      setupDiv.hidden = true;
-      mainDiv.hidden  = false;
-      if (!messagesEl.children.length) showWelcome();
-      setTimeout(() => inputEl.focus(), 350);
-    }
+    mainDiv.hidden = false;
+    if (!messagesEl.children.length) showWelcome();
+    setTimeout(() => inputEl.focus(), 350);
   }
 
   function closeChat() {
@@ -63,37 +53,10 @@
     }
   });
 
-  // ── API key setup ─────────────────────────────────────────
-  apiKeySave?.addEventListener('click', saveKey);
-  apiKeyInput?.addEventListener('keydown', e => { if (e.key === 'Enter') saveKey(); });
-
-  function saveKey() {
-    const key = apiKeyInput.value.trim();
-    if (!key.startsWith('sk-ant-')) {
-      apiKeyInput.classList.add('error');
-      apiKeyInput.placeholder = 'Must start with sk-ant-…';
-      return;
-    }
-    localStorage.setItem(STORAGE_KEY, key);
-    setupDiv.hidden = true;
-    mainDiv.hidden  = false;
-    showWelcome();
-    setTimeout(() => inputEl.focus(), 100);
-  }
-
-  keyResetBtn?.addEventListener('click', () => {
-    localStorage.removeItem(STORAGE_KEY);
-    messageHistory = [];
-    messagesEl.innerHTML = '';
-    setupDiv.hidden = false;
-    mainDiv.hidden  = true;
-    apiKeyInput.value = '';
-  });
-
   // ── Welcome ───────────────────────────────────────────────
   function showWelcome() {
     addMessage('ai', [
-      'Hi! I\'m your Oxfordshire guide. Describe what you\'re looking for — I\'ll search',
+      'Hi! I\'m your Secret Oxfordshire guide. Describe what you\'re looking for — I\'ll search',
       `**${places.length.toLocaleString()} places and events** and explain exactly why each recommendation fits.`,
       '',
       'Try asking about the weather, who you\'re with, a date, a mood, or a location.',
@@ -101,7 +64,6 @@
   }
 
   // ── Smart pre-filtering ───────────────────────────────────
-  // Score places by relevance to the query before sending to Claude
   function getRelevantPlaces(query, limit = 28) {
     const q     = query.toLowerCase();
     const words = q.split(/\W+/).filter(w => w.length > 2);
@@ -136,14 +98,12 @@
       if (/star|astron|night sky/.test(q)                    && /astron|star|night/.test(blob))                  score += 4;
       if (/fungus|mushroom|forag/.test(q)                    && /fungus|mushroom|forag/.test(blob))              score += 4;
 
-      // Boost events happening soon when user mentions timing
       if (/weekend|this week|soon|upcoming/.test(q) && place.date) {
         const diff = (new Date(place.date) - new Date()) / 86400000;
         if (diff >= 0 && diff <= 14)  score += 6;
         if (diff >= 0 && diff <= 60)  score += 3;
       }
 
-      // Boost currently-active date filter results
       if (typeof dateFrom !== 'undefined' && dateFrom && place.date) {
         const d    = new Date(place.date);
         const from = new Date(dateFrom);
@@ -154,9 +114,8 @@
       return { place, score };
     });
 
-    const sorted = scored.sort((a, b) => b.score - a.score);
+    const sorted  = scored.sort((a, b) => b.score - a.score);
     const matched = sorted.filter(s => s.score > 0).slice(0, limit);
-    // Always provide at least 10 places so Claude has useful context
     if (matched.length < 10) {
       const extra = sorted.filter(s => s.score === 0).slice(0, limit - matched.length);
       return [...matched, ...extra].map(s => s.place);
@@ -164,9 +123,8 @@
     return matched.map(s => s.place);
   }
 
-  // ── Claude API (streaming) ────────────────────────────────
+  // ── Cloudflare Worker proxy (streaming) ───────────────────
   async function streamClaude(userQuery) {
-    const apiKey  = localStorage.getItem(STORAGE_KEY);
     const relevant = getRelevantPlaces(userQuery);
 
     const systemPrompt = `You are an enthusiastic, knowledgeable local guide for Oxfordshire, England. You help people discover unusual, interesting, and sometimes eccentric things to do.
@@ -194,14 +152,9 @@ ${JSON.stringify(relevant.map(p => ({
 
     messageHistory.push({ role: 'user', content: userQuery });
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(WORKER_URL, {
       method: 'POST',
-      headers: {
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json',
-        'anthropic-dangerous-allow-browser': 'true',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: MODEL,
         max_tokens: 1200,
@@ -216,15 +169,13 @@ ${JSON.stringify(relevant.map(p => ({
       throw new Error(err.error?.message || `API error ${response.status}`);
     }
 
-    // Stream the response
     const reader  = response.body.getReader();
     const decoder = new TextDecoder();
     let fullText  = '';
 
-    // Create the AI message bubble to stream into
-    const msgEl   = document.createElement('div');
+    const msgEl  = document.createElement('div');
     msgEl.className = 'chat-msg chat-msg-ai';
-    const bubble  = document.createElement('div');
+    const bubble = document.createElement('div');
     bubble.className = 'chat-bubble';
     msgEl.appendChild(bubble);
     messagesEl.appendChild(msgEl);
@@ -249,10 +200,7 @@ ${JSON.stringify(relevant.map(p => ({
     }
 
     messageHistory.push({ role: 'assistant', content: fullText });
-
-    // Inject "Show on map" buttons for matched places
     injectPlaceLinks(msgEl, fullText, relevant);
-
     return fullText;
   }
 
@@ -284,7 +232,6 @@ ${JSON.stringify(relevant.map(p => ({
       btn.textContent = `📍 ${place.name}`;
       btn.addEventListener('click', () => {
         closeChat();
-        // Navigate map to place
         if (typeof isMobile === 'function' && isMobile()) {
           if (typeof panToForMobile === 'function') panToForMobile(place.lat, place.lng);
           if (typeof showDetail === 'function') showDetail(place);
@@ -300,7 +247,7 @@ ${JSON.stringify(relevant.map(p => ({
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
-  // ── addMessage helper (for non-streamed messages) ─────────
+  // ── addMessage helper ─────────────────────────────────────
   function addMessage(role, text) {
     const msgEl  = document.createElement('div');
     msgEl.className = `chat-msg chat-msg-${role}`;
@@ -322,9 +269,7 @@ ${JSON.stringify(relevant.map(p => ({
     const text = inputEl.value.trim();
     if (!text || sendBtn.disabled) return;
 
-    // Hide suggestions after first message
     suggestionsEl.classList.add('hidden');
-
     addMessage('user', text);
     inputEl.value = '';
     autoResize();
@@ -332,7 +277,6 @@ ${JSON.stringify(relevant.map(p => ({
     inputEl.disabled = true;
     sendBtn.disabled = true;
 
-    // Show loading placeholder
     const loadingEl = document.createElement('div');
     loadingEl.className = 'chat-msg chat-msg-ai loading';
     const loadBubble = document.createElement('div');
@@ -348,13 +292,9 @@ ${JSON.stringify(relevant.map(p => ({
       loadingEl.remove();
       let errMsg;
       const m = err.message;
-      if (m.includes('401'))           errMsg = 'Invalid API key — tap 🔑 to update it.';
-      else if (m.includes('403'))      errMsg = 'API key lacks permission for this model. Check your Anthropic console.';
-      else if (m.includes('429'))      errMsg = 'Rate limit hit — wait a moment and try again.';
-      else if (m.includes('529') || m.includes('overloaded')) errMsg = 'Anthropic servers are overloaded — try again in a few seconds.';
-      else if (m.includes('Failed to fetch') || m.includes('NetworkError') || m.includes('Load failed'))
-        errMsg = 'Network error — if you opened this as a file:// URL, try serving it via a local server instead (see console for details).';
-      else                             errMsg = `Error: ${m}`;
+      if (m.includes('429'))      errMsg = 'Daily message limit reached — come back tomorrow!';
+      else if (m.includes('503') || m.includes('overloaded')) errMsg = 'AI is busy right now — try again in a moment.';
+      else                        errMsg = `Something went wrong: ${m}`;
       addMessage('ai', errMsg);
       console.error('Chat error:', err);
     } finally {

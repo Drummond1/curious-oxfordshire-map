@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Curious Oxfordshire Map</title>
+  <title>Secret Oxfordshire</title>
 
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,7 +21,7 @@
 
   <!-- ── Mobile map header (app title overlay, mobile only) ── -->
   <div id="mobile-header" aria-hidden="true">
-    <span>Curious Oxfordshire</span>
+    <span>Secret Oxfordshire</span>
   </div>
 
   <!-- ── Mobile floating search bar (visible on map when sheet collapsed) ── -->
@@ -39,8 +39,8 @@
       <span id="handle-count" aria-hidden="true"></span>
     </div>
 
-    <h1>Curious Oxfordshire</h1>
-    <p class="subtitle">Unusual, interesting &amp; slightly magical places around Buckland and beyond.</p>
+    <h1>Secret Oxfordshire</h1>
+    <p class="subtitle">Unusual, interesting &amp; slightly magical places across Oxfordshire.</p>
 
     <!-- Search -->
     <div id="search-wrap">
@@ -125,27 +125,14 @@
   <!-- AI Chat panel -->
   <div id="chat-panel" hidden aria-label="AI recommendations" role="dialog">
 
-    <!-- API key setup screen -->
-    <div id="chat-setup">
-      <div class="chat-setup-inner">
-        <div class="chat-setup-emoji">✨</div>
-        <h3>AI Recommendations</h3>
-        <p>Describe what you're looking for — I'll search 1,850+ Oxfordshire places and tell you exactly what to do and why.</p>
-        <p class="chat-key-note">Enter your <a href="https://console.anthropic.com" target="_blank" rel="noopener">Anthropic API key</a> to get started. It's stored only in your browser.</p>
-        <input type="password" id="api-key-input" placeholder="sk-ant-api03-…" autocomplete="off" spellcheck="false" />
-        <button id="api-key-save">Start exploring →</button>
-      </div>
-    </div>
-
     <!-- Main chat UI -->
-    <div id="chat-main" hidden>
+    <div id="chat-main">
       <div id="chat-header">
         <div class="chat-header-title">
           <span class="chat-header-dot"></span>
           <span>AI Guide</span>
         </div>
         <div class="chat-header-actions">
-          <button id="chat-key-reset" title="Change API key" aria-label="Change API key">🔑</button>
           <button id="chat-close" aria-label="Close chat">✕</button>
         </div>
       </div>
