@@ -2,6 +2,13 @@
 // app.js — Curious Oxfordshire Map
 // ============================================================
 
+// -- Mobile detection ----------------------------------------
+
+function isMobile() {
+  return window.matchMedia('(max-width: 767px)').matches;
+}
+
+
 // -- Map setup -----------------------------------------------
 
 const MAP_CENTRE = [51.72, -1.45];
@@ -31,22 +38,19 @@ const CATEGORY_COLOURS = {
 
 function makeIcon(category, isFamilyFriendly) {
   const colour = CATEGORY_COLOURS[category] || CATEGORY_COLOURS['default'];
+  const size   = isMobile() ? 26 : 18;
+  const half   = size / 2;
 
-  // Family-friendly: white solid centre + coloured outer ring via box-shadow
   const innerStyle = isFamilyFriendly
     ? `background:#fff; border:2px solid ${colour}; box-shadow: 0 0 0 3px ${colour}, 0 2px 6px rgba(0,0,0,0.28);`
     : `background:${colour}; border:2px solid rgba(255,255,255,0.9); box-shadow: 0 2px 6px rgba(0,0,0,0.3);`;
 
   return L.divIcon({
     className: '',
-    html: `<div style="
-      width:18px; height:18px;
-      border-radius:50%;
-      ${innerStyle}
-    "></div>`,
-    iconSize: [18, 18],
-    iconAnchor: [9, 9],
-    popupAnchor: [0, -14]
+    html: `<div style="width:${size}px;height:${size}px;border-radius:50%;${innerStyle}"></div>`,
+    iconSize:    [size, size],
+    iconAnchor:  [half, half],
+    popupAnchor: [0, -(half + 5)]
   });
 }
 
@@ -81,8 +85,7 @@ function buildPopup(place) {
     : '📝 Sample / editable entry — please check details before visiting';
 
   const isAdventure = place.category === 'adventures';
-
-  const catColour = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
+  const catColour   = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
 
   const photoHtml = place.photo
     ? `<img src="${place.photo}" alt="${place.name}" class="popup-photo" onerror="this.style.display='none'">`
@@ -134,7 +137,17 @@ places.forEach(place => {
     icon: makeIcon(place.category, place.familyFriendly)
   }).addTo(map);
 
-  marker.bindPopup(buildPopup(place), { maxWidth: 340 });
+  if (!isMobile()) {
+    marker.bindPopup(buildPopup(place), { maxWidth: 340 });
+  }
+
+  marker.on('click', () => {
+    if (isMobile()) {
+      map.setView([place.lat, place.lng], 14, { animate: true });
+      showDetail(place);
+    }
+  });
+
   marker.placeData = place;
   markerById[place.id] = marker;
 });
@@ -150,10 +163,10 @@ function buildListItem(place) {
   li.className = 'place-item';
   li.dataset.id = place.id;
 
-  const colour = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
+  const colour       = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
   const weatherEmoji = place.weather === 'indoor' ? '🏠' : '🌿';
-  const dateStr = place.date ? ` · ${formatDate(place.date)}` : '';
-  const familyBadge = place.familyFriendly
+  const dateStr      = place.date ? ` · ${formatDate(place.date)}` : '';
+  const familyBadge  = place.familyFriendly
     ? `<span class="list-family-badge" title="Great with children">👨‍👩‍👧</span>`
     : '';
   const adventureBadge = place.category === 'adventures'
@@ -184,9 +197,14 @@ function buildListItem(place) {
     const marker = markerById[place.id];
     if (!marker) return;
     map.setView([place.lat, place.lng], 14, { animate: true });
-    marker.openPopup();
-    document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
-    li.classList.add('highlighted');
+
+    if (isMobile()) {
+      showDetail(place);
+    } else {
+      marker.openPopup();
+      document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
+      li.classList.add('highlighted');
+    }
   });
 
   return li;
@@ -201,12 +219,11 @@ function renderList(filtered) {
 
 // -- Filtering -----------------------------------------------
 
-let activeFilter  = 'all';
-let searchQuery   = '';
+let activeFilter = 'all';
+let searchQuery  = '';
 
 function getFiltered() {
   return places.filter(place => {
-    // Filter match
     let filterMatch = true;
     if (activeFilter === 'all') {
       filterMatch = true;
@@ -218,7 +235,6 @@ function getFiltered() {
       filterMatch = (place.tags || []).includes(activeFilter) || place.category === activeFilter;
     }
 
-    // Search match
     let searchMatch = true;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
@@ -262,6 +278,8 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     applyFilter(btn.dataset.filter);
+    // On mobile, ensure list is visible after filtering
+    if (isMobile() && sheetState === 'collapsed') setSheetState('mid');
   });
 });
 
@@ -275,6 +293,10 @@ searchInput.addEventListener('input', () => {
   searchQuery = searchInput.value.trim();
   searchClear.style.display = searchQuery ? 'flex' : 'none';
   refresh();
+});
+
+searchInput.addEventListener('focus', () => {
+  if (isMobile()) setSheetState('expanded');
 });
 
 searchClear.addEventListener('click', () => {
@@ -292,23 +314,132 @@ document.getElementById('random-btn').addEventListener('click', () => {
   const visible = getFiltered();
   if (visible.length === 0) return;
 
-  const pick = visible[Math.floor(Math.random() * visible.length)];
+  const pick   = visible[Math.floor(Math.random() * visible.length)];
   const marker = markerById[pick.id];
   if (!marker) return;
 
   map.setView([pick.lat, pick.lng], 14, { animate: true });
-  marker.openPopup();
 
-  document.querySelectorAll('.place-item').forEach(el => {
-    el.classList.toggle('highlighted', el.dataset.id == pick.id);
-  });
+  if (isMobile()) {
+    showDetail(pick);
+  } else {
+    marker.openPopup();
+    document.querySelectorAll('.place-item').forEach(el => {
+      el.classList.toggle('highlighted', el.dataset.id == pick.id);
+    });
+    const highlighted = placeList.querySelector('.highlighted');
+    if (highlighted) highlighted.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+});
 
-  // Scroll to the highlighted list item
-  const highlighted = placeList.querySelector('.highlighted');
-  if (highlighted) highlighted.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+
+// -- Mobile bottom sheet -------------------------------------
+
+const sidebar     = document.getElementById('sidebar');
+const detailPanel = document.getElementById('detail-panel');
+const sheetHandle = document.getElementById('sheet-handle');
+
+let sheetState = 'collapsed';
+
+function computeSnaps() {
+  const vh     = window.innerHeight;
+  const sheetH = sidebar.offsetHeight || vh * 0.92;
+  return {
+    collapsed: Math.max(0, sheetH - 72),
+    mid:       Math.max(0, sheetH - vh * 0.52),
+    expanded:  Math.max(0, sheetH - vh * 0.88),
+    detail:    Math.max(0, sheetH - vh * 0.88)
+  };
+}
+
+function setSheetState(state) {
+  if (!isMobile()) return;
+  sheetState = state;
+
+  const snaps  = computeSnaps();
+  const offset = snaps[state] ?? snaps.collapsed;
+  sidebar.style.setProperty('--sheet-offset', offset + 'px');
+
+  document.body.classList.toggle('sheet-detail', state === 'detail');
+
+  setTimeout(() => map.invalidateSize({ animate: false }), 340);
+}
+
+function showDetail(place) {
+  detailPanel.innerHTML = buildPopup(place);
+  setSheetState('detail');
+}
+
+// Back button — injected into DOM after sheet-handle
+const backBtn = document.createElement('button');
+backBtn.id = 'sheet-back';
+backBtn.innerHTML = '← Back to list';
+backBtn.addEventListener('click', () => {
+  detailPanel.innerHTML = '';
+  setSheetState('mid');
+});
+sheetHandle.insertAdjacentElement('afterend', backBtn);
+
+// Tapping the map collapses the sheet
+map.on('click', () => {
+  if (isMobile() && sheetState !== 'collapsed') setSheetState('collapsed');
+});
+
+// Sheet drag gesture
+let dragStartY    = 0;
+let dragMoveDelta = 0;
+let dragActive    = false;
+
+sheetHandle.addEventListener('pointerdown', e => {
+  if (!isMobile()) return;
+  dragStartY    = e.clientY;
+  dragMoveDelta = 0;
+  dragActive    = true;
+  sidebar.style.transition = 'none';
+  sheetHandle.setPointerCapture(e.pointerId);
+});
+
+sheetHandle.addEventListener('pointermove', e => {
+  if (!dragActive || !isMobile()) return;
+  const delta  = e.clientY - dragStartY;
+  dragMoveDelta += Math.abs(delta);
+  const snaps  = computeSnaps();
+  const cur    = parseFloat(sidebar.style.getPropertyValue('--sheet-offset')) || snaps.collapsed;
+  const next   = Math.max(0, Math.min(snaps.collapsed, cur + delta));
+  sidebar.style.setProperty('--sheet-offset', next + 'px');
+  dragStartY = e.clientY;
+});
+
+sheetHandle.addEventListener('pointerup', () => {
+  if (!dragActive || !isMobile()) return;
+  dragActive = false;
+  sidebar.style.transition = '';
+
+  if (dragMoveDelta < 8) {
+    setSheetState(sheetState === 'collapsed' ? 'mid' : 'collapsed');
+    return;
+  }
+
+  const snaps   = computeSnaps();
+  const current = parseFloat(sidebar.style.getPropertyValue('--sheet-offset')) || snaps.collapsed;
+  const options = ['expanded', 'mid', 'collapsed'].map(k => ({ k, v: snaps[k] }));
+  const nearest = options.reduce((b, o) => Math.abs(o.v - current) < Math.abs(b.v - current) ? o : b);
+  setSheetState(nearest.k);
+});
+
+// Resize handler
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (isMobile()) setSheetState(sheetState === 'detail' ? 'detail' : 'collapsed');
+    map.invalidateSize();
+  }, 150);
 });
 
 
 // -- Initial render ------------------------------------------
 
 applyFilter('all');
+
+if (isMobile()) setSheetState('collapsed');
