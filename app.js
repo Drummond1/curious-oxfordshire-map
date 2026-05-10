@@ -84,6 +84,9 @@ function buildPopup(place) {
     ? '✅ Verified listing'
     : '📝 Sample / editable entry — please check details before visiting';
 
+  const mapsUrl = `https://maps.google.com/?q=${place.lat},${place.lng}`;
+  const directionsHtml = `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="popup-directions">📍 Get directions</a>`;
+
   const isAdventure = place.category === 'adventures';
   const catColour   = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
 
@@ -109,6 +112,7 @@ function buildPopup(place) {
         <span class="popup-tag ${weatherClass}">${weatherLabel}</span>
         ${tagPills}
       </div>
+      ${directionsHtml}
       <div class="popup-verified">${verifiedNote}</div>
     </div>
   `;
@@ -153,6 +157,33 @@ places.forEach(place => {
 });
 
 
+// When a popup opens on desktop, scroll the sidebar list to that item and highlight it
+map.on('popupopen', e => {
+  if (isMobile()) return;
+  const marker = e.popup._source;
+  if (!marker || !marker.placeData) return;
+  const id = marker.placeData.id;
+  const li = placeList.querySelector(`[data-id="${id}"]`);
+  if (!li) return;
+  document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
+  li.classList.add('highlighted');
+  li.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+});
+
+map.on('popupclose', () => {
+  if (isMobile()) return;
+  document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
+});
+
+// Scale a marker's inner dot up/down (desktop hover from list)
+function setMarkerHover(id, on) {
+  const marker = markerById[id];
+  if (!marker) return;
+  const inner = marker.getElement()?.querySelector('div');
+  if (inner) inner.style.transform = on ? 'scale(1.6)' : '';
+}
+
+
 // -- Sidebar list --------------------------------------------
 
 const placeList  = document.getElementById('place-list');
@@ -192,6 +223,9 @@ function buildListItem(place) {
     </div>
     ${thumbHtml}
   `;
+
+  li.addEventListener('mouseenter', () => { if (!isMobile()) setMarkerHover(place.id, true);  });
+  li.addEventListener('mouseleave', () => { if (!isMobile()) setMarkerHover(place.id, false); });
 
   li.addEventListener('click', () => {
     const marker = markerById[place.id];

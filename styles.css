@@ -774,7 +774,7 @@ body {
     z-index: 1000;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     box-shadow: 0 -4px 32px rgba(60,40,10,0.22);
-    padding: 0 14px 14px;
+    padding: 0 14px max(14px, env(safe-area-inset-bottom));
     gap: 10px;
     overflow: hidden;
     transform: translateY(var(--sheet-offset, calc(100% - 72px)));
@@ -884,6 +884,12 @@ body {
     display: none;
   }
 
+  /* Press feedback on list items */
+  .place-item:active {
+    background: var(--surface-2);
+    transform: scale(0.985);
+  }
+
   /* Larger markers for touch targets — handled in app.js */
 
   /* Voice button repositioned above sheet handle area */
@@ -912,5 +918,31 @@ body {
   .popup-photo {
     border-radius: var(--radius-md) var(--radius-md) 0 0;
   }
+}
+
+/* ── Marker hover scale (desktop list → map sync) ─────────── */
+.leaflet-marker-icon > div {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* ── Directions link inside popups / detail panel ────────────  */
+.popup-directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.popup-directions:hover {
+  background: var(--surface-2);
+  border-color: var(--primary-light);
 }
 
