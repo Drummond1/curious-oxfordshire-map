@@ -739,10 +739,52 @@ body {
 
 /* ── Mobile layout (≤ 767px) ─────────────────────────────── */
 
-/* Elements hidden on mobile by default */
+/* Elements hidden by default */
 #mobile-header  { display: none; }
 #sheet-handle   { display: none; }
 #detail-panel   { display: none; }
+#sheet-back     { display: none; }
+
+/* -- Back button base styles (shown in both desktop-detail and sheet-detail) -- */
+#sheet-back {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 0 4px;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+#sheet-back:hover { opacity: 0.7; }
+
+/* ── Desktop detail mode ─────────────────────────────────────── */
+body.desktop-detail #place-list,
+body.desktop-detail #place-count,
+body.desktop-detail #filters,
+body.desktop-detail #random-btn,
+body.desktop-detail .sidebar-footer { display: none; }
+
+body.desktop-detail #sheet-back { display: flex; }
+
+body.desktop-detail #detail-panel {
+  display: block;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* Tighten popup content sizing inside the narrow sidebar */
+body.desktop-detail .popup-photo  { height: 160px; }
+body.desktop-detail .popup-content { padding: 14px 16px; }
 
 @media (max-width: 767px) {
 
@@ -879,21 +921,7 @@ body {
     display: flex;
   }
 
-  /* Back button (detail mode) */
-  #sheet-back {
-    display: none;
-    align-items: center;
-    gap: 6px;
-    background: none;
-    border: none;
-    color: var(--primary);
-    font-family: inherit;
-    font-size: 0.84rem;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 4px 0 2px;
-    flex-shrink: 0;
-  }
+  /* Back button shown in sheet-detail mode on mobile */
 
   /* Leaflet popups suppressed on mobile — we use the detail panel */
   .leaflet-popup-pane {

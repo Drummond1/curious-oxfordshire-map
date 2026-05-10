@@ -147,14 +147,12 @@ places.forEach(place => {
     icon: makeIcon(place.category, place.familyFriendly)
   }).addTo(map);
 
-  if (!isMobile()) {
-    marker.bindPopup(buildPopup(place), { maxWidth: 460, autoPan: true, autoPanPadding: [24, 24] });
-  }
-
   marker.on('click', () => {
+    map.setView([place.lat, place.lng], 14, { animate: true });
     if (isMobile()) {
-      map.setView([place.lat, place.lng], 14, { animate: true });
       showDetail(place);
+    } else {
+      showDesktopDetail(place);
     }
   });
 
@@ -163,30 +161,30 @@ places.forEach(place => {
 });
 
 
-// When a popup opens on desktop, scroll the sidebar list to that item and highlight it
-map.on('popupopen', e => {
-  if (isMobile()) return;
-  const marker = e.popup._source;
-  if (!marker || !marker.placeData) return;
-  const id = marker.placeData.id;
-  const li = placeList.querySelector(`[data-id="${id}"]`);
-  if (!li) return;
-  document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
-  li.classList.add('highlighted');
-  li.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-});
-
-map.on('popupclose', () => {
-  if (isMobile()) return;
-  document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
-});
-
 // Scale a marker's inner dot up/down (desktop hover from list)
 function setMarkerHover(id, on) {
   const marker = markerById[id];
   if (!marker) return;
   const inner = marker.getElement()?.querySelector('div');
   if (inner) inner.style.transform = on ? 'scale(1.6)' : '';
+}
+
+// Desktop: show place detail inside the sidebar (keeps map fully visible)
+function showDesktopDetail(place) {
+  detailPanel.innerHTML = buildPopup(place);
+  document.body.classList.add('desktop-detail');
+  document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
+  const li = placeList.querySelector(`[data-id="${place.id}"]`);
+  if (li) {
+    li.classList.add('highlighted');
+    li.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+}
+
+function closeDesktopDetail() {
+  document.body.classList.remove('desktop-detail');
+  detailPanel.innerHTML = '';
+  document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
 }
 
 
@@ -241,9 +239,7 @@ function buildListItem(place) {
     if (isMobile()) {
       showDetail(place);
     } else {
-      marker.openPopup();
-      document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
-      li.classList.add('highlighted');
+      showDesktopDetail(place);
     }
   });
 
@@ -363,12 +359,7 @@ document.getElementById('random-btn').addEventListener('click', () => {
   if (isMobile()) {
     showDetail(pick);
   } else {
-    marker.openPopup();
-    document.querySelectorAll('.place-item').forEach(el => {
-      el.classList.toggle('highlighted', el.dataset.id == pick.id);
-    });
-    const highlighted = placeList.querySelector('.highlighted');
-    if (highlighted) highlighted.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    showDesktopDetail(pick);
   }
 });
 
@@ -415,14 +406,19 @@ const backBtn = document.createElement('button');
 backBtn.id = 'sheet-back';
 backBtn.innerHTML = '← Back to list';
 backBtn.addEventListener('click', () => {
-  detailPanel.innerHTML = '';
-  setSheetState('mid');
+  if (isMobile()) {
+    detailPanel.innerHTML = '';
+    setSheetState('mid');
+  } else {
+    closeDesktopDetail();
+  }
 });
 sheetHandle.insertAdjacentElement('afterend', backBtn);
 
-// Tapping the map collapses the sheet
+// Clicking the map: collapse sheet on mobile, close detail on desktop
 map.on('click', () => {
   if (isMobile() && sheetState !== 'collapsed') setSheetState('collapsed');
+  if (!isMobile() && document.body.classList.contains('desktop-detail')) closeDesktopDetail();
 });
 
 // Sheet drag gesture
