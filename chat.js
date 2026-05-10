@@ -6,7 +6,7 @@
 (function () {
   // URL of the deployed Cloudflare Worker (filled in after deployment)
   const WORKER_URL = 'https://secret-oxfordshire-ai.drummondgilbert.workers.dev';
-  const MODEL      = 'claude-3-5-haiku-20241022';
+  const MODEL      = 'claude-haiku-4-5-20251001';
 
   let chatOpen      = false;
   let messageHistory = [];
