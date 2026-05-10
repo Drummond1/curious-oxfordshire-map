@@ -22,6 +22,19 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 20
 }).addTo(map);
 
+const clusterGroup = L.markerClusterGroup({
+  chunkedLoading: true,
+  showCoverageOnHover: false,
+  spiderfyOnMaxZoom: true,
+  maxClusterRadius: isMobile() ? 80 : 60,
+});
+clusterGroup.addTo(map);
+
+// Tapping a cluster → collapse the sheet so spiderfied pins are visible
+clusterGroup.on('clusterclick', () => {
+  if (isMobile() && sheetState !== 'collapsed') setSheetState('collapsed');
+});
+
 
 // -- Custom marker icon --------------------------------------
 
@@ -36,18 +49,36 @@ const CATEGORY_COLOURS = {
   'default':             '#7a6050'
 };
 
+const CATEGORY_LETTERS = {
+  'strange-or-historic': 'S',
+  'nature':              'N',
+  'rainy-day':           'R',
+  'events':              'E',
+  'hidden-places':       'H',
+  'food-or-treats':      'F',
+  'adventures':          'A',
+  'default':             '·'
+};
+
 function makeIcon(category, isFamilyFriendly) {
   const colour = CATEGORY_COLOURS[category] || CATEGORY_COLOURS['default'];
+  const letter = CATEGORY_LETTERS[category] || CATEGORY_LETTERS['default'];
   const size   = isMobile() ? 26 : 18;
   const half   = size / 2;
+  const fs     = Math.round(size * 0.52);
 
-  const innerStyle = isFamilyFriendly
-    ? `background:#fff; border:2px solid ${colour}; box-shadow: 0 0 0 3px ${colour}, 0 2px 6px rgba(0,0,0,0.28);`
-    : `background:${colour}; border:2px solid rgba(255,255,255,0.9); box-shadow: 0 2px 6px rgba(0,0,0,0.3);`;
+  const bg     = isFamilyFriendly ? '#fff' : colour;
+  const fg     = isFamilyFriendly ? colour : '#fff';
+  const border = isFamilyFriendly
+    ? `2px solid ${colour}`
+    : '2px solid rgba(255,255,255,0.9)';
+  const shadow = isFamilyFriendly
+    ? `0 0 0 3px ${colour}, 0 2px 6px rgba(0,0,0,0.28)`
+    : '0 2px 6px rgba(0,0,0,0.3)';
 
   return L.divIcon({
     className: '',
-    html: `<div style="width:${size}px;height:${size}px;border-radius:50%;${innerStyle}"></div>`,
+    html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${bg};border:${border};box-shadow:${shadow};color:${fg};display:flex;align-items:center;justify-content:center;font-size:${fs}px;font-weight:700;font-family:system-ui,sans-serif;line-height:1;">${letter}</div>`,
     iconSize:    [size, size],
     iconAnchor:  [half, half],
     popupAnchor: [0, -(half + 5)]
@@ -124,6 +155,38 @@ function buildPopup(place) {
   `;
 }
 
+// -- Compact "peek" card (mobile marker tap) -----------------
+
+function buildPeekCard(place) {
+  const catColour  = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
+  const mapsUrl    = `https://maps.google.com/?q=${place.lat},${place.lng}`;
+  const weatherTag = place.weather === 'indoor'
+    ? '<span class="peek-tag">🏠 Indoor</span>'
+    : '<span class="peek-tag">🌿 Outdoor</span>';
+  const costTag    = place.cost
+    ? `<span class="peek-tag">💰 ${place.cost}</span>`
+    : '';
+  const familyTag  = place.familyFriendly
+    ? '<span class="peek-tag">👨‍👩‍👧 Family</span>'
+    : '';
+  const snippet    = place.description
+    ? place.description.slice(0, 110) + (place.description.length > 110 ? '…' : '')
+    : '';
+
+  return `
+    <div class="peek-card">
+      <div class="peek-name">${place.name}</div>
+      <div class="peek-type" style="color:${catColour}">${place.type}</div>
+      <div class="peek-tags">${weatherTag}${costTag}${familyTag}</div>
+      ${snippet ? `<div class="peek-desc">${snippet}</div>` : ''}
+      <div class="peek-actions">
+        <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="peek-directions">📍 Directions</a>
+        <button class="peek-expand-btn">Full details ↑</button>
+      </div>
+    </div>
+  `;
+}
+
 function tagLabel(tag) {
   const labels = {
     'hidden-places':      '🔍 Hidden Place',
@@ -142,23 +205,27 @@ function tagLabel(tag) {
 
 const markerById = {};
 
+const allMarkers = [];
 places.forEach(place => {
   const marker = L.marker([place.lat, place.lng], {
     icon: makeIcon(place.category, place.familyFriendly)
-  }).addTo(map);
+  });
 
   marker.on('click', () => {
-    map.setView([place.lat, place.lng], 14, { animate: true });
     if (isMobile()) {
+      panToForMobile(place.lat, place.lng);
       showDetail(place);
     } else {
+      map.setView([place.lat, place.lng], 14, { animate: true });
       showDesktopDetail(place);
     }
   });
 
   marker.placeData = place;
   markerById[place.id] = marker;
+  allMarkers.push(marker);
 });
+clusterGroup.addLayers(allMarkers);
 
 
 // Scale a marker's inner dot up/down (desktop hover from list)
@@ -172,6 +239,9 @@ function setMarkerHover(id, on) {
 // Desktop: show place detail inside the sidebar (keeps map fully visible)
 function showDesktopDetail(place) {
   detailPanel.innerHTML = buildPopup(place);
+  attachShareBtn(place, detailPanel);
+  attachFavBtn(place, detailPanel);
+  history.replaceState(null, '', `#place-${place.id}`);
   document.body.classList.add('desktop-detail');
   document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
   const li = placeList.querySelector(`[data-id="${place.id}"]`);
@@ -185,6 +255,45 @@ function closeDesktopDetail() {
   document.body.classList.remove('desktop-detail');
   detailPanel.innerHTML = '';
   document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
+  history.replaceState(null, '', location.pathname);
+}
+
+
+// -- Favorites -----------------------------------------------
+
+const FAV_KEY = 'oxf_favorites';
+let favorites = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]'));
+
+function saveFavs() {
+  localStorage.setItem(FAV_KEY, JSON.stringify([...favorites]));
+}
+
+function toggleFav(id, btn) {
+  if (favorites.has(id)) {
+    favorites.delete(id);
+  } else {
+    favorites.add(id);
+  }
+  saveFavs();
+  const active = favorites.has(id);
+  btn.classList.toggle('fav-active', active);
+  btn.title = active ? 'Saved!' : 'Save this place';
+  if (activeFilter === 'saved') refresh();
+}
+
+function attachFavBtn(place, container) {
+  const btn = document.createElement('button');
+  const active = favorites.has(place.id);
+  btn.className = 'popup-fav-btn' + (active ? ' fav-active' : '');
+  btn.title     = active ? 'Saved!' : 'Save this place';
+  btn.innerHTML = active ? '♥ Saved' : '♥ Save';
+  btn.addEventListener('click', () => {
+    toggleFav(place.id, btn);
+    btn.innerHTML = favorites.has(place.id) ? '♥ Saved' : '♥ Save';
+  });
+  const dirs = container.querySelector('.popup-directions, .peek-directions');
+  if (dirs) dirs.insertAdjacentElement('afterend', btn);
+  else container.appendChild(btn);
 }
 
 
@@ -192,6 +301,11 @@ function closeDesktopDetail() {
 
 const placeList  = document.getElementById('place-list');
 const placeCount = document.getElementById('place-count');
+
+const BATCH_SIZE = 60;
+let renderedCount    = 0;
+let currentFiltered  = [];
+let sentinelObserver = null;
 
 function buildListItem(place) {
   const li = document.createElement('li');
@@ -218,6 +332,10 @@ function buildListItem(place) {
     .map(t => `<span class="place-tag">${tagLabel(t)}</span>`)
     .join('');
 
+  const distStr = userLocation
+    ? ` · <span class="place-distance">${fmtDistance(haversineKm(userLocation.lat, userLocation.lng, place.lat, place.lng))}</span>`
+    : '';
+
   li.setAttribute('role', 'button');
   li.setAttribute('tabindex', '0');
   li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); li.click(); } });
@@ -226,11 +344,21 @@ function buildListItem(place) {
     <div class="place-stripe" style="background:${colour};"></div>
     <div class="place-body">
       <div class="place-name">${adventureBadge}${place.name} ${familyBadge}</div>
-      <div class="place-meta">${weatherEmoji} ${place.type}${dateStr}</div>
+      <div class="place-meta">${weatherEmoji} ${place.type}${dateStr}${distStr}</div>
       <div class="place-tags-row">${tagPills}</div>
     </div>
     ${thumbHtml}
   `;
+
+  const favBtn = document.createElement('button');
+  favBtn.className = 'place-fav-btn' + (favorites.has(place.id) ? ' fav-active' : '');
+  favBtn.title     = favorites.has(place.id) ? 'Saved!' : 'Save this place';
+  favBtn.innerHTML = '♥';
+  favBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    toggleFav(place.id, favBtn);
+  });
+  li.appendChild(favBtn);
 
   li.addEventListener('mouseenter', () => { if (!isMobile()) setMarkerHover(place.id, true);  });
   li.addEventListener('mouseleave', () => { if (!isMobile()) setMarkerHover(place.id, false); });
@@ -261,7 +389,10 @@ function resetFilters() {
 }
 
 function renderList(filtered) {
+  if (sentinelObserver) { sentinelObserver.disconnect(); sentinelObserver = null; }
   placeList.innerHTML = '';
+  renderedCount = 0;
+  currentFiltered = filtered;
 
   if (filtered.length === 0) {
     const empty = document.createElement('li');
@@ -272,11 +403,44 @@ function renderList(filtered) {
     `;
     empty.querySelector('.empty-clear-btn').addEventListener('click', resetFilters);
     placeList.appendChild(empty);
-  } else {
-    filtered.forEach(place => placeList.appendChild(buildListItem(place)));
+    placeCount.textContent = '0 places shown';
+    const hc = document.getElementById('handle-count');
+    if (hc) hc.textContent = '0 places';
+    return;
   }
 
-  placeCount.textContent = `${filtered.length} place${filtered.length !== 1 ? 's' : ''} shown`;
+  appendBatch();
+  const countLabel = `${filtered.length} place${filtered.length !== 1 ? 's' : ''}`;
+  placeCount.textContent = countLabel + ' shown';
+  const handleCount = document.getElementById('handle-count');
+  if (handleCount) handleCount.textContent = countLabel;
+}
+
+function appendBatch() {
+  const end = Math.min(renderedCount + BATCH_SIZE, currentFiltered.length);
+  for (let i = renderedCount; i < end; i++) {
+    placeList.appendChild(buildListItem(currentFiltered[i]));
+  }
+  renderedCount = end;
+
+  const old = placeList.querySelector('.list-sentinel');
+  if (old) old.remove();
+
+  if (renderedCount < currentFiltered.length) {
+    const sentinel = document.createElement('li');
+    sentinel.className = 'list-sentinel';
+    placeList.appendChild(sentinel);
+    sentinelObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          sentinelObserver.disconnect();
+          appendBatch();
+        }
+      },
+      { root: placeList, rootMargin: '300px' }
+    );
+    sentinelObserver.observe(sentinel);
+  }
 }
 
 
@@ -287,6 +451,7 @@ let searchQuery  = '';
 
 function getFiltered() {
   return places.filter(place => {
+    // Category filter
     let filterMatch = true;
     if (activeFilter === 'all') {
       filterMatch = true;
@@ -294,10 +459,13 @@ function getFiltered() {
       filterMatch = place.category === 'adventures';
     } else if (activeFilter === 'family-friendly') {
       filterMatch = place.familyFriendly === true;
+    } else if (activeFilter === 'saved') {
+      filterMatch = favorites.has(place.id);
     } else {
       filterMatch = (place.tags || []).includes(activeFilter) || place.category === activeFilter;
     }
 
+    // Search filter
     let searchMatch = true;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
@@ -313,7 +481,22 @@ function getFiltered() {
       );
     }
 
-    return filterMatch && searchMatch;
+    // Date / period filter
+    let dateMatch = true;
+    if (dateFrom && dateTo) {
+      if (place.date) {
+        const d    = new Date(place.date);
+        const from = new Date(dateFrom);
+        const to   = new Date(dateTo);
+        to.setHours(23, 59, 59);          // inclusive end of day
+        dateMatch = d >= from && d <= to;
+      } else {
+        // Undated "events" are hidden when a period is active; other types stay visible
+        dateMatch = place.category !== 'events';
+      }
+    }
+
+    return filterMatch && searchMatch && dateMatch;
   });
 }
 
@@ -324,15 +507,16 @@ function applyFilter(filter) {
 
 function refresh() {
   const filtered = getFiltered();
+  const filteredSet = new Set(filtered.map(p => p.id));
 
   places.forEach(place => {
     const marker = markerById[place.id];
     if (!marker) return;
-    const visible = filtered.some(p => p.id === place.id);
+    const visible = filteredSet.has(place.id);
     if (visible) {
-      if (!map.hasLayer(marker)) map.addLayer(marker);
+      if (!clusterGroup.hasLayer(marker)) clusterGroup.addLayer(marker);
     } else {
-      if (map.hasLayer(marker)) map.removeLayer(marker);
+      if (clusterGroup.hasLayer(marker)) clusterGroup.removeLayer(marker);
     }
   });
 
@@ -359,6 +543,12 @@ const searchClear = document.getElementById('search-clear');
 searchInput.addEventListener('input', () => {
   searchQuery = searchInput.value.trim();
   searchClear.style.display = searchQuery ? 'flex' : 'none';
+  const mob = document.getElementById('mobile-search-input');
+  if (mob) {
+    mob.value = searchInput.value;
+    const mobClear = document.getElementById('mobile-search-clear');
+    if (mobClear) mobClear.style.display = searchQuery ? 'block' : 'none';
+  }
   refresh();
 });
 
@@ -371,8 +561,41 @@ searchClear.addEventListener('click', () => {
   searchQuery = '';
   searchClear.style.display = 'none';
   searchInput.focus();
+  if (mobileSearchInput) { mobileSearchInput.value = ''; mobileSearchClear.style.display = 'none'; }
   refresh();
 });
+
+
+// -- Mobile floating search bar ------------------------------
+
+const mobileSearchInput = document.getElementById('mobile-search-input');
+const mobileSearchClear = document.getElementById('mobile-search-clear');
+
+if (mobileSearchInput) {
+  mobileSearchInput.addEventListener('input', () => {
+    const q = mobileSearchInput.value.trim();
+    searchInput.value = q;
+    searchQuery = q;
+    searchClear.style.display = q ? 'flex' : 'none';
+    mobileSearchClear.style.display = q ? 'block' : 'none';
+    if (isMobile() && sheetState === 'collapsed') setSheetState('mid');
+    refresh();
+  });
+
+  mobileSearchClear.addEventListener('click', () => {
+    mobileSearchInput.value = '';
+    searchInput.value = '';
+    searchQuery = '';
+    mobileSearchClear.style.display = 'none';
+    searchClear.style.display = 'none';
+    mobileSearchInput.focus();
+    refresh();
+  });
+
+  mobileSearchInput.addEventListener('focus', () => {
+    if (isMobile() && sheetState === 'collapsed') setSheetState('mid');
+  });
+}
 
 
 // -- Random adventure button ---------------------------------
@@ -385,11 +608,11 @@ document.getElementById('random-btn').addEventListener('click', () => {
   const marker = markerById[pick.id];
   if (!marker) return;
 
-  map.setView([pick.lat, pick.lng], 14, { animate: true });
-
   if (isMobile()) {
+    panToForMobile(pick.lat, pick.lng);
     showDetail(pick);
   } else {
+    map.setView([pick.lat, pick.lng], 14, { animate: true });
     showDesktopDetail(pick);
   }
 });
@@ -409,6 +632,7 @@ function computeSnaps() {
   return {
     collapsed: Math.max(0, sheetH - 72),
     mid:       Math.max(0, sheetH - vh * 0.52),
+    peek:      Math.max(0, sheetH - vh * 0.40),   // ~60% map visible — used for marker tap
     expanded:  Math.max(0, sheetH - vh * 0.88),
     detail:    Math.max(0, sheetH - vh * 0.88)
   };
@@ -422,14 +646,35 @@ function setSheetState(state) {
   const offset = snaps[state] ?? snaps.collapsed;
   sidebar.style.setProperty('--sheet-offset', offset + 'px');
 
-  document.body.classList.toggle('sheet-detail', state === 'detail');
+  // Show back button in peek and detail states
+  document.body.classList.toggle('sheet-detail', state === 'detail' || state === 'peek');
 
   setTimeout(() => map.invalidateSize({ animate: false }), 340);
 }
 
+// Pan so the target pin lands in the visible map area (above the peek sheet)
+function panToForMobile(lat, lng) {
+  const zoom = 14;
+  map.setView([lat, lng], zoom, { animate: false });
+  // Peek sheet covers ~40% from bottom → visible map is top ~60%
+  // Centre of visible area ≈ 30% from top of screen
+  const pt      = map.latLngToContainerPoint([lat, lng]);
+  const targetY = window.innerHeight * 0.28;
+  const dy      = pt.y - targetY;
+  if (Math.abs(dy) > 30) map.panBy([0, dy], { animate: true, duration: 0.3 });
+}
+
 function showDetail(place) {
-  detailPanel.innerHTML = buildPopup(place);
-  setSheetState('detail');
+  // Show compact peek card first — keeps ~60% of map visible
+  detailPanel.innerHTML = buildPeekCard(place);
+  detailPanel.querySelector('.peek-expand-btn').addEventListener('click', () => {
+    detailPanel.innerHTML = buildPopup(place);
+    attachShareBtn(place, detailPanel);
+    attachFavBtn(place, detailPanel);
+    setSheetState('detail');
+  });
+  history.replaceState(null, '', `#place-${place.id}`);
+  setSheetState('peek');
 }
 
 // Back button — injected into DOM after sheet-handle
@@ -482,14 +727,25 @@ sheetHandle.addEventListener('pointerup', () => {
   dragActive = false;
   sidebar.style.transition = '';
 
+  const hasDetail = detailPanel.innerHTML.trim().length > 0;
+
   if (dragMoveDelta < 8) {
-    setSheetState(sheetState === 'collapsed' ? 'mid' : 'collapsed');
+    if (sheetState === 'collapsed') {
+      setSheetState(hasDetail ? 'peek' : 'mid');
+    } else {
+      setSheetState('collapsed');
+    }
     return;
   }
 
   const snaps   = computeSnaps();
   const current = parseFloat(sidebar.style.getPropertyValue('--sheet-offset')) || snaps.collapsed;
-  const options = ['expanded', 'mid', 'collapsed'].map(k => ({ k, v: snaps[k] }));
+  // When detail content is present: snap between detail/peek/collapsed
+  // Otherwise: snap between expanded/mid/collapsed
+  const snapKeys = hasDetail
+    ? ['detail', 'peek', 'collapsed']
+    : ['expanded', 'mid', 'collapsed'];
+  const options = snapKeys.map(k => ({ k, v: snaps[k] }));
   const nearest = options.reduce((b, o) => Math.abs(o.v - current) < Math.abs(b.v - current) ? o : b);
   setSheetState(nearest.k);
 });
@@ -505,8 +761,261 @@ window.addEventListener('resize', () => {
 });
 
 
+// -- Date / period filter ------------------------------------
+
+const dateFromInput  = document.getElementById('date-from');
+const dateToInput    = document.getElementById('date-to');
+const dateClearBtn   = document.getElementById('date-clear-btn');
+const dateActiveBar  = document.getElementById('date-active-bar');
+const dateActiveLabel = document.getElementById('date-active-label');
+
+let dateFrom = '';  // ISO string or ''
+let dateTo   = '';
+
+function toISO(d) {
+  return d.toISOString().slice(0, 10);
+}
+
+function fmtRange(from, to) {
+  const opts = { day: 'numeric', month: 'short' };
+  const a = new Date(from).toLocaleDateString('en-GB', opts);
+  const b = new Date(to).toLocaleDateString('en-GB', opts);
+  return a === b ? a : `${a} – ${b}`;
+}
+
+function applyDateRange(from, to, presetKey) {
+  dateFrom = from;
+  dateTo   = to;
+
+  // Update inputs
+  dateFromInput.value = from;
+  dateToInput.value   = to;
+  dateFromInput.classList.toggle('active', !!from);
+  dateToInput.classList.toggle('active',   !!to);
+
+  // Highlight active preset chip
+  document.querySelectorAll('.date-preset').forEach(b =>
+    b.classList.toggle('active', !!presetKey && b.dataset.preset === presetKey)
+  );
+
+  // Show / hide active bar
+  if (from && to) {
+    dateActiveBar.hidden = false;
+    dateActiveLabel.textContent = `📅 ${fmtRange(from, to)}`;
+  } else {
+    dateActiveBar.hidden = true;
+  }
+
+  refresh();
+}
+
+function clearDateFilter() {
+  applyDateRange('', '', null);
+}
+
+function getPresetRange(preset) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const dow = today.getDay(); // 0=Sun…6=Sat
+
+  switch (preset) {
+    case 'weekend': {
+      // Next Sat–Sun (or current weekend if today is Sat/Sun)
+      const toSat = dow === 6 ? 0 : (6 - dow);
+      const sat   = new Date(today); sat.setDate(today.getDate() + toSat);
+      const sun   = new Date(sat);   sun.setDate(sat.getDate() + 1);
+      return [toISO(sat), toISO(sun), 'weekend'];
+    }
+    case 'next-week': {
+      const toMon = dow === 0 ? 1 : (8 - dow);
+      const mon   = new Date(today); mon.setDate(today.getDate() + toMon);
+      const sun   = new Date(mon);   sun.setDate(mon.getDate() + 6);
+      return [toISO(mon), toISO(sun), 'next-week'];
+    }
+    case 'this-month': {
+      const first = new Date(today.getFullYear(), today.getMonth(), 1);
+      const last  = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+      return [toISO(first), toISO(last), 'this-month'];
+    }
+    case 'next-month': {
+      const first = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+      const last  = new Date(today.getFullYear(), today.getMonth() + 2, 0);
+      return [toISO(first), toISO(last), 'next-month'];
+    }
+  }
+  return ['', '', null];
+}
+
+// Preset chips
+document.querySelectorAll('.date-preset').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.classList.contains('active')) {
+      clearDateFilter();
+      return;
+    }
+    const [from, to, key] = getPresetRange(btn.dataset.preset);
+    applyDateRange(from, to, key);
+  });
+});
+
+// Custom from/to inputs
+dateFromInput.addEventListener('change', () => {
+  let to = dateToInput.value;
+  if (dateFromInput.value && !to) {
+    // Auto-set end date 7 days after start
+    const d = new Date(dateFromInput.value);
+    d.setDate(d.getDate() + 7);
+    to = toISO(d);
+  }
+  applyDateRange(dateFromInput.value, to, null);
+});
+
+dateToInput.addEventListener('change', () => {
+  applyDateRange(dateFromInput.value, dateToInput.value, null);
+});
+
+dateClearBtn.addEventListener('click', clearDateFilter);
+
+
+// -- Filter count badges -------------------------------------
+
+function updateFilterCounts() {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    const filter = btn.dataset.filter;
+    let count;
+    if (filter === 'all') {
+      count = places.length;
+    } else if (filter === 'adventures') {
+      count = places.filter(p => p.category === 'adventures').length;
+    } else if (filter === 'family-friendly') {
+      count = places.filter(p => p.familyFriendly === true).length;
+    } else {
+      count = places.filter(p =>
+        (p.tags || []).includes(filter) || p.category === filter
+      ).length;
+    }
+    let span = btn.querySelector('.filter-count');
+    if (!span) {
+      span = document.createElement('span');
+      span.className = 'filter-count';
+      btn.appendChild(span);
+    }
+    span.textContent = count;
+  });
+}
+
+
+// -- Fit map bounds to visible filtered markers --------------
+
+function fitBoundsToVisible() {
+  if (clusterGroup.getLayers().length === 0) return;
+  const bounds = clusterGroup.getBounds();
+  if (bounds.isValid()) {
+    map.fitBounds(bounds, { padding: [50, 50], maxZoom: 14, animate: true });
+  }
+}
+
+
+// -- User location -------------------------------------------
+
+let userLocMarker = null;
+let userLocation  = null;  // { lat, lng } when geolocation available
+
+function haversineKm(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2
+          + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180)
+          * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function fmtDistance(km) {
+  return km < 1 ? `${Math.round(km * 1000)}m` : `${km.toFixed(1)}km`;
+}
+
+const locateBtn = document.getElementById('locate-btn');
+
+locateBtn.addEventListener('click', () => {
+  locateBtn.classList.add('locating');
+  map.locate({ setView: true, maxZoom: 14 });
+});
+
+map.on('locationfound', e => {
+  locateBtn.classList.remove('locating');
+  userLocation = { lat: e.latlng.lat, lng: e.latlng.lng };
+  if (userLocMarker) userLocMarker.remove();
+  userLocMarker = L.marker(e.latlng, {
+    icon: L.divIcon({
+      className: '',
+      html: '<div class="user-location-dot"></div>',
+      iconSize: [16, 16],
+      iconAnchor: [8, 8],
+    }),
+    zIndexOffset: 2000,
+  }).addTo(map);
+  userLocMarker.bindPopup('You are here').openPopup();
+  refresh();  // re-render list with distances
+});
+
+map.on('locationerror', () => {
+  locateBtn.classList.remove('locating');
+});
+
+
+// -- Share / deep-link ---------------------------------------
+
+function sharePlace(place) {
+  const url = `${location.href.split('#')[0]}#place-${place.id}`;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = document.querySelector('.popup-share');
+      if (btn) { btn.classList.add('copied'); btn.textContent = '✓ Link copied'; }
+    });
+  } else {
+    prompt('Copy this link:', url);
+  }
+}
+
+function openPlaceById(id) {
+  const place = places.find(p => p.id === id);
+  if (!place) return;
+  map.setView([place.lat, place.lng], 14, { animate: true });
+  if (isMobile()) showDetail(place); else showDesktopDetail(place);
+}
+
+// Inject share button into popup HTML (called after buildPopup is inserted)
+function attachShareBtn(place, container) {
+  const btn = document.createElement('button');
+  btn.className = 'popup-share';
+  btn.innerHTML = '🔗 Share';
+  btn.addEventListener('click', () => sharePlace(place));
+  const dirs = container.querySelector('.popup-directions');
+  if (dirs) dirs.insertAdjacentElement('afterend', btn);
+  else container.appendChild(btn);
+}
+
+
+// -- Wire fit-bounds into filter buttons ---------------------
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    setTimeout(fitBoundsToVisible, 120);
+  });
+});
+
+
 // -- Initial render ------------------------------------------
 
+updateFilterCounts();
 applyFilter('all');
+
+// Handle deep-link hash on load
+const hashMatch = location.hash.match(/^#place-(\d+)$/);
+if (hashMatch) {
+  const id = parseInt(hashMatch[1], 10);
+  setTimeout(() => openPlaceById(id), 400);
+}
 
 if (isMobile()) setSheetState('mid');

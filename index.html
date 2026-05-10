@@ -12,6 +12,8 @@
 
   <!-- Leaflet CSS from CDN — no install needed -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -22,11 +24,20 @@
     <span>Curious Oxfordshire</span>
   </div>
 
+  <!-- ── Mobile floating search bar (visible on map when sheet collapsed) ── -->
+  <div id="mobile-search-bar" aria-hidden="true">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:0.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="mobile-search-input" type="text" placeholder="Search places…" autocomplete="off" aria-label="Search places" />
+    <button id="mobile-search-clear" aria-label="Clear search" style="display:none">✕</button>
+  </div>
+
   <!-- ── Sidebar / Bottom sheet ──────────────────────────── -->
   <aside id="sidebar" role="region" aria-label="Places panel">
 
     <!-- Drag handle (mobile only) -->
-    <div id="sheet-handle" role="button" tabindex="0" aria-label="Toggle places panel"></div>
+    <div id="sheet-handle" role="button" tabindex="0" aria-label="Toggle places panel">
+      <span id="handle-count" aria-hidden="true"></span>
+    </div>
 
     <h1>Curious Oxfordshire</h1>
     <p class="subtitle">Unusual, interesting &amp; slightly magical places around Buckland and beyond.</p>
@@ -52,7 +63,34 @@
       <button class="filter-btn" data-filter="food-or-treats">Food</button>
       <button class="filter-btn" data-filter="strange-or-historic">Historic</button>
       <button class="filter-btn" data-filter="free-or-cheap">Free</button>
+      <button class="filter-btn filter-btn-saved" data-filter="saved">❤️ Saved</button>
     </div>
+
+    <!-- Date / period filter -->
+    <div id="date-filter-wrap">
+      <div id="date-presets">
+        <button class="date-preset" data-preset="weekend">This weekend</button>
+        <button class="date-preset" data-preset="next-week">Next week</button>
+        <button class="date-preset" data-preset="this-month">This month</button>
+        <button class="date-preset" data-preset="next-month">Next month</button>
+      </div>
+      <div id="date-custom-row">
+        <span class="date-range-label">From</span>
+        <input type="date" id="date-from" aria-label="Start of period" />
+        <span class="date-range-label">to</span>
+        <input type="date" id="date-to" aria-label="End of period" />
+      </div>
+      <div id="date-active-bar" hidden>
+        <span id="date-active-label"></span>
+        <button id="date-clear-btn" aria-label="Clear date filter">✕ Clear</button>
+      </div>
+    </div>
+
+    <!-- AI chat button (desktop sidebar) -->
+    <button id="chat-sidebar-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Ask AI for ideas
+    </button>
 
     <!-- Random adventure button -->
     <button id="random-btn">🎲 Random Adventure</button>
@@ -73,13 +111,75 @@
   <!-- ── Map ────────────────────────────────────────────── -->
   <div id="map"></div>
 
+  <!-- Locate me button (floats over map) -->
+  <button id="locate-btn" title="Find my location" aria-label="Find my location">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/><circle cx="12" cy="12" r="9" opacity=".25"/></svg>
+  </button>
+
+  <!-- Floating AI chat button (mobile) -->
+  <button id="chat-fab" aria-label="Ask AI for recommendations">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span>Ask AI</span>
+  </button>
+
+  <!-- AI Chat panel -->
+  <div id="chat-panel" hidden aria-label="AI recommendations" role="dialog">
+
+    <!-- API key setup screen -->
+    <div id="chat-setup">
+      <div class="chat-setup-inner">
+        <div class="chat-setup-emoji">✨</div>
+        <h3>AI Recommendations</h3>
+        <p>Describe what you're looking for — I'll search 1,850+ Oxfordshire places and tell you exactly what to do and why.</p>
+        <p class="chat-key-note">Enter your <a href="https://console.anthropic.com" target="_blank" rel="noopener">Anthropic API key</a> to get started. It's stored only in your browser.</p>
+        <input type="password" id="api-key-input" placeholder="sk-ant-api03-…" autocomplete="off" spellcheck="false" />
+        <button id="api-key-save">Start exploring →</button>
+      </div>
+    </div>
+
+    <!-- Main chat UI -->
+    <div id="chat-main" hidden>
+      <div id="chat-header">
+        <div class="chat-header-title">
+          <span class="chat-header-dot"></span>
+          <span>AI Guide</span>
+        </div>
+        <div class="chat-header-actions">
+          <button id="chat-key-reset" title="Change API key" aria-label="Change API key">🔑</button>
+          <button id="chat-close" aria-label="Close chat">✕</button>
+        </div>
+      </div>
+
+      <div id="chat-messages" role="log" aria-live="polite"></div>
+
+      <div id="chat-suggestions">
+        <button class="chat-sugg">🌧 Fun for kids on a rainy day</button>
+        <button class="chat-sugg">💑 Romantic &amp; unusual this weekend</button>
+        <button class="chat-sugg">🥾 Free outdoor walks near Oxford</button>
+        <button class="chat-sugg">🏺 Weird and historic</button>
+        <button class="chat-sugg">🍺 Best local pubs with a story</button>
+        <button class="chat-sugg">🌿 Wild swimming spots</button>
+      </div>
+
+      <div id="chat-input-wrap">
+        <textarea id="chat-input" rows="1" placeholder="What are you looking for today?" autocomplete="off"></textarea>
+        <button id="chat-send" aria-label="Send message">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
   <!-- Leaflet JS from CDN -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
   <!-- Our data and app logic -->
   <script src="data.js"></script>
   <script src="app.js"></script>
   <script src="voice.js"></script>
+  <script src="chat.js"></script>
 
 </body>
 </html>
