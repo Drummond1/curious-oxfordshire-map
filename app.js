@@ -118,8 +118,8 @@ function buildPopup(place) {
         <span class="popup-tag ${weatherClass}">${weatherLabel}</span>
         ${tagPills}
       </div>
-      ${directionsHtml}
       <div class="popup-verified">${verifiedNote}</div>
+      ${directionsHtml}
     </div>
   `;
 }
@@ -218,6 +218,10 @@ function buildListItem(place) {
     .map(t => `<span class="place-tag">${tagLabel(t)}</span>`)
     .join('');
 
+  li.setAttribute('role', 'button');
+  li.setAttribute('tabindex', '0');
+  li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); li.click(); } });
+
   li.innerHTML = `
     <div class="place-stripe" style="background:${colour};"></div>
     <div class="place-body">
@@ -246,9 +250,32 @@ function buildListItem(place) {
   return li;
 }
 
+function resetFilters() {
+  searchInput.value = '';
+  searchQuery = '';
+  searchClear.style.display = 'none';
+  activeFilter = 'all';
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+  refresh();
+}
+
 function renderList(filtered) {
   placeList.innerHTML = '';
-  filtered.forEach(place => placeList.appendChild(buildListItem(place)));
+
+  if (filtered.length === 0) {
+    const empty = document.createElement('li');
+    empty.className = 'place-list-empty';
+    empty.innerHTML = `
+      <p>Nothing matched — try broadening your search or changing the filter.</p>
+      <button class="empty-clear-btn">Clear all filters</button>
+    `;
+    empty.querySelector('.empty-clear-btn').addEventListener('click', resetFilters);
+    placeList.appendChild(empty);
+  } else {
+    filtered.forEach(place => placeList.appendChild(buildListItem(place)));
+  }
+
   placeCount.textContent = `${filtered.length} place${filtered.length !== 1 ? 's' : ''} shown`;
 }
 
@@ -278,7 +305,11 @@ function getFiltered() {
         place.name.toLowerCase().includes(q) ||
         place.description.toLowerCase().includes(q) ||
         place.type.toLowerCase().includes(q) ||
-        (place.bestFor || '').toLowerCase().includes(q)
+        (place.bestFor    || '').toLowerCase().includes(q) ||
+        (place.whyCurious || '').toLowerCase().includes(q) ||
+        (place.cost       || '').toLowerCase().includes(q) ||
+        (place.category   || '').toLowerCase().includes(q) ||
+        (place.tags || []).some(t => t.toLowerCase().includes(q))
       );
     }
 
@@ -478,4 +509,4 @@ window.addEventListener('resize', () => {
 
 applyFilter('all');
 
-if (isMobile()) setSheetState('collapsed');
+if (isMobile()) setSheetState('mid');
