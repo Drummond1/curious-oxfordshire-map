@@ -1020,10 +1020,20 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
   }
 
   body.sheet-detail #sheet-back {
-    display: flex;
+    display: none; /* detail-nav inside detail panel replaces this */
   }
 
-  /* Back button shown in sheet-detail mode on mobile */
+  body.sheet-detail #mobile-search-bar {
+    display: none;
+  }
+
+  #detail-panel .popup-content {
+    padding: 14px 16px 24px;
+  }
+
+  #detail-panel .popup-photo {
+    height: 180px;
+  }
 
   /* Leaflet popups suppressed on mobile — we use the detail panel */
   .leaflet-popup-pane {
@@ -1700,85 +1710,169 @@ body.chat-open::after {
 }
 
 /* ── Compact "peek" card (mobile marker tap) ────────────────  */
-.peek-card {
-  padding: 4px 2px 8px;
+/* ── Mobile detail nav bar ──────────────────────────────────  */
+.detail-nav {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
 }
 
+.detail-nav-back {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 0;
+  min-width: 70px;
+  text-align: left;
+}
+
+.detail-nav-pos {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.detail-nav-arrows {
+  display: flex;
+  gap: 6px;
+  min-width: 70px;
+  justify-content: flex-end;
+}
+
+.detail-nav-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--primary);
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1;
+  padding: 0;
+  font-family: inherit;
+}
+
+.detail-nav-arrow:disabled { opacity: 0.25; cursor: default; }
+.detail-nav-arrow:not(:disabled):active { background: var(--surface-2); border-color: var(--primary-light); }
+
+/* ── Peek card (mobile marker tap) ─────────────────────────── */
+.peek-card {
+  padding: 16px 16px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.peek-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.peek-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: system-ui, sans-serif;
+}
+
+.peek-header-text { flex: 1; min-width: 0; }
+
 .peek-name {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text);
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 .peek-type {
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  margin-top: -4px;
+  margin-top: 3px;
 }
 
 .peek-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
 }
 
 .peek-tag {
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.73rem;
+  font-weight: 500;
   background: var(--surface-2);
   border-radius: var(--radius-pill);
   padding: 3px 9px;
   color: var(--text-muted);
+  border: 1px solid var(--border);
 }
 
 .peek-desc {
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .peek-actions {
   display: flex;
   gap: 8px;
-  align-items: center;
-  margin-top: 2px;
+  margin-top: 4px;
 }
-
-.peek-directions {
-  flex: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--primary);
-  text-decoration: none;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-pill);
-  padding: 8px 14px;
-  transition: background 0.15s;
-}
-.peek-directions:hover { background: var(--surface-2); }
 
 .peek-expand-btn {
   flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-md);
   background: var(--primary);
   color: #fff;
-  border: none;
-  border-radius: var(--radius-pill);
-  padding: 8px 14px;
-  font-size: 0.8rem;
+  font-family: inherit;
+  font-size: 0.92rem;
   font-weight: 700;
   cursor: pointer;
-  font-family: inherit;
-  transition: background 0.15s;
+  transition: opacity 0.15s;
+  letter-spacing: 0.01em;
 }
-.peek-expand-btn:hover { background: var(--primary-light); }
+.peek-expand-btn:active { opacity: 0.82; }
+
+.peek-directions {
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+.peek-directions:active { background: var(--surface-2); }
 
 /* ── User location dot ──────────────────────────────────────  */
 .user-location-dot {

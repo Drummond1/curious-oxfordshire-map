@@ -158,30 +158,36 @@ function buildPopup(place) {
 // -- Compact "peek" card (mobile marker tap) -----------------
 
 function buildPeekCard(place) {
-  const catColour  = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
-  const mapsUrl    = `https://maps.google.com/?q=${place.lat},${place.lng}`;
-  const weatherTag = place.weather === 'indoor'
-    ? '<span class="peek-tag">🏠 Indoor</span>'
-    : '<span class="peek-tag">🌿 Outdoor</span>';
-  const costTag    = place.cost
-    ? `<span class="peek-tag">💰 ${place.cost}</span>`
-    : '';
-  const familyTag  = place.familyFriendly
-    ? '<span class="peek-tag">👨‍👩‍👧 Family</span>'
-    : '';
-  const snippet    = place.description
-    ? place.description.slice(0, 110) + (place.description.length > 110 ? '…' : '')
+  const catColour = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
+  const catLetter = CATEGORY_LETTERS[place.category] || '·';
+  const mapsUrl   = `https://maps.google.com/?q=${place.lat},${place.lng}`;
+
+  const tags = [];
+  if (place.weather === 'indoor') tags.push('🏠 Indoor'); else tags.push('🌿 Outdoor');
+  if (place.familyFriendly) tags.push('👨‍👩‍👧 Family');
+  if ((place.tags || []).includes('free-or-cheap')) tags.push('💚 Free');
+  if (place.cost) tags.push(`💰 ${place.cost}`);
+  if (place.date) tags.push(`📅 ${formatDate(place.date)}`);
+  if (userLocation) tags.push(`📍 ${fmtDistance(haversineKm(userLocation.lat, userLocation.lng, place.lat, place.lng))}`);
+
+  const snippet = place.description
+    ? place.description.slice(0, 160) + (place.description.length > 160 ? '…' : '')
     : '';
 
   return `
     <div class="peek-card">
-      <div class="peek-name">${place.name}</div>
-      <div class="peek-type" style="color:${catColour}">${place.type}</div>
-      <div class="peek-tags">${weatherTag}${costTag}${familyTag}</div>
+      <div class="peek-header">
+        <div class="peek-icon" style="background:${catColour}">${catLetter}</div>
+        <div class="peek-header-text">
+          <div class="peek-name">${place.name}</div>
+          <div class="peek-type" style="color:${catColour}">${place.type}</div>
+        </div>
+      </div>
+      <div class="peek-tags">${tags.map(t => `<span class="peek-tag">${t}</span>`).join('')}</div>
       ${snippet ? `<div class="peek-desc">${snippet}</div>` : ''}
       <div class="peek-actions">
-        <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="peek-directions">📍 Directions</a>
-        <button class="peek-expand-btn">Full details ↑</button>
+        <button class="peek-expand-btn">View full details →</button>
+        <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="peek-directions">Directions</a>
       </div>
     </div>
   `;
@@ -256,6 +262,40 @@ function closeDesktopDetail() {
   detailPanel.innerHTML = '';
   document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
   history.replaceState(null, '', location.pathname);
+}
+
+// Mobile full-detail view with sticky nav bar + prev/next navigation
+function openFullDetail(place) {
+  const idx   = currentFiltered.findIndex(p => p.id === place.id);
+  const total = currentFiltered.length;
+
+  detailPanel.innerHTML = `
+    <div class="detail-nav">
+      <button class="detail-nav-back" id="detail-back">← Back</button>
+      <span class="detail-nav-pos">${total > 1 ? `${idx + 1} / ${total}` : ''}</span>
+      <div class="detail-nav-arrows">
+        <button class="detail-nav-arrow" id="detail-prev" ${idx <= 0 ? 'disabled' : ''} aria-label="Previous">‹</button>
+        <button class="detail-nav-arrow" id="detail-next" ${idx >= total - 1 ? 'disabled' : ''} aria-label="Next">›</button>
+      </div>
+    </div>
+  ` + buildPopup(place);
+
+  detailPanel.scrollTop = 0;
+  attachShareBtn(place, detailPanel);
+  attachFavBtn(place, detailPanel);
+  history.replaceState(null, '', `#place-${place.id}`);
+  setSheetState('detail');
+
+  detailPanel.querySelector('#detail-back').addEventListener('click', () => {
+    detailPanel.innerHTML = '';
+    setSheetState('mid');
+  });
+  detailPanel.querySelector('#detail-prev')?.addEventListener('click', () => {
+    if (idx > 0) openFullDetail(currentFiltered[idx - 1]);
+  });
+  detailPanel.querySelector('#detail-next')?.addEventListener('click', () => {
+    if (idx < total - 1) openFullDetail(currentFiltered[idx + 1]);
+  });
 }
 
 
@@ -369,7 +409,8 @@ function buildListItem(place) {
     map.setView([place.lat, place.lng], 14, { animate: true });
 
     if (isMobile()) {
-      showDetail(place);
+      panToForMobile(place.lat, place.lng);
+      openFullDetail(place);
     } else {
       showDesktopDetail(place);
     }
@@ -610,7 +651,7 @@ document.getElementById('random-btn').addEventListener('click', () => {
 
   if (isMobile()) {
     panToForMobile(pick.lat, pick.lng);
-    showDetail(pick);
+    openFullDetail(pick);
   } else {
     map.setView([pick.lat, pick.lng], 14, { animate: true });
     showDesktopDetail(pick);
@@ -632,7 +673,7 @@ function computeSnaps() {
   return {
     collapsed: Math.max(0, sheetH - 72),
     mid:       Math.max(0, sheetH - vh * 0.52),
-    peek:      Math.max(0, sheetH - vh * 0.40),   // ~60% map visible — used for marker tap
+    peek:      Math.max(0, sheetH - vh * 0.56),   // ~44% map visible — used for marker tap
     expanded:  Math.max(0, sheetH - vh * 0.88),
     detail:    Math.max(0, sheetH - vh * 0.88)
   };
@@ -665,13 +706,10 @@ function panToForMobile(lat, lng) {
 }
 
 function showDetail(place) {
-  // Show compact peek card first — keeps ~60% of map visible
   detailPanel.innerHTML = buildPeekCard(place);
+  detailPanel.scrollTop = 0;
   detailPanel.querySelector('.peek-expand-btn').addEventListener('click', () => {
-    detailPanel.innerHTML = buildPopup(place);
-    attachShareBtn(place, detailPanel);
-    attachFavBtn(place, detailPanel);
-    setSheetState('detail');
+    openFullDetail(place);
   });
   history.replaceState(null, '', `#place-${place.id}`);
   setSheetState('peek');
@@ -982,7 +1020,7 @@ function openPlaceById(id) {
   const place = places.find(p => p.id === id);
   if (!place) return;
   map.setView([place.lat, place.lng], 14, { animate: true });
-  if (isMobile()) showDetail(place); else showDesktopDetail(place);
+  if (isMobile()) openFullDetail(place); else showDesktopDetail(place);
 }
 
 // Inject share button into popup HTML (called after buildPopup is inserted)
