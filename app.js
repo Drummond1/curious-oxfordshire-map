@@ -245,9 +245,10 @@ places.forEach(place => {
   });
 
   marker.on('click', () => {
+    setMarkerSelected(place.id);
     if (isMobile()) {
       panToForMobile(place.lat, place.lng);
-      openFullDetail(place, 'list');  // go directly to full detail, same as list tap
+      openFullDetail(place, 'list');
     } else {
       map.setView([place.lat, place.lng], 14, { animate: true });
       showDesktopDetail(place);
@@ -260,6 +261,23 @@ places.forEach(place => {
 });
 clusterGroup.addLayers(allMarkers);
 
+
+// Selected marker — cleared when detail closes or new pin is tapped
+let selectedMarkerId = null;
+
+function setMarkerSelected(id) {
+  // Clear previous selection
+  if (selectedMarkerId !== null && selectedMarkerId !== id) {
+    const prev = markerById[selectedMarkerId];
+    const prevEl = prev?.getElement()?.querySelector('div');
+    if (prevEl) prevEl.classList.remove('marker-selected');
+  }
+  selectedMarkerId = id;
+  if (id === null) return;
+  const marker = markerById[id];
+  const el = marker?.getElement()?.querySelector('div');
+  if (el) el.classList.add('marker-selected');
+}
 
 // Scale a marker's inner dot up/down (desktop hover from list)
 function setMarkerHover(id, on) {
@@ -331,6 +349,7 @@ function openFullDetail(place, source = 'list') {
   }
 
   detailPanel.querySelector('#detail-back').addEventListener('click', () => {
+    setMarkerSelected(null);
     if (source === 'peek' && currentPeekPlace) {
       showDetail(currentPeekPlace);
     } else {
@@ -339,10 +358,20 @@ function openFullDetail(place, source = 'list') {
   });
 
   detailPanel.querySelector('#detail-prev')?.addEventListener('click', () => {
-    if (idx > 0) openFullDetail(currentFiltered[idx - 1], source);
+    if (idx > 0) {
+      const prev = currentFiltered[idx - 1];
+      setMarkerSelected(prev.id);
+      panToForMobile(prev.lat, prev.lng);
+      openFullDetail(prev, source);
+    }
   });
   detailPanel.querySelector('#detail-next')?.addEventListener('click', () => {
-    if (idx < total - 1) openFullDetail(currentFiltered[idx + 1], source);
+    if (idx < total - 1) {
+      const next = currentFiltered[idx + 1];
+      setMarkerSelected(next.id);
+      panToForMobile(next.lat, next.lng);
+      openFullDetail(next, source);
+    }
   });
 
   // Swipe left/right on the detail panel to navigate prev/next.
@@ -361,8 +390,17 @@ function openFullDetail(place, source = 'list') {
     const dx = e.changedTouches[0].clientX - swipeStartX;
     const dy = e.changedTouches[0].clientY - swipeStartY;
     if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
-    if (dx < 0 && idx < total - 1) openFullDetail(currentFiltered[idx + 1], source);
-    else if (dx > 0 && idx > 0)    openFullDetail(currentFiltered[idx - 1], source);
+    if (dx < 0 && idx < total - 1) {
+      const next = currentFiltered[idx + 1];
+      setMarkerSelected(next.id);
+      panToForMobile(next.lat, next.lng);
+      openFullDetail(next, source);
+    } else if (dx > 0 && idx > 0) {
+      const prev = currentFiltered[idx - 1];
+      setMarkerSelected(prev.id);
+      panToForMobile(prev.lat, prev.lng);
+      openFullDetail(prev, source);
+    }
   };
 
   detailPanel.addEventListener('touchstart', detailPanel._swipeTouchStart, { passive: true });
@@ -487,6 +525,7 @@ function buildListItem(place) {
   li.addEventListener('click', () => {
     const marker = markerById[place.id];
     if (!marker) return;
+    setMarkerSelected(place.id);
     map.setView([place.lat, place.lng], 14, { animate: true });
 
     if (isMobile()) {
@@ -818,6 +857,7 @@ sheetHandle.insertAdjacentElement('afterend', backBtn);
 
 // Clicking the map: collapse sheet on mobile, close detail on desktop
 map.on('click', () => {
+  setMarkerSelected(null);
   if (isMobile() && sheetState !== 'collapsed') setSheetState('collapsed');
   if (!isMobile() && document.body.classList.contains('desktop-detail')) closeDesktopDetail();
 });
