@@ -81,7 +81,7 @@ const CATEGORY_LETTERS = {
 function makeIcon(category, isFamilyFriendly) {
   const colour = CATEGORY_COLOURS[category] || CATEGORY_COLOURS['default'];
   const letter = CATEGORY_LETTERS[category] || CATEGORY_LETTERS['default'];
-  const size   = isMobile() ? 26 : 18;
+  const size   = isMobile() ? 30 : 22;
   const half   = size / 2;
   const fs     = Math.round(size * 0.52);
 
@@ -131,7 +131,7 @@ function buildPopup(place) {
 
   const verifiedNote = place.verified
     ? '✅ Verified listing'
-    : '📝 Sample / editable entry — please check details before visiting';
+    : 'ℹ️ Details not formally verified — worth a quick search before you set off.';
 
   const mapsUrl = `https://maps.google.com/?q=${place.lat},${place.lng}`;
   const directionsHtml = `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="popup-directions">📍 Get directions</a>`;
@@ -139,9 +139,10 @@ function buildPopup(place) {
   const isAdventure = place.category === 'adventures';
   const catColour   = CATEGORY_COLOURS[place.category] || CATEGORY_COLOURS['default'];
 
+  const catEmoji = { nature:'🌿', events:'🎉', 'hidden-places':'🔍', 'food-or-treats':'🍎', adventures:'✦', 'strange-or-historic':'🏛', 'rainy-day':'☔', 'lost-places':'🏚', underground:'⛏', 'screen-and-page':'📖', 'night-sky':'★', wartime:'⚔', folklore:'🌀', 'industrial-ruin':'🏭', eccentric:'🎩', sonic:'🎵' };
   const photoHtml = place.photo
-    ? `<img src="${place.photo}" alt="${place.name}" class="popup-photo" onerror="this.style.display='none'">`
-    : '';
+    ? `<div class="popup-photo-wrap"><img src="${place.photo}" alt="" role="presentation" class="popup-photo" loading="lazy" onerror="this.closest('.popup-photo-wrap').style.display='none'"></div>`
+    : `<div class="popup-photo-placeholder">${catEmoji[place.category] || '📍'}</div>`;
 
   return `
     ${photoHtml}
@@ -151,8 +152,8 @@ function buildPopup(place) {
       <div class="popup-type" style="background:${catColour}18; color:${catColour};">${place.type}</div>
       ${dateLine}
       ${familyLine}
+      <div class="popup-curious">✨ ${place.whyCurious}</div>
       <div class="popup-description">${place.description}</div>
-      <div class="popup-curious">✨ Why curious: ${place.whyCurious}</div>
       <div class="popup-grid">
         <div class="popup-grid-cell">
           <div class="popup-grid-label">💰 Cost</div>
@@ -248,7 +249,7 @@ places.forEach(place => {
     setMarkerSelected(place.id);
     if (isMobile()) {
       panToForMobile(place.lat, place.lng);
-      openFullDetail(place, 'list');
+      showDetail(place);
     } else {
       map.setView([place.lat, place.lng], 14, { animate: true });
       showDesktopDetail(place);
@@ -335,6 +336,8 @@ function closeDesktopDetail() {
   detailPanel.innerHTML = '';
   document.querySelectorAll('.place-item').forEach(el => el.classList.remove('highlighted'));
   history.replaceState(null, '', location.pathname);
+  clearMarkerSelected(selectedMarkerId);
+  selectedMarkerId = null;
 }
 
 // Mobile full-detail view with sticky nav bar + prev/next navigation
@@ -417,7 +420,7 @@ function openFullDetail(place, source = 'list') {
   detailPanel._swipeTouchEnd = e => {
     const dx = e.changedTouches[0].clientX - swipeStartX;
     const dy = e.changedTouches[0].clientY - swipeStartY;
-    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    if (Math.abs(dx) < 80 || Math.abs(dy) > 40) return;
     if (dx < 0 && idx < total - 1) {
       const next = currentFiltered[idx + 1];
       setMarkerSelected(next.id);
@@ -583,6 +586,20 @@ function renderList(filtered) {
   renderedCount = 0;
   currentFiltered = filtered;
 
+  // Map-level empty toast
+  let mapToast = document.getElementById('map-empty-toast');
+  if (filtered.length === 0) {
+    if (!mapToast) {
+      mapToast = document.createElement('div');
+      mapToast.id = 'map-empty-toast';
+      document.getElementById('map').appendChild(mapToast);
+    }
+    mapToast.textContent = 'No places match — try a different filter';
+    mapToast.style.display = 'block';
+  } else {
+    if (mapToast) mapToast.style.display = 'none';
+  }
+
   if (filtered.length === 0) {
     const empty = document.createElement('li');
     empty.className = 'place-list-empty';
@@ -599,10 +616,29 @@ function renderList(filtered) {
   }
 
   appendBatch();
-  const countLabel = `${filtered.length} place${filtered.length !== 1 ? 's' : ''}`;
+  let countLabel = `${filtered.length} place${filtered.length !== 1 ? 's' : ''}`;
+  if (activeFilter !== 'all' && searchQuery) countLabel += ` matching "${searchQuery}"`;
+  else if (searchQuery) countLabel += ` matching "${searchQuery}"`;
   placeCount.textContent = countLabel + ' shown';
   const handleCount = document.getElementById('handle-count');
-  if (handleCount) handleCount.textContent = countLabel;
+  if (handleCount) handleCount.textContent = `${filtered.length} places`;
+
+  // First-run welcome card
+  if (!localStorage.getItem('oxf_welcomed') && filtered.length > 0) {
+    const welcome = document.createElement('li');
+    welcome.id = 'welcome-card';
+    welcome.style.cssText = 'list-style:none;padding:14px 0 4px;';
+    welcome.innerHTML = `<div style="padding:14px 16px;background:#fffbf3;border:1.5px solid #e8d8c0;border-radius:12px;">
+      <p style="font-size:0.88rem;font-weight:700;color:#5c3a1e;margin-bottom:6px;">Welcome to Secret Oxfordshire</p>
+      <p style="font-size:0.8rem;line-height:1.55;color:#7a5c3c;">Tap any pin on the map or any place in the list to explore. Use the filters above to browse by mood, or ask the AI guide for a personal recommendation.</p>
+      <button id="welcome-dismiss" style="margin-top:10px;font-size:0.78rem;font-weight:600;color:#5c3a1e;background:none;border:1.5px solid #e8d8c0;border-radius:100px;padding:5px 14px;cursor:pointer;font-family:inherit;">Got it</button>
+    </div>`;
+    placeList.prepend(welcome);
+    welcome.querySelector('#welcome-dismiss').addEventListener('click', () => {
+      welcome.remove();
+      localStorage.setItem('oxf_welcomed', '1');
+    });
+  }
 }
 
 function appendBatch() {
@@ -698,19 +734,27 @@ function refresh() {
   const filtered = getFiltered();
   const filteredSet = new Set(filtered.map(p => p.id));
 
+  const toAdd = [], toRemove = [];
   places.forEach(place => {
     const marker = markerById[place.id];
     if (!marker) return;
-    const visible = filteredSet.has(place.id);
-    if (visible) {
-      if (!clusterGroup.hasLayer(marker)) clusterGroup.addLayer(marker);
+    if (filteredSet.has(place.id)) {
+      if (!clusterGroup.hasLayer(marker)) toAdd.push(marker);
     } else {
-      if (clusterGroup.hasLayer(marker)) clusterGroup.removeLayer(marker);
+      if (clusterGroup.hasLayer(marker)) toRemove.push(marker);
     }
   });
+  if (toRemove.length) clusterGroup.removeLayers(toRemove);
+  if (toAdd.length)    clusterGroup.addLayers(toAdd);
 
   setMarkersActive(filteredSet);
   renderList(filtered);
+}
+
+let _searchDebounce;
+function debouncedRefresh() {
+  clearTimeout(_searchDebounce);
+  _searchDebounce = setTimeout(refresh, 150);
 }
 
 // Wire up filter buttons
@@ -739,11 +783,11 @@ searchInput.addEventListener('input', () => {
     const mobClear = document.getElementById('mobile-search-clear');
     if (mobClear) mobClear.style.display = searchQuery ? 'block' : 'none';
   }
-  refresh();
+  debouncedRefresh();
 });
 
 searchInput.addEventListener('focus', () => {
-  if (isMobile()) setSheetState('expanded');
+  if (isMobile() && sheetState === 'collapsed') setSheetState('mid');
 });
 
 searchClear.addEventListener('click', () => {
@@ -769,7 +813,7 @@ if (mobileSearchInput) {
     searchClear.style.display = q ? 'flex' : 'none';
     mobileSearchClear.style.display = q ? 'block' : 'none';
     if (isMobile() && (sheetState === 'collapsed' || sheetState === 'peek')) setSheetState('mid');
-    refresh();
+    debouncedRefresh();
   });
 
   mobileSearchClear.addEventListener('click', () => {
@@ -783,7 +827,7 @@ if (mobileSearchInput) {
   });
 
   mobileSearchInput.addEventListener('focus', () => {
-    if (isMobile()) setSheetState('expanded');
+    if (isMobile() && sheetState === 'collapsed') setSheetState('mid');
   });
 }
 
@@ -821,7 +865,7 @@ function computeSnaps() {
   const vh     = window.innerHeight;
   const sheetH = sidebar.offsetHeight || vh * 0.92;
   return {
-    collapsed: Math.max(0, sheetH - 72),
+    collapsed: Math.max(0, sheetH - 90),
     mid:       Math.max(0, sheetH - vh * 0.52),
     peek:      Math.max(0, sheetH - vh * 0.56),   // ~44% map visible — used for marker tap
     expanded:  Math.max(0, sheetH - vh * 0.88),
@@ -888,7 +932,12 @@ sheetHandle.insertAdjacentElement('afterend', backBtn);
 map.on('click', () => {
   clearMarkerSelected(selectedMarkerId);
   selectedMarkerId = null;
-  if (isMobile() && sheetState !== 'collapsed') setSheetState('collapsed');
+  if (isMobile() && sheetState !== 'collapsed') {
+    setSheetState('collapsed');
+    currentPeekPlace = null;
+    detailPanel.innerHTML = '';
+    history.replaceState(null, '', location.pathname);
+  }
   if (!isMobile() && document.body.classList.contains('desktop-detail')) closeDesktopDetail();
 });
 
@@ -1094,20 +1143,15 @@ dateClearBtn.addEventListener('click', clearDateFilter);
 // -- Filter count badges -------------------------------------
 
 function updateFilterCounts() {
+  // Single O(n) pass instead of 20 separate filter() calls
+  const counts = { all: places.length };
+  places.forEach(p => {
+    counts[p.category] = (counts[p.category] || 0) + 1;
+    if (p.familyFriendly) counts['family-friendly'] = (counts['family-friendly'] || 0) + 1;
+    (p.tags || []).forEach(t => { counts[t] = (counts[t] || 0) + 1; });
+  });
   document.querySelectorAll('.filter-btn').forEach(btn => {
-    const filter = btn.dataset.filter;
-    let count;
-    if (filter === 'all') {
-      count = places.length;
-    } else if (filter === 'adventures') {
-      count = places.filter(p => p.category === 'adventures').length;
-    } else if (filter === 'family-friendly') {
-      count = places.filter(p => p.familyFriendly === true).length;
-    } else {
-      count = places.filter(p =>
-        (p.tags || []).includes(filter) || p.category === filter
-      ).length;
-    }
+    const count = counts[btn.dataset.filter] || 0;
     let span = btn.querySelector('.filter-count');
     if (!span) {
       span = document.createElement('span');
@@ -1224,6 +1268,20 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 
 updateFilterCounts();
 applyFilter('all');
+document.getElementById('map-loader')?.remove();
+
+// Filter row scroll-fade mask on mobile
+const filtersEl = document.getElementById('filters');
+if (filtersEl) {
+  const updateFilterMask = () => {
+    if (!isMobile()) return;
+    const atEnd = filtersEl.scrollLeft + filtersEl.clientWidth >= filtersEl.scrollWidth - 4;
+    filtersEl.style.webkitMaskImage = atEnd ? 'none' : 'linear-gradient(to right, black 80%, transparent 100%)';
+    filtersEl.style.maskImage = atEnd ? 'none' : 'linear-gradient(to right, black 80%, transparent 100%)';
+  };
+  filtersEl.addEventListener('scroll', updateFilterMask, { passive: true });
+  updateFilterMask();
+}
 
 // Handle deep-link hash on load
 const hashMatch = location.hash.match(/^#place-(\d+)$/);

@@ -234,13 +234,12 @@ class VoiceAssistant {
   async askClaude() {
     if (!this.placesSummary) this.placesSummary = this.buildPlacesSummary();
 
-    const system = `You are a warm, knowledgeable local guide helping a family discover places around Buckland village, Oxfordshire. The family has three daughters aged 8, 6, and 2.
+    const system = `You are a warm, knowledgeable local guide helping visitors discover curious, unusual and interesting places across Oxfordshire.
 
 RULES:
 - If you have enough information, recommend ONE specific place. Write 2–3 enthusiastic sentences about it, then on a new line append [ID:X] (X = the exact ID number).
 - If you genuinely need more info, ask ONE short clarifying question.
 - Keep every response under 70 words — it will be read aloud.
-- Be specific about why it's great for kids these ages.
 - Only recommend places from the list below. Never invent places.
 
 PLACES:
@@ -348,7 +347,7 @@ ${this.placesSummary}`;
       return;
     }
     this.apiKey = key;
-    localStorage.setItem('coxon_api_key', key);
+    sessionStorage.setItem('coxon_api_key', key);
     if (!this.transcript.children.length || this.transcript.children.length === 1) {
       this.transcript.innerHTML = '';
       this.greet();

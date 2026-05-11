@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Secret Oxfordshire</title>
+  <meta name="description" content="Discover unusual, interesting and slightly magical places across Oxfordshire — 3,825 curious spots mapped and searchable." />
+  <meta property="og:title" content="Secret Oxfordshire" />
+  <meta property="og:description" content="Unusual, interesting &amp; slightly magical places across Oxfordshire." />
+  <meta property="og:url" content="https://secretoxfordshire.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://secretoxfordshire.com" />
+  <meta name="theme-color" content="#5c3a1e" />
+  <meta name="color-scheme" content="light" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺</text></svg>" />
 
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,15 +29,21 @@
 </head>
 <body>
 
+  <!-- Loading overlay (removed by app.js after initial render) -->
+  <div id="map-loader">
+    <div class="map-loader-spinner"></div>
+    <span>Loading places…</span>
+  </div>
+
   <!-- ── Mobile map header (app title overlay, mobile only) ── -->
   <div id="mobile-header" aria-hidden="true">
     <span>Secret Oxfordshire</span>
   </div>
 
   <!-- ── Mobile floating search bar (visible on map when sheet collapsed) ── -->
-  <div id="mobile-search-bar" aria-hidden="true">
+  <div id="mobile-search-bar">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:0.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input id="mobile-search-input" type="text" placeholder="Search places…" autocomplete="off" aria-label="Search places" />
+    <input id="mobile-search-input" type="text" placeholder="Search by name, type, mood…" autocomplete="off" aria-label="Search places" inputmode="search" enterkeyhint="search" />
     <button id="mobile-search-clear" aria-label="Clear search" style="display:none">✕</button>
   </div>
 
@@ -47,7 +63,7 @@
       <span id="search-icon" aria-hidden="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </span>
-      <input id="search-input" type="text" placeholder="Search places…" autocomplete="off" />
+      <input id="search-input" type="text" placeholder="Search by name, type, mood…" autocomplete="off" aria-label="Search places" />
       <button id="search-clear" title="Clear search" aria-label="Clear search">✕</button>
     </div>
 
@@ -56,22 +72,22 @@
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn filter-btn-adventure" data-filter="adventures">✦ Adventures</button>
       <button class="filter-btn filter-btn-family" data-filter="family-friendly">👨‍👩‍👧 Family</button>
-      <button class="filter-btn" data-filter="hidden-places">Hidden</button>
+      <button class="filter-btn" data-filter="hidden-places">🔍 Hidden</button>
       <button class="filter-btn" data-filter="events">Events</button>
-      <button class="filter-btn" data-filter="nature">Nature</button>
-      <button class="filter-btn" data-filter="rainy-day">Rainy Day</button>
-      <button class="filter-btn" data-filter="food-or-treats">Food</button>
-      <button class="filter-btn" data-filter="strange-or-historic">Historic</button>
-      <button class="filter-btn" data-filter="free-or-cheap">Free</button>
-      <button class="filter-btn filter-btn-lost" data-filter="lost-places">🏚 Lost</button>
+      <button class="filter-btn" data-filter="nature">🌿 Nature</button>
+      <button class="filter-btn" data-filter="rainy-day">☔ Rainy Day</button>
+      <button class="filter-btn" data-filter="food-or-treats">🍎 Food</button>
+      <button class="filter-btn" data-filter="strange-or-historic">Strange &amp; Historic</button>
+      <button class="filter-btn" data-filter="free-or-cheap">💚 Free</button>
+      <button class="filter-btn filter-btn-lost" data-filter="lost-places">🏚 Lost Places</button>
       <button class="filter-btn filter-btn-underground" data-filter="underground">⛏ Underground</button>
-      <button class="filter-btn filter-btn-screen" data-filter="screen-and-page">📖 Screen &amp; Page</button>
+      <button class="filter-btn filter-btn-screen" data-filter="screen-and-page">📖 On Screen &amp; Page</button>
       <button class="filter-btn filter-btn-nightsky" data-filter="night-sky">★ Night Sky</button>
       <button class="filter-btn filter-btn-wartime" data-filter="wartime">⚔ Wartime</button>
       <button class="filter-btn filter-btn-folklore" data-filter="folklore">🌀 Folklore</button>
-      <button class="filter-btn filter-btn-industrial" data-filter="industrial-ruin">🏭 Ruins</button>
+      <button class="filter-btn filter-btn-industrial" data-filter="industrial-ruin">🏭 Industrial Ruins</button>
       <button class="filter-btn filter-btn-eccentric" data-filter="eccentric">🎩 Eccentric</button>
-      <button class="filter-btn filter-btn-sonic" data-filter="sonic">🎵 Sonic</button>
+      <button class="filter-btn filter-btn-sonic" data-filter="sonic">🎵 Sonic Places</button>
       <button class="filter-btn filter-btn-saved" data-filter="saved">❤️ Saved</button>
     </div>
 
@@ -101,7 +117,10 @@
     <!-- AI chat button (desktop sidebar) -->
     <button id="chat-sidebar-btn">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      Ask AI for ideas
+      <span>
+        Ask AI for ideas
+        <span style="display:block;font-size:0.7rem;font-weight:400;opacity:0.8;margin-top:1px;">"Rainy day with kids" · "Free walks" · "Weird history"</span>
+      </span>
     </button>
 
     <!-- Random adventure button -->
@@ -115,7 +134,7 @@
     <div id="detail-panel" aria-live="polite"></div>
 
     <div class="sidebar-footer">
-      <span>Sample data — not verified. Check before visiting.</span>
+      <span>Community-curated — check details before visiting.</span>
     </div>
 
   </aside>
@@ -135,7 +154,7 @@
   </button>
 
   <!-- AI Chat panel -->
-  <div id="chat-panel" hidden aria-label="AI recommendations" role="dialog">
+  <div id="chat-panel" hidden aria-label="AI recommendations" role="dialog" aria-modal="true">
 
     <!-- Main chat UI -->
     <div id="chat-main">

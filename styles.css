@@ -26,6 +26,13 @@
   padding: 0;
 }
 
+/* -- Focus visible ----------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 body {
   display: flex;
   height: 100vh;
@@ -46,7 +53,10 @@ body {
   background: var(--surface);
   border-right: none;
   box-shadow: 4px 0 24px rgba(60,40,10,0.08);
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
   z-index: 1000;
 }
 
@@ -123,8 +133,8 @@ body {
   right: 10px;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   font-size: 0.7rem;
   border: none;
   border-radius: 50%;
@@ -276,6 +286,35 @@ body {
   border-color: #2a7a8a;
 }
 
+.filter-btn[data-filter="hidden-places"]:hover,
+.filter-btn[data-filter="hidden-places"].active {
+  background: #c07030; color: #fff; border-color: #c07030;
+}
+.filter-btn[data-filter="events"]:hover,
+.filter-btn[data-filter="events"].active {
+  background: #8b5ea6; color: #fff; border-color: #8b5ea6;
+}
+.filter-btn[data-filter="nature"]:hover,
+.filter-btn[data-filter="nature"].active {
+  background: #4a7c59; color: #fff; border-color: #4a7c59;
+}
+.filter-btn[data-filter="rainy-day"]:hover,
+.filter-btn[data-filter="rainy-day"].active {
+  background: #4a70a0; color: #fff; border-color: #4a70a0;
+}
+.filter-btn[data-filter="food-or-treats"]:hover,
+.filter-btn[data-filter="food-or-treats"].active {
+  background: #c05060; color: #fff; border-color: #c05060;
+}
+.filter-btn[data-filter="strange-or-historic"]:hover,
+.filter-btn[data-filter="strange-or-historic"].active {
+  background: #a05030; color: #fff; border-color: #a05030;
+}
+.filter-btn[data-filter="free-or-cheap"]:hover,
+.filter-btn[data-filter="free-or-cheap"].active {
+  background: #4a7c59; color: #fff; border-color: #4a7c59;
+}
+
 /* -- Random button ----------------------------------------- */
 #random-btn {
   width: 100%;
@@ -418,7 +457,7 @@ body {
 
 .place-item .place-tag {
   display: inline-block;
-  font-size: 0.64rem;
+  font-size: 0.72rem;
   font-weight: 500;
   padding: 2px 7px;
   border-radius: var(--radius-pill);
@@ -451,8 +490,8 @@ body {
   top: 5px;
   right: 5px;
   z-index: 1;
-  width: 26px;
-  height: 26px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: none;
   background: rgba(255,255,255,0.82);
@@ -521,18 +560,61 @@ body {
 
 /* -- Sidebar footer ---------------------------------------- */
 .sidebar-footer {
-  font-size: 0.67rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: #6a4e2e;
   padding-top: 8px;
   border-top: 1px solid var(--border);
   text-align: center;
-  opacity: 0.75;
 }
 
 /* -- Map --------------------------------------------------- */
 #map {
   flex: 1;
   height: 100vh;
+  position: relative;
+}
+
+/* -- Loading overlay --------------------------------------- */
+#map-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--surface-2);
+  z-index: 900;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.map-loader-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* -- Map empty toast --------------------------------------- */
+#map-empty-toast {
+  display: none;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(92,58,30,0.9);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  z-index: 900;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 /* -- Leaflet popup customisation --------------------------- */
@@ -564,11 +646,26 @@ body {
 }
 
 /* -- Popup photo ------------------------------------------- */
+.popup-photo-wrap { width: 100%; }
+
 .popup-photo {
   width: 100%;
-  height: 220px;
+  aspect-ratio: 16 / 9;
+  height: auto;
   object-fit: cover;
   display: block;
+  background: var(--surface-2);
+}
+
+.popup-photo-placeholder {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  background: var(--surface-2);
+  color: var(--border);
 }
 
 /* -- Popup inner content ----------------------------------- */
@@ -599,7 +696,7 @@ body {
 }
 
 .popup-description {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   margin-bottom: 12px;
   color: var(--text);
@@ -608,11 +705,13 @@ body {
 .popup-curious {
   background: #fffbf3;
   border-left: 3px solid #c49a30;
-  padding: 9px 13px;
+  padding: 9px 20px 9px 17px;
   font-size: 0.81rem;
   font-style: italic;
   margin-bottom: 14px;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-left: -20px;
+  margin-right: -20px;
+  border-radius: 0;
   color: var(--primary);
   line-height: 1.5;
 }
@@ -632,7 +731,7 @@ body {
 }
 
 .popup-grid-label {
-  font-size: 0.69rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   margin-bottom: 3px;
 }
@@ -664,7 +763,7 @@ body {
 .popup-tag.weather-outdoor { background: #ddf0d0; color: #2a5a20; }
 
 .popup-verified {
-  font-size: 0.7rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
   border-top: 1px solid var(--border);
   padding-top: 8px;
@@ -692,7 +791,7 @@ body {
 
 .popup-adventure-badge {
   display: inline-block;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -951,7 +1050,7 @@ body.desktop-detail #detail-panel {
 }
 
 /* Tighten popup content sizing inside the narrow sidebar */
-body.desktop-detail .popup-photo  { height: 160px; }
+body.desktop-detail .popup-photo  { aspect-ratio: 16/9; height: auto; }
 body.desktop-detail .popup-content { padding: 14px 16px; }
 
 @media (max-width: 767px) {
@@ -982,7 +1081,7 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
     border-radius: var(--radius-pill);
     padding: 6px 14px;
     box-shadow: 0 2px 12px rgba(60,40,10,0.18);
-    font-size: 0.78rem;
+    font-size: 0.88rem;
     font-weight: 700;
     color: var(--primary);
     pointer-events: none;
@@ -1042,7 +1141,8 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
   /* Filter chips already horizontal-scroll from base styles */
   .filter-btn {
     flex-shrink: 0;
-    min-height: 34px;
+    min-height: 44px;
+    padding: 8px 14px;
   }
 
   /* Random button */
@@ -1121,7 +1221,7 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
   }
 
   body.sheet-full-detail #detail-panel .popup-photo {
-    height: 140px;
+    height: 200px;
   }
 
   /* Slightly tighten popup headings on small screens */
@@ -1141,6 +1241,13 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
   }
 
   /* Larger markers for touch targets — handled in app.js */
+
+  /* Locate button: fixed so it stays above the bottom sheet */
+  #locate-btn {
+    position: fixed;
+    bottom: 110px;
+    right: 12px;
+  }
 
   /* Voice button repositioned above sheet handle area */
   #voice-btn {
@@ -1267,14 +1374,19 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
   border-color: var(--primary-light);
 }
 
+.popup-directions:active {
+  background: var(--surface-2);
+  border-color: var(--primary);
+}
+
 /* ── Locate-me button ───────────────────────────────────────  */
 #locate-btn {
   position: absolute;
   bottom: 108px;
   right: 10px;
   z-index: 800;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 8px;
   border: 2px solid rgba(0,0,0,0.18);
   background: #fff;
@@ -1363,7 +1475,7 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
   margin-left: 4px;
   font-size: 0.68rem;
   font-weight: 600;
-  opacity: 0.65;
+  opacity: 0.85;
   vertical-align: middle;
 }
 
@@ -1874,7 +1986,8 @@ body.chat-open::after {
   min-width: 0;
   font-size: 0.74rem;
   font-family: inherit;
-  padding: 5px 7px;
+  min-height: 44px;
+  padding: 9px 8px;
   border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   background: var(--surface);
@@ -1916,7 +2029,7 @@ body.chat-open::after {
 /* ── Handle count (visible when sheet is collapsed) ─────────  */
 #handle-count {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-muted);
   text-align: center;
@@ -1951,6 +2064,7 @@ body.chat-open::after {
   cursor: pointer;
   padding: 6px 0;
   min-width: 70px;
+  min-height: 44px;
   text-align: left;
 }
 
