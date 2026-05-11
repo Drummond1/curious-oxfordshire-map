@@ -97,6 +97,15 @@
       if (/swim|water|river|lake/.test(q)                    && /swim|river|water|lake/.test(blob))              score += 4;
       if (/star|astron|night sky/.test(q)                    && /astron|star|night/.test(blob))                  score += 4;
       if (/fungus|mushroom|forag/.test(q)                    && /fungus|mushroom|forag/.test(blob))              score += 4;
+      if (/lost|abandon|ruin|derelict|forgotten/.test(q)     && place.category === 'lost-places')                score += 4;
+      if (/tunnel|cave|underground|bunker|cellar/.test(q)    && place.category === 'underground')                score += 4;
+      if (/film|movie|book|novel|tv|television/.test(q)      && place.category === 'screen-and-page')            score += 4;
+      if (/dark sky|star|planet|telescope|midnight/.test(q)  && place.category === 'night-sky')                  score += 4;
+      if (/war|wartime|ww2|wwii|bomb|military/.test(q)       && place.category === 'wartime')                    score += 4;
+      if (/legend|myth|ghost|folklore|witch|haunt/.test(q)   && place.category === 'folklore')                   score += 4;
+      if (/factory|mill|industrial|ruins?/.test(q)           && place.category === 'industrial-ruin')            score += 4;
+      if (/weird|eccentric|odd|unusual|bizarre/.test(q)      && place.category === 'eccentric')                  score += 4;
+      if (/sound|music|acoustic|echo|listen/.test(q)         && place.category === 'sonic')                      score += 4;
 
       if (/weekend|this week|soon|upcoming/.test(q) && place.date) {
         const diff = (new Date(place.date) - new Date()) / 86400000;
@@ -234,7 +243,7 @@ ${JSON.stringify(relevant.map(p => ({
         closeChat();
         if (typeof isMobile === 'function' && isMobile()) {
           if (typeof panToForMobile === 'function') panToForMobile(place.lat, place.lng);
-          if (typeof showDetail === 'function') showDetail(place);
+          if (typeof openFullDetail === 'function') openFullDetail(place, 'list');
         } else {
           map.setView([place.lat, place.lng], 14, { animate: true });
           if (typeof showDesktopDetail === 'function') showDesktopDetail(place);

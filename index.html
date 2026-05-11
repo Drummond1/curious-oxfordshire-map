@@ -63,11 +63,22 @@
       <button class="filter-btn" data-filter="food-or-treats">Food</button>
       <button class="filter-btn" data-filter="strange-or-historic">Historic</button>
       <button class="filter-btn" data-filter="free-or-cheap">Free</button>
+      <button class="filter-btn filter-btn-lost" data-filter="lost-places">🏚 Lost</button>
+      <button class="filter-btn filter-btn-underground" data-filter="underground">⛏ Underground</button>
+      <button class="filter-btn filter-btn-screen" data-filter="screen-and-page">📖 Screen &amp; Page</button>
+      <button class="filter-btn filter-btn-nightsky" data-filter="night-sky">★ Night Sky</button>
+      <button class="filter-btn filter-btn-wartime" data-filter="wartime">⚔ Wartime</button>
+      <button class="filter-btn filter-btn-folklore" data-filter="folklore">🌀 Folklore</button>
+      <button class="filter-btn filter-btn-industrial" data-filter="industrial-ruin">🏭 Ruins</button>
+      <button class="filter-btn filter-btn-eccentric" data-filter="eccentric">🎩 Eccentric</button>
+      <button class="filter-btn filter-btn-sonic" data-filter="sonic">🎵 Sonic</button>
       <button class="filter-btn filter-btn-saved" data-filter="saved">❤️ Saved</button>
     </div>
 
     <!-- Date / period filter -->
     <div id="date-filter-wrap">
+      <button id="date-toggle" aria-expanded="false" aria-controls="date-filter-inner">📅 Date filter <span id="date-toggle-arrow">▸</span></button>
+      <div id="date-filter-inner" hidden>
       <div id="date-presets">
         <button class="date-preset" data-preset="weekend">This weekend</button>
         <button class="date-preset" data-preset="next-week">Next week</button>
@@ -84,6 +95,7 @@
         <span id="date-active-label"></span>
         <button id="date-clear-btn" aria-label="Clear date filter">✕ Clear</button>
       </div>
+      </div><!-- /date-filter-inner -->
     </div>
 
     <!-- AI chat button (desktop sidebar) -->

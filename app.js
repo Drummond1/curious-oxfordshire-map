@@ -46,6 +46,15 @@ const CATEGORY_COLOURS = {
   'hidden-places':       '#c07030',
   'food-or-treats':      '#c05060',
   'adventures':          '#2a7a6a',
+  'lost-places':         '#7a5838',
+  'underground':         '#4a4860',
+  'screen-and-page':     '#5a3f7a',
+  'night-sky':           '#1e3a6a',
+  'wartime':             '#6a7a3a',
+  'folklore':            '#3d6654',
+  'industrial-ruin':     '#8a5030',
+  'eccentric':           '#a03068',
+  'sonic':               '#2a7a8a',
   'default':             '#7a6050'
 };
 
@@ -57,6 +66,15 @@ const CATEGORY_LETTERS = {
   'hidden-places':       'H',
   'food-or-treats':      'F',
   'adventures':          'A',
+  'lost-places':         'L',
+  'underground':         'U',
+  'screen-and-page':     'P',
+  'night-sky':           'Y',
+  'wartime':             'W',
+  'folklore':            'M',
+  'industrial-ruin':     'I',
+  'eccentric':           'X',
+  'sonic':               'Z',
   'default':             '·'
 };
 
@@ -201,7 +219,16 @@ function tagLabel(tag) {
     'rainy-day':          '☔ Rainy Day',
     'food-or-treats':     '🍎 Food or Treats',
     'strange-or-historic':'🏛 Strange or Historic',
-    'free-or-cheap':      '💚 Free or Cheap'
+    'free-or-cheap':      '💚 Free or Cheap',
+    'lost-places':        '🏚 Lost Places',
+    'underground':        '⛏ Underground',
+    'screen-and-page':    '📖 Screen & Page',
+    'night-sky':          '★ Night Sky',
+    'wartime':            '⚔ Wartime',
+    'folklore':           '🌀 Folklore',
+    'industrial-ruin':    '🏭 Industrial Ruin',
+    'eccentric':          '🎩 Eccentric',
+    'sonic':              '🎵 Sonic'
   };
   return labels[tag] || tag;
 }
@@ -287,21 +314,69 @@ function openFullDetail(place, source = 'list') {
   history.replaceState(null, '', `#place-${place.id}`);
   setSheetState('detail');
 
+  function backToList() {
+    detailPanel.innerHTML = '';
+    currentPeekPlace = null;
+    history.replaceState(null, '', location.pathname);
+    setSheetState('mid');
+    // Scroll the list item into view after the sheet animates back
+    requestAnimationFrame(() => {
+      const li = placeList.querySelector(`[data-id="${place.id}"]`);
+      if (li) {
+        li.classList.add('highlighted');
+        li.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        setTimeout(() => li.classList.remove('highlighted'), 1600);
+      }
+    });
+  }
+
   detailPanel.querySelector('#detail-back').addEventListener('click', () => {
     if (source === 'peek' && currentPeekPlace) {
-      showDetail(currentPeekPlace);  // restore the peek card they expanded from
+      showDetail(currentPeekPlace);
     } else {
-      detailPanel.innerHTML = '';
-      currentPeekPlace = null;
-      setSheetState('mid');
+      backToList();
     }
   });
+
   detailPanel.querySelector('#detail-prev')?.addEventListener('click', () => {
     if (idx > 0) openFullDetail(currentFiltered[idx - 1], source);
   });
   detailPanel.querySelector('#detail-next')?.addEventListener('click', () => {
     if (idx < total - 1) openFullDetail(currentFiltered[idx + 1], source);
   });
+
+  // Swipe left/right on the detail panel to navigate prev/next.
+  // Store handlers on the element so we can cleanly remove them next time.
+  if (detailPanel._swipeTouchEnd)   detailPanel.removeEventListener('touchend',   detailPanel._swipeTouchEnd);
+  if (detailPanel._swipeTouchStart) detailPanel.removeEventListener('touchstart', detailPanel._swipeTouchStart);
+
+  let swipeStartX = 0;
+  let swipeStartY = 0;
+
+  detailPanel._swipeTouchStart = e => {
+    swipeStartX = e.touches[0].clientX;
+    swipeStartY = e.touches[0].clientY;
+  };
+  detailPanel._swipeTouchEnd = e => {
+    const dx = e.changedTouches[0].clientX - swipeStartX;
+    const dy = e.changedTouches[0].clientY - swipeStartY;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    if (dx < 0 && idx < total - 1) openFullDetail(currentFiltered[idx + 1], source);
+    else if (dx > 0 && idx > 0)    openFullDetail(currentFiltered[idx - 1], source);
+  };
+
+  detailPanel.addEventListener('touchstart', detailPanel._swipeTouchStart, { passive: true });
+  detailPanel.addEventListener('touchend',   detailPanel._swipeTouchEnd,   { passive: true });
+
+  // Swipe hint toast — shown once per session
+  if (total > 1 && isMobile() && !sessionStorage.getItem('swipeHintSeen')) {
+    sessionStorage.setItem('swipeHintSeen', '1');
+    const hint = document.createElement('div');
+    hint.className = 'swipe-hint';
+    hint.textContent = '← swipe to browse →';
+    detailPanel.appendChild(hint);
+    setTimeout(() => hint.remove(), 2200);
+  }
 }
 
 
@@ -625,7 +700,7 @@ if (mobileSearchInput) {
     searchQuery = q;
     searchClear.style.display = q ? 'flex' : 'none';
     mobileSearchClear.style.display = q ? 'block' : 'none';
-    if (isMobile() && sheetState === 'collapsed') setSheetState('mid');
+    if (isMobile() && (sheetState === 'collapsed' || sheetState === 'peek')) setSheetState('mid');
     refresh();
   });
 
@@ -640,7 +715,7 @@ if (mobileSearchInput) {
   });
 
   mobileSearchInput.addEventListener('focus', () => {
-    if (isMobile() && sheetState === 'collapsed') setSheetState('mid');
+    if (isMobile()) setSheetState('expanded');
   });
 }
 
@@ -698,6 +773,7 @@ function setSheetState(state) {
   // sheet-full-detail: full expanded detail (detail-nav visible, no sheet-back)
   document.body.classList.toggle('sheet-peek',        state === 'peek');
   document.body.classList.toggle('sheet-full-detail', state === 'detail');
+  document.body.classList.toggle('sheet-up',          state !== 'collapsed');
 
   setTimeout(() => map.invalidateSize({ animate: false }), 340);
 }
@@ -811,6 +887,19 @@ window.addEventListener('resize', () => {
 });
 
 
+// -- Date filter toggle (mobile) -----------------------------
+
+const dateToggle = document.getElementById('date-toggle');
+const dateFilterInner = document.getElementById('date-filter-inner');
+
+if (dateToggle && dateFilterInner) {
+  dateToggle.addEventListener('click', () => {
+    const expanded = dateToggle.getAttribute('aria-expanded') === 'true';
+    dateToggle.setAttribute('aria-expanded', String(!expanded));
+    dateFilterInner.hidden = expanded;
+  });
+}
+
 // -- Date / period filter ------------------------------------
 
 const dateFromInput  = document.getElementById('date-from');
@@ -852,6 +941,11 @@ function applyDateRange(from, to, presetKey) {
   if (from && to) {
     dateActiveBar.hidden = false;
     dateActiveLabel.textContent = `📅 ${fmtRange(from, to)}`;
+    // Auto-expand on mobile when a filter becomes active
+    if (dateToggle && dateFilterInner && isMobile()) {
+      dateToggle.setAttribute('aria-expanded', 'true');
+      dateFilterInner.hidden = false;
+    }
   } else {
     dateActiveBar.hidden = true;
   }

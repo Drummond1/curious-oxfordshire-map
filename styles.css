@@ -213,6 +213,69 @@ body {
   border-color: #e04070;
 }
 
+.filter-btn-lost:hover,
+.filter-btn-lost.active {
+  background: #7a5838;
+  color: #fff;
+  border-color: #7a5838;
+}
+
+.filter-btn-underground:hover,
+.filter-btn-underground.active {
+  background: #4a4860;
+  color: #fff;
+  border-color: #4a4860;
+}
+
+.filter-btn-screen:hover,
+.filter-btn-screen.active {
+  background: #5a3f7a;
+  color: #fff;
+  border-color: #5a3f7a;
+}
+
+.filter-btn-nightsky:hover,
+.filter-btn-nightsky.active {
+  background: #1e3a6a;
+  color: #fff;
+  border-color: #1e3a6a;
+}
+
+.filter-btn-wartime:hover,
+.filter-btn-wartime.active {
+  background: #6a7a3a;
+  color: #fff;
+  border-color: #6a7a3a;
+}
+
+.filter-btn-folklore:hover,
+.filter-btn-folklore.active {
+  background: #3d6654;
+  color: #fff;
+  border-color: #3d6654;
+}
+
+.filter-btn-industrial:hover,
+.filter-btn-industrial.active {
+  background: #8a5030;
+  color: #fff;
+  border-color: #8a5030;
+}
+
+.filter-btn-eccentric:hover,
+.filter-btn-eccentric.active {
+  background: #a03068;
+  color: #fff;
+  border-color: #a03068;
+}
+
+.filter-btn-sonic:hover,
+.filter-btn-sonic.active {
+  background: #2a7a8a;
+  color: #fff;
+  border-color: #2a7a8a;
+}
+
 /* -- Random button ----------------------------------------- */
 #random-btn {
   width: 100%;
@@ -1008,23 +1071,32 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
     scrollbar-color: var(--border) transparent;
   }
 
-  /* Peek (marker tap) and full-detail: hide list, show detail panel */
+  /* Peek (marker tap) and full-detail: hide list and controls, show detail panel */
   body.sheet-peek #place-list,
   body.sheet-peek #filters,
   body.sheet-peek #search-wrap,
   body.sheet-peek #random-btn,
   body.sheet-peek #place-count,
+  body.sheet-peek #date-filter-wrap,
+  body.sheet-peek #chat-sidebar-btn,
   body.sheet-full-detail #place-list,
   body.sheet-full-detail #filters,
   body.sheet-full-detail #search-wrap,
   body.sheet-full-detail #random-btn,
-  body.sheet-full-detail #place-count {
+  body.sheet-full-detail #place-count,
+  body.sheet-full-detail #date-filter-wrap,
+  body.sheet-full-detail #chat-sidebar-btn {
     display: none;
   }
 
   body.sheet-peek #detail-panel,
   body.sheet-full-detail #detail-panel {
     display: block;
+  }
+
+  body.sheet-peek .sidebar-footer,
+  body.sheet-full-detail .sidebar-footer {
+    display: none;
   }
 
   /* Peek: show the sheet-back button ("← Back to list") */
@@ -1276,8 +1348,12 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
 #chat-sidebar-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 #chat-sidebar-btn svg { flex-shrink: 0; }
 
-/* Hide sidebar button on mobile (use FAB instead) */
-@media (max-width: 767px) { #chat-sidebar-btn { display: none; } }
+/* On mobile the sidebar button lives in the raised sheet; keep it visible there */
+@media (max-width: 767px) {
+  #chat-sidebar-btn {
+    display: flex;
+  }
+}
 
 /* Floating chat FAB (mobile) */
 #chat-fab {
@@ -1302,7 +1378,11 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
   animation: fabPulse 3s ease-in-out infinite;
 }
 #chat-fab:hover { transform: scale(1.04); }
-@media (max-width: 767px) { #chat-fab { display: flex; } }
+@media (max-width: 767px) {
+  #chat-fab { display: flex; }
+  /* Hide FAB when the sheet is raised — AI chat is accessible via the sidebar button */
+  body.sheet-up #chat-fab { display: none; }
+}
 
 @keyframes fabPulse {
   0%, 100% { box-shadow: 0 4px 16px rgba(92,58,30,0.40); }
@@ -1632,6 +1712,54 @@ body.chat-open::after {
   gap: 8px;
 }
 
+#date-toggle {
+  display: none; /* shown only on mobile */
+}
+
+/* Desktop: always show the date filter inner content regardless of hidden attr */
+@media (min-width: 768px) {
+  #date-filter-inner[hidden] {
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 767px) {
+  #date-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--text-muted);
+    background: var(--surface-2);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    width: fit-content;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  #date-toggle[aria-expanded="true"] {
+    color: var(--primary);
+    border-color: var(--primary-light);
+  }
+  #date-toggle[aria-expanded="true"] #date-toggle-arrow {
+    transform: rotate(90deg);
+  }
+  #date-toggle-arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+  #date-filter-inner:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
 /* Preset chips row */
 #date-presets {
   display: flex;
@@ -1792,6 +1920,44 @@ body.chat-open::after {
 
 .detail-nav-arrow:disabled { opacity: 0.25; cursor: default; }
 .detail-nav-arrow:not(:disabled):active { background: var(--surface-2); border-color: var(--primary-light); }
+
+@media (max-width: 767px) {
+  .detail-nav-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+  .detail-nav {
+    padding: 8px 12px;
+  }
+}
+
+/* ── Swipe hint toast ───────────────────────────────────────── */
+.swipe-hint {
+  position: sticky;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  margin: 0 auto 8px;
+  text-align: center;
+  pointer-events: none;
+  animation: swipeHintFade 2.2s ease forwards;
+  z-index: 20;
+}
+
+@keyframes swipeHintFade {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  20%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
+}
 
 /* ── Peek card (mobile marker tap) ─────────────────────────── */
 .peek-card {
