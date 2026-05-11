@@ -1006,32 +1006,47 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
     scrollbar-color: var(--border) transparent;
   }
 
-  /* Show detail panel, hide list when in detail mode */
-  body.sheet-detail #place-list,
-  body.sheet-detail #filters,
-  body.sheet-detail #search-wrap,
-  body.sheet-detail #random-btn,
-  body.sheet-detail #place-count {
+  /* Peek (marker tap) and full-detail: hide list, show detail panel */
+  body.sheet-peek #place-list,
+  body.sheet-peek #filters,
+  body.sheet-peek #search-wrap,
+  body.sheet-peek #random-btn,
+  body.sheet-peek #place-count,
+  body.sheet-full-detail #place-list,
+  body.sheet-full-detail #filters,
+  body.sheet-full-detail #search-wrap,
+  body.sheet-full-detail #random-btn,
+  body.sheet-full-detail #place-count {
     display: none;
   }
 
-  body.sheet-detail #detail-panel {
+  body.sheet-peek #detail-panel,
+  body.sheet-full-detail #detail-panel {
     display: block;
   }
 
-  body.sheet-detail #sheet-back {
-    display: none; /* detail-nav inside detail panel replaces this */
+  /* Peek: show the sheet-back button ("← Back to list") */
+  body.sheet-peek #sheet-back {
+    display: flex;
   }
 
-  body.sheet-detail #mobile-search-bar {
+  /* Full detail: detail-nav (inside the panel) replaces sheet-back */
+  body.sheet-full-detail #sheet-back {
     display: none;
   }
 
-  #detail-panel .popup-content {
+  /* Hide mobile search bar in both peek and full-detail states */
+  body.sheet-peek #mobile-search-bar,
+  body.sheet-full-detail #mobile-search-bar {
+    display: none;
+  }
+
+  /* Popup sizing inside the mobile detail panel */
+  body.sheet-full-detail #detail-panel .popup-content {
     padding: 14px 16px 24px;
   }
 
-  #detail-panel .popup-photo {
+  body.sheet-full-detail #detail-panel .popup-photo {
     height: 180px;
   }
 

@@ -265,7 +265,8 @@ function closeDesktopDetail() {
 }
 
 // Mobile full-detail view with sticky nav bar + prev/next navigation
-function openFullDetail(place) {
+// source: 'peek' = came from marker peek card (back restores peek); 'list' = came from list (back goes to list)
+function openFullDetail(place, source = 'list') {
   const idx   = currentFiltered.findIndex(p => p.id === place.id);
   const total = currentFiltered.length;
 
@@ -287,14 +288,19 @@ function openFullDetail(place) {
   setSheetState('detail');
 
   detailPanel.querySelector('#detail-back').addEventListener('click', () => {
-    detailPanel.innerHTML = '';
-    setSheetState('mid');
+    if (source === 'peek' && currentPeekPlace) {
+      showDetail(currentPeekPlace);  // restore the peek card they expanded from
+    } else {
+      detailPanel.innerHTML = '';
+      currentPeekPlace = null;
+      setSheetState('mid');
+    }
   });
   detailPanel.querySelector('#detail-prev')?.addEventListener('click', () => {
-    if (idx > 0) openFullDetail(currentFiltered[idx - 1]);
+    if (idx > 0) openFullDetail(currentFiltered[idx - 1], source);
   });
   detailPanel.querySelector('#detail-next')?.addEventListener('click', () => {
-    if (idx < total - 1) openFullDetail(currentFiltered[idx + 1]);
+    if (idx < total - 1) openFullDetail(currentFiltered[idx + 1], source);
   });
 }
 
@@ -666,6 +672,7 @@ const detailPanel = document.getElementById('detail-panel');
 const sheetHandle = document.getElementById('sheet-handle');
 
 let sheetState = 'collapsed';
+let currentPeekPlace = null;  // place shown in peek card, so back-from-detail can restore it
 
 function computeSnaps() {
   const vh     = window.innerHeight;
@@ -687,8 +694,10 @@ function setSheetState(state) {
   const offset = snaps[state] ?? snaps.collapsed;
   sidebar.style.setProperty('--sheet-offset', offset + 'px');
 
-  // Show back button in peek and detail states
-  document.body.classList.toggle('sheet-detail', state === 'detail' || state === 'peek');
+  // sheet-peek: marker-tap peek card (back button visible, no detail-nav)
+  // sheet-full-detail: full expanded detail (detail-nav visible, no sheet-back)
+  document.body.classList.toggle('sheet-peek',        state === 'peek');
+  document.body.classList.toggle('sheet-full-detail', state === 'detail');
 
   setTimeout(() => map.invalidateSize({ animate: false }), 340);
 }
@@ -706,10 +715,11 @@ function panToForMobile(lat, lng) {
 }
 
 function showDetail(place) {
+  currentPeekPlace = place;
   detailPanel.innerHTML = buildPeekCard(place);
   detailPanel.scrollTop = 0;
   detailPanel.querySelector('.peek-expand-btn').addEventListener('click', () => {
-    openFullDetail(place);
+    openFullDetail(place, 'peek');
   });
   history.replaceState(null, '', `#place-${place.id}`);
   setSheetState('peek');
@@ -722,6 +732,7 @@ backBtn.innerHTML = '← Back to list';
 backBtn.addEventListener('click', () => {
   if (isMobile()) {
     detailPanel.innerHTML = '';
+    currentPeekPlace = null;
     setSheetState('mid');
   } else {
     closeDesktopDetail();
@@ -778,11 +789,12 @@ sheetHandle.addEventListener('pointerup', () => {
 
   const snaps   = computeSnaps();
   const current = parseFloat(sidebar.style.getPropertyValue('--sheet-offset')) || snaps.collapsed;
-  // When detail content is present: snap between detail/peek/collapsed
-  // Otherwise: snap between expanded/mid/collapsed
-  const snapKeys = hasDetail
-    ? ['detail', 'peek', 'collapsed']
-    : ['expanded', 'mid', 'collapsed'];
+  // Peek state: only snap between peek/collapsed (not detail — drag up → use button to expand)
+  // Full detail state: snap between detail/collapsed
+  // No detail: snap between expanded/mid/collapsed
+  const snapKeys = sheetState === 'peek'
+    ? ['peek', 'collapsed']
+    : (hasDetail ? ['detail', 'collapsed'] : ['expanded', 'mid', 'collapsed']);
   const options = snapKeys.map(k => ({ k, v: snaps[k] }));
   const nearest = options.reduce((b, o) => Math.abs(o.v - current) < Math.abs(b.v - current) ? o : b);
   setSheetState(nearest.k);
@@ -793,7 +805,7 @@ let resizeTimer;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
-    if (isMobile()) setSheetState(sheetState === 'detail' ? 'detail' : 'collapsed');
+    if (isMobile()) setSheetState(['detail', 'peek'].includes(sheetState) ? sheetState : 'collapsed');
     map.invalidateSize();
   }, 150);
 });
