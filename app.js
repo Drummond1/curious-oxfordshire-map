@@ -265,18 +265,35 @@ clusterGroup.addLayers(allMarkers);
 // Selected marker — cleared when detail closes or new pin is tapped
 let selectedMarkerId = null;
 
-function setMarkerSelected(id) {
-  // Clear previous selection
-  if (selectedMarkerId !== null && selectedMarkerId !== id) {
-    const prev = markerById[selectedMarkerId];
-    const prevEl = prev?.getElement()?.querySelector('div');
-    if (prevEl) prevEl.classList.remove('marker-selected');
-  }
-  selectedMarkerId = id;
+function clearMarkerSelected(id) {
   if (id === null) return;
   const marker = markerById[id];
-  const el = marker?.getElement()?.querySelector('div');
-  if (el) el.classList.add('marker-selected');
+  const container = marker?.getElement();
+  if (!container) return;
+  container.querySelector('div')?.classList.remove('marker-selected');
+  container.querySelectorAll('.marker-ripple').forEach(r => r.remove());
+}
+
+function setMarkerSelected(id) {
+  clearMarkerSelected(selectedMarkerId);
+  selectedMarkerId = id;
+  if (id === null) return;
+
+  const marker = markerById[id];
+  const container = marker?.getElement();   // leaflet-marker-icon div — overflow:visible
+  if (!container) return;
+
+  // Scale + bounce the inner dot
+  const inner = container.querySelector('div');
+  if (inner) inner.classList.add('marker-selected');
+
+  // Inject three expanding ripple rings with staggered delays
+  for (let i = 0; i < 3; i++) {
+    const ring = document.createElement('div');
+    ring.className = 'marker-ripple';
+    ring.style.animationDelay = (i * 0.45) + 's';
+    container.appendChild(ring);
+  }
 }
 
 // Scale a marker's inner dot up/down (desktop hover from list)
@@ -857,7 +874,8 @@ sheetHandle.insertAdjacentElement('afterend', backBtn);
 
 // Clicking the map: collapse sheet on mobile, close detail on desktop
 map.on('click', () => {
-  setMarkerSelected(null);
+  clearMarkerSelected(selectedMarkerId);
+  selectedMarkerId = null;
   if (isMobile() && sheetState !== 'collapsed') setSheetState('collapsed');
   if (!isMobile() && document.body.classList.contains('desktop-detail')) closeDesktopDetail();
 });
