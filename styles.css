@@ -997,11 +997,13 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
     min-height: 0;
   }
 
-  /* Detail panel */
+  /* Detail panel — scrollable, fills remaining sidebar height */
   #detail-panel {
     flex: 1;
     min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
   }
@@ -1043,11 +1045,16 @@ body.desktop-detail .popup-content { padding: 14px 16px; }
 
   /* Popup sizing inside the mobile detail panel */
   body.sheet-full-detail #detail-panel .popup-content {
-    padding: 14px 16px 24px;
+    padding: 12px 16px max(32px, env(safe-area-inset-bottom) + 16px);
   }
 
   body.sheet-full-detail #detail-panel .popup-photo {
-    height: 180px;
+    height: 140px;
+  }
+
+  /* Slightly tighten popup headings on small screens */
+  body.sheet-full-detail #detail-panel .popup-content h3 {
+    font-size: 1rem;
   }
 
   /* Leaflet popups suppressed on mobile — we use the detail panel */

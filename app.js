@@ -220,7 +220,7 @@ places.forEach(place => {
   marker.on('click', () => {
     if (isMobile()) {
       panToForMobile(place.lat, place.lng);
-      showDetail(place);
+      openFullDetail(place, 'list');  // go directly to full detail, same as list tap
     } else {
       map.setView([place.lat, place.lng], 14, { animate: true });
       showDesktopDetail(place);
@@ -682,7 +682,7 @@ function computeSnaps() {
     mid:       Math.max(0, sheetH - vh * 0.52),
     peek:      Math.max(0, sheetH - vh * 0.56),   // ~44% map visible — used for marker tap
     expanded:  Math.max(0, sheetH - vh * 0.88),
-    detail:    Math.max(0, sheetH - vh * 0.88)
+    detail:    Math.max(0, sheetH - vh * 0.95)
   };
 }
 
@@ -780,7 +780,7 @@ sheetHandle.addEventListener('pointerup', () => {
 
   if (dragMoveDelta < 8) {
     if (sheetState === 'collapsed') {
-      setSheetState(hasDetail ? 'peek' : 'mid');
+      setSheetState(hasDetail ? 'detail' : 'mid');
     } else {
       setSheetState('collapsed');
     }
