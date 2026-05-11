@@ -280,20 +280,31 @@ function setMarkerSelected(id) {
   if (id === null) return;
 
   const marker = markerById[id];
-  const container = marker?.getElement();   // leaflet-marker-icon div — overflow:visible
+  const container = marker?.getElement();
   if (!container) return;
 
-  // Scale + bounce the inner dot
   const inner = container.querySelector('div');
   if (inner) inner.classList.add('marker-selected');
 
-  // Inject three expanding ripple rings with staggered delays
+  // Three ripple rings; each runs 2 cycles then stops, leaving the stable selected state
   for (let i = 0; i < 3; i++) {
     const ring = document.createElement('div');
     ring.className = 'marker-ripple';
     ring.style.animationDelay = (i * 0.45) + 's';
     container.appendChild(ring);
+    // Remove after animation completes (2 cycles × 1.8s + delay)
+    const ttl = (i * 0.45 + 2 * 1.8) * 1000;
+    setTimeout(() => ring.remove(), ttl + 100);
   }
+}
+
+// Mark all pins in the current filtered set so they're visually distinct on the map
+function setMarkersActive(filteredSet) {
+  places.forEach(place => {
+    const inner = markerById[place.id]?.getElement()?.querySelector('div');
+    if (!inner) return;
+    inner.classList.toggle('marker-active', filteredSet.has(place.id));
+  });
 }
 
 // Scale a marker's inner dot up/down (desktop hover from list)
@@ -698,6 +709,7 @@ function refresh() {
     }
   });
 
+  setMarkersActive(filteredSet);
   renderList(filtered);
 }
 
