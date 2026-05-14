@@ -706,6 +706,12 @@ function getFiltered() {
       );
     }
 
+    // Hide events whose date has already passed
+    if (place.category === 'events' && place.date) {
+      const today = new Date(); today.setHours(0,0,0,0);
+      if (new Date(place.date) < today) return false;
+    }
+
     // Date / period filter
     let dateMatch = true;
     if (dateFrom && dateTo) {
